@@ -1,0 +1,80 @@
+FROM python:3.7
+
+# Setup airflow
+RUN set -ex \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+	&& apt-get install -y --no-install-recommends apt-utils \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y --force-yes build-essential freetds-bin krb5-user ldap-utils libffi6 libsasl2-2 libsasl2-modules libssl1.1 locales lsb-release sasl2-bin sqlite3 unixodbc libsasl2-dev python-dev libldap2-dev libssl-dev telnet net-tools \
+	&& apt-get purge --auto-remove -yqq \
+    && apt-get autoremove -yqq --purge \
+    && apt-get clean \
+    && rm -rf \
+        /var/lib/apt/lists/* \
+        /tmp/* \
+        /var/tmp/* \
+        /usr/share/doc \
+        /usr/share/doc-base \
+	&& pip install pip==20.2.4 \
+    && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install --no-cache-dir "apache-airflow[crypto,postgres,jdbc]==2.0.0" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.0.0/constraints-3.7.txt" psycopg2-binary scp paramiko python-ldap email_validator
+
+# Install Java
+RUN echo "deb http://archive.debian.org/debian/ jessie-backports main" >> /etc/apt/sources.list \
+	&& apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libcups2 \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -t jessie-backports --no-install-recommends -y openjdk-8-jre-headless \
+    && rm -rf /var/lib/apt/lists/*
+	
+# Install Git
+RUN apt-get -o Acquire::Check-Valid-Until=false update \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git-all
+
+ARG airflow_home=/opt/airflow
+
+# Setup airflow git path
+ARG airflow_git=${airflow_home}/git
+RUN mkdir -p ${airflow_git}
+	
+# Create user and group to run Airflow
+ARG air_user=afpuser
+ARG air_group=afpgroup
+RUN groupadd -g 9999 "${air_group}"
+RUN useradd -m -u 9999 -g "${air_group}" "${air_user}" -s /bin/bash
+
+# Copy airflow configuration preset
+COPY airflow_conf/airflow.cfg ${airflow_home}/airflow.cfg
+COPY airflow_conf/webserver_config.py ${airflow_home}/webserver_config.py
+
+# Copy custom JARs
+COPY jars/* ${airflow_home}/jars/
+
+# Copy GIT Webhook Listener
+COPY airflow_conf/listen_git.py ${airflow_home}/listen_git.py
+
+# https://jsw.ibm.com/browse/MAPDEVOPS-1916
+COPY airflow_conf/javacerts.jks ${airflow_home}/javacerts.jks
+COPY airflow_conf/digikeystore.jks ${airflow_home}/digikeystore.jks
+
+COPY entrypoint.sh /entrypoint.sh
+
+# Set permissions to allow entrypoint to work as AFPUSER user
+RUN chown -R ${air_user}:${air_group} ${airflow_home}
+RUN chmod -R 774 ${airflow_home}
+RUN chown -R ${air_user}:${air_group} /home/afpuser
+RUN chmod -R 774 /home/afpuser
+RUN chown ${air_user}:${air_group} /entrypoint.sh
+RUN chmod 774 /entrypoint.sh
+
+USER ${air_user}
+
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+# https://jsw.ibm.com/browse/MAPDEVOPS-302
+ENV CLASSPATH=/opt/airflow/jars/nzjdbc.jar:/opt/airflow/jars/db2jcc4.jar
+
+ENV AIR_USER=${air_user}
+ENV AIR_GROUP=${air_group}
+ENV AIRFLOW_HOME=${airflow_home}
+ENV AIRFLOW_DAG=${airflow_home}/dags
+ENV AIRFLOW_GIT=${airflow_git}
+
+ENTRYPOINT ["/entrypoint.sh"]
