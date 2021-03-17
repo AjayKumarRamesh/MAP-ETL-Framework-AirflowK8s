@@ -45,7 +45,7 @@ elif [ "$1" = 'afp-web' ]; then
 	ln -s ${AIRFLOW_GIT}/dags ${AIRFLOW_HOME}
 	
 	echo "Starting Git webhook listener"
-	export FLASK_APP=${AIRFLOW_HOME}/listen_git.py
+	export FLASK_APP=${AIRFLOW_HOME}/listen_webserver_git.py
 	python -m flask run --host=0.0.0.0 &
 	
 	echo "Airflow DB init"
@@ -73,7 +73,7 @@ elif [ "$1" = 'afp-sched' ]; then
 	ln -s ${AIRFLOW_GIT}/dags ${AIRFLOW_HOME}
 	
 	echo "Starting Git webhook listener"
-	export FLASK_APP=${AIRFLOW_HOME}/listen_git.py
+	export FLASK_APP=${AIRFLOW_HOME}/listen_scheduler_git.py
 	python -m flask run --host=0.0.0.0 &
 	
 	echo 'Starting scheduler'
