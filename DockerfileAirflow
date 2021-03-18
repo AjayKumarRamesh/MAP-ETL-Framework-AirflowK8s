@@ -28,6 +28,15 @@ RUN echo "deb http://archive.debian.org/debian/ jessie-backports main" >> /etc/a
 RUN apt-get -o Acquire::Check-Valid-Until=false update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git-all
 
+# Install kubectl and ibmcloud CLI
+RUN set -ex \
+	&& apt-get install -y apt-transport-https ca-certificates curl \
+	&& curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+	&& echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
+	&& apt-get -o Acquire::Check-Valid-Until=false update \
+	&& apt-get install -y kubectl
+RUN curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+
 ARG airflow_home=/opt/airflow
 
 # Setup airflow git path
