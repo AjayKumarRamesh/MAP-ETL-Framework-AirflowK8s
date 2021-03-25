@@ -35,7 +35,6 @@ RUN set -ex \
 	&& echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
 	&& apt-get -o Acquire::Check-Valid-Until=false update \
 	&& apt-get install -y kubectl
-RUN curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
 
 ARG airflow_home=/opt/airflow
 
