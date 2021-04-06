@@ -45,9 +45,9 @@ screenshot
 - **Click on Kubernetes web console**
 screenshot
 
-<span style="color:red">**Here and below I'm using Powershell on my Windows PC here**</span>.
-
 ### How to connect to K8s Cluster via ibmcloud and kubectl CLI
+
+**Here and below I'm using Powershell on my Windows PC here**
 
 **Login to IBM**\
 ibmcloud login --sso
@@ -141,7 +141,7 @@ d: \
 cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML \
 kubectl apply -f pvcs.yml -n airflow
 
-**Check if status is BOUND**
+**Check if status is BOUND**\
 NAME            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE \
 airflow-logs    Bound    pvc-0af1a188-2414-4258-a113-c4b66d0a55c1   20Gi       RWX            ibmc-file-gold   2m57s \
 postgres-data   Bound    pvc-baf25360-65cd-4238-a228-0570c757fb8a   20Gi       RWO            ibmc-file-gold   2m57s
