@@ -28,7 +28,7 @@ TBD
 ### Request Access to IBM Public Cloud Account
 
 **Instruction:** https://w3.ibm.com/w3publisher/cio-marketing-systems/marketing-platform/reference-documents/481a8660-7ad6-11eb-ab1a-bbcf8f30fb44 \
-**AccessHub link:** https://ibm.idaccesshub.com/ECMv6/request/requestHome \
+**AccessHub link:** https://ibm.idaccesshub.com/ECMv6/request/requestHome
 
 **Application:** Marketing Systems Cloud account \
 **Groups:** MAP Admin, MAP Non Prod и MAP Prod \
@@ -45,43 +45,43 @@ screenshot
 - **Click on Kubernetes web console**
 screenshot
 
-####<span style="color:red">**Here and below I'm using Powershell on my Windows PC here**</span>.
+<span style="color:red">**Here and below I'm using Powershell on my Windows PC here**</span>.
 
 ### How to connect to K8s Cluster via ibmcloud and kubectl CLI
 
-**Login to IBM**
+**Login to IBM**\
 ibmcloud login --sso
 
-**Install plugins and list them**
-ibmcloud plugin install container-service
-ibmcloud plugin install container-registry
-ibmcloud plugin install observe-service
+**Install plugins and list them**\
+ibmcloud plugin install container-service \
+ibmcloud plugin install container-registry \
+ibmcloud plugin install observe-service \
 ibmcloud plugin list
 
 **Install Docker Desktop**
 
-**Connect to the clusterA**
-ibmcloud login -a cloud.ibm.com -r us-south -g IBM-MAP -sso
-**Set cluster context for local client and view current context to make sure everything is ok**
-ibmcloud ks cluster config --cluster c0hhi59d0s2ho34b3s00
+**Connect to the clusterA**\
+ibmcloud login -a cloud.ibm.com -r us-south -g IBM-MAP -sso \
+**Set cluster context for local client and view current context to make sure everything is ok**\
+ibmcloud ks cluster config --cluster c0hhi59d0s2ho34b3s00 \
 kubectl config current-context
 
-**Set local client to use IBM container registry and list namespaces available in IBM Cloud account**
-ibmcloud cr login
+**Set local client to use IBM container registry and list namespaces available in IBM Cloud account**\
+ibmcloud cr login\
 ibmcloud cr namespace-list
 
 ### Build
 
-**Switch to the folder containing build files**
-d:
-cd \work\unica\MAP-ETL-Framework-AirflowK8s
-**Build locally, tag and push images of my services to IBM Cloud container registry**
-docker build -t us.icr.io/map-dev-namespace/postgres -f DockerfilePostgres .
-docker push us.icr.io/map-dev-namespace/postgres:latest
-docker build -t us.icr.io/map-dev-namespace/airflow -f DockerfileAirflow .
+**Switch to the folder containing build files**\
+d: \
+cd \work\unica\MAP-ETL-Framework-AirflowK8s \
+**Build locally, tag and push images of my services to IBM Cloud container registry**\
+docker build -t us.icr.io/map-dev-namespace/postgres -f DockerfilePostgres . \
+docker push us.icr.io/map-dev-namespace/postgres:latest \
+docker build -t us.icr.io/map-dev-namespace/airflow -f DockerfileAirflow . \
 docker push us.icr.io/map-dev-namespace/airflow:latest
 
-**List images in IBM Cloud registry**
+**List images in IBM Cloud registry**\
 ibmcloud cr image-list
 
 ### Namespace
