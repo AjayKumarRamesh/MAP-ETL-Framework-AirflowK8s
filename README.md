@@ -40,9 +40,9 @@ TBD
 https://cloud.ibm.com/ \
 Account: Marketing Systems
 
-- **Navigate to Kubernetes - Clusters - _map-dal10-16x64-01_**
+- **Navigate to Kubernetes - Clusters - _map-dal10-16x64-01_**\
 screenshot
-- **Click on Kubernetes web console**
+- **Click on Kubernetes web console**\
 screenshot
 
 ### How to connect to K8s Cluster via ibmcloud and kubectl CLI
