@@ -27,12 +27,12 @@ TBD
 
 ### Request Access to IBM Public Cloud Account
 
-**Instruction:** https://w3.ibm.com/w3publisher/cio-marketing-systems/marketing-platform/reference-documents/481a8660-7ad6-11eb-ab1a-bbcf8f30fb44
-**AccessHub link:** https://ibm.idaccesshub.com/ECMv6/request/requestHome 
+**Instruction:** https://w3.ibm.com/w3publisher/cio-marketing-systems/marketing-platform/reference-documents/481a8660-7ad6-11eb-ab1a-bbcf8f30fb44\
+**AccessHub link:** https://ibm.idaccesshub.com/ECMv6/request/requestHome\
 
-**Application:** Marketing Systems Cloud account
-**Groups:** MAP Admin, MAP Non Prod и MAP Prod
-**Justification:** I'm a MAP team member responsible for Kubernetes cluster administration and development
+**Application:** Marketing Systems Cloud account\
+**Groups:** MAP Admin, MAP Non Prod и MAP Prod\
+**Justification:** I'm a MAP team member responsible for Kubernetes cluster administration and development \
 
 ### How to get to K8s web console
 
