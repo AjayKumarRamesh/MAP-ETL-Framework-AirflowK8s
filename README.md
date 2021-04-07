@@ -42,6 +42,7 @@ Account: 1808859 - Marketing Systems
 
 - **Navigate to Kubernetes - Clusters - _map-dal10-16x64-01_**
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/1.jpg">
+
 - **Click on Kubernetes web console**
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/2.jpg">
 
