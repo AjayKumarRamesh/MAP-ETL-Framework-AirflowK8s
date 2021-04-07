@@ -40,9 +40,9 @@ https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c0hhi59d0s2ho34b3s0
 https://cloud.ibm.com/ \
 Account: 1808859 - Marketing Systems
 
-- **Navigate to Kubernetes - Clusters - _map-dal10-16x64-01_**\
+- **Navigate to Kubernetes - Clusters - _map-dal10-16x64-01_**
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/1.jpg">
-- **Click on Kubernetes web console**\
+- **Click on Kubernetes web console**
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/2.jpg">
 
 ### How to connect to K8s Cluster via ibmcloud and kubectl CLI
