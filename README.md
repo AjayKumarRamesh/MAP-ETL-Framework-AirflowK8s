@@ -23,7 +23,7 @@ https://map-dal10-16x64-01-3e85c10138e3d9eb765a34cf4d1f9197-0000.us-south.contai
 https://github.ibm.com/CIO-MAP/MAP-ETL-Framework
 
 **Direct link to K8s console**\
-TBD
+https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c0hhi59d0s2ho34b3s00/service/#/overview?namespace=default
 
 ### Request Access to IBM Public Cloud Account
 
@@ -38,12 +38,12 @@ TBD
 
 - **Log in to IBM Public Cloud with your W3ID**\
 https://cloud.ibm.com/ \
-Account: Marketing Systems
+Account: 1808859 - Marketing Systems
 
 - **Navigate to Kubernetes - Clusters - _map-dal10-16x64-01_**\
-screenshot
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/1.jpg">
 - **Click on Kubernetes web console**\
-screenshot
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/2.jpg">
 
 ### How to connect to K8s Cluster via ibmcloud and kubectl CLI
 
