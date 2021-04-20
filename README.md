@@ -111,22 +111,14 @@ kubectl apply -f services.yml -n airflow
 
 ### Ingress Secret and Deployment
 
-**View Ingress Sercret name for default namespace**\
-ibmcloud ks cluster get --cluster map-dal10-16x64-01 \
-Ingress Subdomain:              map-dal10-16x64-01-3e85c10138e3d9eb765a34cf4d1f9197-0000.us-south.containers.appdomain.cloud \
-Ingress Secret:                 map-dal10-16x64-01-3e85c10138e3d9eb765a34cf4d1f9197-0000
+**Create Domain name, Request SSL certificate and upload it to kubernetes cluster**\
+**Get certificate CRN to be used in command below**\
 
-**Get CRN for default Ingress Secret**\
-PS C:\Users\shcherbatyuk> ibmcloud ks ingress secret get -c map-dal10-16x64-01 --name map-dal10-16x64-01-3e85c10138e3d9eb765a34cf4d1f9197-0000 --namespace default\
-OK \
-Name:           map-dal10-16x64-01-3e85c10138e3d9eb765a34cf4d1f9197-0000 \
-Namespace:      default \
-CRN:            crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:ae8edb9f-492e-457c-becd-5d16f7ab3232:certificate:6b319c12eff2ba3c32dbc44507a9feec \
-Expires On:     2021-05-10T22:23:50+0000 \
-Domain:         map-dal10-16x64-01-3e85c10138e3d9eb765a34cf4d1f9197-0000.us-south.containers.appdomain.cloud \
-Status:         created \
-User Managed:   false \
-Persisted:      true
+
+
+** Create Ingress Secret for Airflow namespace**\
+ibmcloud ks ingress secret create --name airflow-internal-domain-cert --cluster map-dal10-16x64-01 --cert-crn crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:ae8edb9f-492e-457c-becd-5d16f7ab3232:certificate:47658dbf034e73a57ebe93616172f661 -n airflow
+
 
 **Create Ingress Secret for Airflow namespace**\
 ibmcloud ks ingress secret create --cluster map-dal10-16x64-01 --cert-crn crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:ae8edb9f-492e-457c-becd-5d16f7ab3232:certificate:6b319c12eff2ba3c32dbc44507a9feec --name ingress-airflow-tls --namespace airflow
