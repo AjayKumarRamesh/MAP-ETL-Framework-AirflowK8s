@@ -16,7 +16,7 @@ Deployment and configuration files for Airflow running on K8s integrated with ET
 
 ### Overview and Links
 
-**Airflow K8s POC Web UI**\
+**Airflow K8s DEV Web UI**\
 https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login/
 
 **The following GitHub repo is linked to Airflow containers via webhook<->listener pipeline. When a new DAG is committed to GitHub it is loaded to Airflow automatically**\
