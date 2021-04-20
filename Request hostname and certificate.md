@@ -21,7 +21,7 @@ Organizational Unit **CIO**\
 Common Name **airflow.map-mktsys-dev.limited-use.ibm.com**\
 Key Size **2048**
 
-**Filenames**\
+**Filenames**
 - airflow_map-mktsys-dev_limited-use_ibm_com.csr\
 - airflow_map-mktsys-dev_limited-use_ibm_com_private.key
 
@@ -38,11 +38,11 @@ https://daymvs1.pok.ibm.com/ibmca/welcome.do?id=19222
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/2_4.jpg">
 
-**Filename**\
+**Filename**
 - cert.pem
 
 **Obtain a copy of IBM intermediate and root certs**\
-**Filenames**\
+**Filenames**
 - caintermediate.pem\
 - caroot.pem
 
