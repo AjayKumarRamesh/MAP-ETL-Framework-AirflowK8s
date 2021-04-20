@@ -17,7 +17,7 @@ Deployment and configuration files for Airflow running on K8s integrated with ET
 ### Overview and Links
 
 **Airflow K8s POC Web UI**\
-https://map-dal10-16x64-01-3e85c10138e3d9eb765a34cf4d1f9197-0000.us-south.containers.appdomain.cloud/airflow/home
+https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login/
 
 **The following GitHub repo is linked to Airflow containers via webhook<->listener pipeline. When a new DAG is committed to GitHub it is loaded to Airflow automatically**\
 https://github.ibm.com/CIO-MAP/MAP-ETL-Framework
@@ -116,12 +116,8 @@ kubectl apply -f services.yml -n airflow
 
 https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Hostname%20and%20SSL%20certificate%20for%20Airflow.docx
 
-** Create Ingress Secret for Airflow namespace**\
-ibmcloud ks ingress secret create --name airflow-internal-domain-cert --cluster map-dal10-16x64-01 --cert-crn crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:ae8edb9f-492e-457c-becd-5d16f7ab3232:certificate:47658dbf034e73a57ebe93616172f661 -n airflow
-
-
 **Create Ingress Secret for Airflow namespace**\
-ibmcloud ks ingress secret create --cluster map-dal10-16x64-01 --cert-crn crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:ae8edb9f-492e-457c-becd-5d16f7ab3232:certificate:6b319c12eff2ba3c32dbc44507a9feec --name ingress-airflow-tls --namespace airflow
+ibmcloud ks ingress secret create --name airflow-internal-domain-cert --cluster map-dal10-16x64-01 --cert-crn crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:ae8edb9f-492e-457c-becd-5d16f7ab3232:certificate:47658dbf034e73a57ebe93616172f661 -n airflow
 
 **Deploy Ingresses**\
 d: \
