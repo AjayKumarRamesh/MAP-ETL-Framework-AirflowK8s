@@ -114,7 +114,7 @@ kubectl apply -f services.yml -n airflow
 **Create Domain name, Request SSL certificate and upload it to kubernetes cluster**\
 **Get certificate CRN to be used in command below**
 
-[Follow these steps](https://support.west-wind.com)https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/Request%20hostname%20and%20certificate.md
+[Follow these steps](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/Request%20hostname%20and%20certificate.md)
 
 **Create Ingress Secret for Airflow namespace**\
 ibmcloud ks ingress secret create --name airflow-internal-domain-cert --cluster map-dal10-16x64-01 --cert-crn crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:ae8edb9f-492e-457c-becd-5d16f7ab3232:certificate:47658dbf034e73a57ebe93616172f661 -n airflow
