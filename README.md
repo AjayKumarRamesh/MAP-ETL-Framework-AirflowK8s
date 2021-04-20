@@ -112,7 +112,7 @@ kubectl apply -f services.yml -n airflow
 ### Ingress Secret and Deployment
 
 **Create Domain name, Request SSL certificate and upload it to kubernetes cluster**\
-**Get certificate CRN to be used in command below**\
+**Get certificate CRN to be used in command below**
 
 https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Hostname%20and%20SSL%20certificate%20for%20Airflow.docx
 
