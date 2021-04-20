@@ -22,7 +22,7 @@ Common Name **airflow.map-mktsys-dev.limited-use.ibm.com**\
 Key Size **2048**
 
 **Filenames**
-- airflow_map-mktsys-dev_limited-use_ibm_com.csr\
+- airflow_map-mktsys-dev_limited-use_ibm_com.csr
 - airflow_map-mktsys-dev_limited-use_ibm_com_private.key
 
 **Create profile in IBM Internal Certificate Authority**\
@@ -43,7 +43,7 @@ https://daymvs1.pok.ibm.com/ibmca/welcome.do?id=19222
 
 **Obtain a copy of IBM intermediate and root certs**\
 **Filenames**
-- caintermediate.pem\
+- caintermediate.pem
 - caroot.pem
 
 **Upload certificate to IBM Cloud**\
