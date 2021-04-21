@@ -33,3 +33,8 @@ When the ticket is created send brief description and link to the ticket to the 
 
 The actual work is done by xuyin@cn.ibm.com or MOHAMEDIH@us.ibm.com
 They can be contacted directly via Slack.
+
+### Documentation
+- [Connect to Cluster](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Connect%20to%20Cluster.md)
+- [Build & Deployment Manual](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Build%20%26%20Deployment%20Manual.md)
+- [User Roles Assignment](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/User%20Roles%20Assignment.md)
