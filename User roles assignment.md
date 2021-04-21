@@ -1,8 +1,7 @@
 # User Roles assignment
 
-
-### Default user self registration role is set in the following file:
-### MAP-ETL-Framework-AirflowK8s\airflow_conf\webserver_config.py
+**Default user self registration role is set in the following file:**
+**MAP-ETL-Framework-AirflowK8s\airflow_conf\webserver_config.py**
 
 _AUTH_USER_REGISTRATION_ROLE_ = _"Viewer"_
 
