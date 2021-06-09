@@ -76,6 +76,9 @@ elif [ "$1" = 'afp-sched' ]; then
 	export FLASK_APP=${AIRFLOW_HOME}/listen_scheduler_git.py
 	python -m flask run --host=0.0.0.0 &
 	
+	echo 'Starting supercronic'
+	supercronic ${AIRFLOW_HOME}/afpuser &
+	
 	echo 'Starting scheduler'
 	airflow scheduler &
 	

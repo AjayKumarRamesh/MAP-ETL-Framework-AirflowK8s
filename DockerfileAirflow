@@ -4,7 +4,7 @@ FROM python:3.7
 RUN set -ex \
     && apt-get -o Acquire::Check-Valid-Until=false update \
 	&& apt-get install -y --no-install-recommends apt-utils \
-    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y --force-yes build-essential freetds-bin krb5-user ldap-utils libffi6 libsasl2-2 libsasl2-modules libssl1.1 locales lsb-release sasl2-bin sqlite3 unixodbc libsasl2-dev python-dev libldap2-dev libssl-dev telnet net-tools \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y --force-yes build-essential freetds-bin krb5-user ldap-utils libffi6 libsasl2-2 libsasl2-modules libssl1.1 locales lsb-release sasl2-bin sqlite3 unixodbc libsasl2-dev python-dev libldap2-dev libssl-dev telnet net-tools nano\
 	&& apt-get purge --auto-remove -yqq \
     && apt-get autoremove -yqq --purge \
     && apt-get clean \
@@ -42,6 +42,16 @@ RUN set -ex \
 	&& apt-get -o Acquire::Check-Valid-Until=false update \
 	&& apt-get install -y kubectl
 
+# Install Supercronic
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.12/supercronic-linux-amd64 \
+    SUPERCRONIC=supercronic-linux-amd64 \
+    SUPERCRONIC_SHA1SUM=048b95b48b708983effb2e5c935a1ef8483d9e3e
+RUN curl -fsSLO "$SUPERCRONIC_URL" \
+	&& echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
+	&& chmod +x "$SUPERCRONIC" \
+	&& mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
+	&& ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
+
 ARG airflow_home=/opt/airflow
 
 # Setup airflow git path
@@ -68,6 +78,9 @@ COPY airflow_conf/listen_webserver_git.py ${airflow_home}/listen_webserver_git.p
 # https://jsw.ibm.com/browse/MAPDEVOPS-1916
 COPY airflow_conf/javacerts.jks ${airflow_home}/javacerts.jks
 COPY airflow_conf/digikeystore.jks ${airflow_home}/digikeystore.jks
+
+# Copy cron job to clean logs
+COPY airflow_conf/afpuser ${airflow_home}/afpuser
 
 COPY entrypoint.sh /entrypoint.sh
 
