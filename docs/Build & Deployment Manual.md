@@ -36,7 +36,7 @@ kubectl config set-context --current --namespace=airflow
 \#TEST\# ibmcloud ks ingress secret create --name airflow-internal-domain-cert --cluster map-dal10-16x64-02 --cert-crn crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:86a29ea8-9702-42ad-969d-62ef26f97c80:certificate:ce76eae470ed8296b7d4a5ac52960521 -n airflow \
 \#PROD\# ibmcloud ks ingress secret create --name airflow-internal-domain-cert --cluster map-dal10-16x64-03 --cert-crn crn:v1:bluemix:public:cloudcerts:us-south:a/a2edaeffb1cb4cd3a6aefe5282468938:64c4e116-9d78-4771-b8c5-8c6213d3e65e:certificate:b9c6e4e43b4eab181821e3ed2f98261f -n airflow
 
-**Make sure certificate is added to the cluster**
+**Make sure certificate is added to the cluster**\
 \#DEV\# ibmcloud ks ingress secret ls -c map-dal10-16x64-01 \
 \#TEST\# ibmcloud ks ingress secret ls -c map-dal10-16x64-02 \
 \#PROD\# ibmcloud ks ingress secret ls -c map-dal10-16x64-03
