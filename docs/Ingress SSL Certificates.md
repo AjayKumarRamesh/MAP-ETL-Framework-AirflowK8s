@@ -5,7 +5,7 @@
 ### Domain name should be created for exposing services to IBM Intranet
 
 **Request for creation is submitted by Platform team. You can check if it is already created here:**\
-https://cwt01.webmaster.ibm.com/dns/records
+https://cwt01.webmaster.ibm.com/dns/records \
 Search key: map-mktsys
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_1.jpg">
