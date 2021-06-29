@@ -1,5 +1,7 @@
 # Create Domain name, Request SSL certificate and upload it to kubernetes cluster
 
+**I've used Test env as an example**
+
 ### Domain name should be created for exposing services to IBM Intranet
 
 **Request for creation is submitted by Platform team. You can check if it is already created here:**\
@@ -18,42 +20,40 @@ State **NC**\
 Locality **Durham**\
 Organization **IBM**\
 Organizational Unit **CIO**\
-Common Name **airflow.map-mktsys-dev.limited-use.ibm.com**\
+Common Name **airflow.map-mktsys-test.limited-use.ibm.com**\
 Key Size **2048**
 
 **Filenames**
-- airflow_map-mktsys-dev_limited-use_ibm_com.csr
-- airflow_map-mktsys-dev_limited-use_ibm_com_private.key
+- airflow_map-mktsys-test_limited-use_ibm_com.csr
+- airflow_map-mktsys-test_limited-use_ibm_com_private.key
 
 **Create profile in IBM Internal Certificate Authority**\
-https://daymvs1.pok.ibm.com/ibmca/welcome.do?id=19222
+https://daymvs1.pok.ibm.com/ibmca/certificateProfiles.do?lang=en
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_2.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_3.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_4.jpg">
 
 **Request certificate in IBMCAPKI using earlier generated CSR file**
 
-<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_3.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_5.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_6.jpg">
 
-**Download issued certificate**
+**Download issued certificate in PKCS7b format**
 
-<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_4.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_7.jpg">
 
-**Filename**
-- cert.pem
-
-**Obtain a copy of IBM intermediate and root certs**\
-**Filenames**
-- caintermediate.pem
-- caroot.pem
+**Convert certificate to PEM format before uploading it to cloud**
 
 **Upload certificate to IBM Cloud**\
 https://cloud.ibm.com/resources
 
-**Navigate to: Services - kube-c0hhi59d0s2ho34b3s00 - Your Certificates - Import**
+**Navigate to: Services - kube-certmgr-c262vded0jqq2thfho00 - Your Certificates - Import**
 
-<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_5.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_8.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_9.jpg">
 
-**As a result you get your certificate imported and it gets CRN**
+**As a result you get your certificate imported and it gets CRN. Save it somewhere to be used later**
 
-<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_6.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_10.jpg">
 
