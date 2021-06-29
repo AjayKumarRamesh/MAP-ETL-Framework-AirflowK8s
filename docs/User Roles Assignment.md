@@ -12,14 +12,16 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Viewer"_
 | 2 | Victor.Shcherbatyuk1@ibm.com | Admin | Admin |
 | 3 | fmozingo@us.ibm.com | Admin | Admin |
 | 4 | Ihar.Shurupau1@ibm.com | Admin | Admin |
-| 5 | Timothy.Figgins1@ibm.com | Admin | Admin |
-| 6 | Pooja.Sunkara@ibm.com | Admin | Op |
-| 7 | rdamelio@us.ibm.com | Admin | Op |
-| 8 | Kranthi.Mandati@ibm.com | Admin | Op |
-| 9 | Dmitry.Kovel1@ibm.com | Admin | Op |
-| 10 | VARDHAN.VULIPALA@ibm.com | Admin | Op |
-| 11 | Keerthi.Kiran@ibm.com | Admin | Op |
-| 12 | Mohamed.SOLIMAN@ibm.com | Admin | Op |
-| 13 | saghodas@us.ibm.com | Admin | Op |
-| 14 | david.murray@us.ibm.com | Admin | Op |
+| 5 | Ihar.Shurupau2@ibm.com | Admin | Admin |
+| 6 | Timothy.Figgins1@ibm.com | Admin | Admin |
+| 7 | Pooja.Sunkara@ibm.com | Admin | Op |
+| 8 | rdamelio@us.ibm.com | Admin | Op |
+| 9 | Kranthi.Mandati@ibm.com | Admin | Op |
+| 10 | Dmitry.Kovel1@ibm.com | Admin | Op |
+| 11 | VARDHAN.VULIPALA@ibm.com | Admin | Op |
+| 12 | Keerthi.Kiran@ibm.com | Admin | Op |
+| 13 | Mohamed.SOLIMAN@ibm.com | Admin | Op |
+| 14 | saghodas@us.ibm.com | Admin | Op |
+| 15 | Sergei.Malakhovski1@ibm.com | Admin | Op |
+| 16 | david.murray@us.ibm.com | Admin | Op |
 | | Default role | Viewer | Viewer | Viewer |
