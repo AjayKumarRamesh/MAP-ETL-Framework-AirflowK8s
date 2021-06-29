@@ -39,9 +39,9 @@ ibmcloud plugin list
 **Connect to the cluster**\
 ibmcloud login -a cloud.ibm.com -r us-south -g IBM-MAP -sso \
 **Set cluster context for local client and view current context to make sure everything is ok**\
-&#35DEV&#35 ibmcloud ks cluster config --cluster c0hhi59d0s2ho34b3s00 \
-&#35TEST&#35 ibmcloud ks cluster config --cluster c262vded0jqq2thfho00 \
-&#35PROD&#35 ibmcloud ks cluster config --cluster c2om8okd0oh5q4um8sh0 \
+\#DEV\# ibmcloud ks cluster config --cluster c0hhi59d0s2ho34b3s00 \
+\#TEST\# ibmcloud ks cluster config --cluster c262vded0jqq2thfho00 \
+\#PROD\# ibmcloud ks cluster config --cluster c2om8okd0oh5q4um8sh0 \
 kubectl config current-context
 
 **Now you can use K8s IDE (i.e. Lens), just select context that was created in your system**
