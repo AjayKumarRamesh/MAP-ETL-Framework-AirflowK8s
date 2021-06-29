@@ -55,7 +55,7 @@ AUTH_ROLE_ADMIN = 'Admin'
 AUTH_USER_REGISTRATION = True
 
 # The default user self registration role
-AUTH_USER_REGISTRATION_ROLE = "Viewer"
+AUTH_USER_REGISTRATION_ROLE = "Admin"
 
 # When using OAuth Auth, uncomment to setup provider(s) info
 # Google OAuth example:

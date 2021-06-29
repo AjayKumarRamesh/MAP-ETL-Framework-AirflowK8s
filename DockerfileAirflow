@@ -20,9 +20,9 @@ RUN set -ex \
 # Install Java
 RUN echo "deb http://archive.debian.org/debian/ jessie-backports main" >> /etc/apt/sources.list \
 	#### Fix NO PUBKEY ERROR ####
-	&& gpg --keyserver hkp://pool.sks-keyservers.net:80 --recv-key 8B48AD6246925553 \     
+	&& gpg --keyserver keyserver.ubuntu.com --recv-key 8B48AD6246925553 \     
 	&& gpg -a --export 8B48AD6246925553 | apt-key add - \
-	&& gpg --keyserver hkp://pool.sks-keyservers.net:80 --recv-key 7638D0442B90D010 \     
+	&& gpg --keyserver keyserver.ubuntu.com --recv-key 7638D0442B90D010 \     
 	&& gpg -a --export 7638D0442B90D010 | apt-key add - \
 	#####
 	&& apt-get -o Acquire::Check-Valid-Until=false update \
