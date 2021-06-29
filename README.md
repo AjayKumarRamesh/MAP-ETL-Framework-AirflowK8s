@@ -17,9 +17,9 @@ Deployment and configuration files for Airflow running on K8s integrated with ET
 ### Overview and Links
 
 **Airflow K8s Web UI**\
-**DEV** https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login \
-**TEST** https://airflow.map-mktsys-test.limited-use.ibm.com/airflow/login \
-**PROD** https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login
+DEV https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login \
+TEST https://airflow.map-mktsys-test.limited-use.ibm.com/airflow/login \
+PROD https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login
 
 **The following GitHub repo is linked to Airflow containers via webhook<->listener pipeline. When a new DAG is committed to GitHub it is loaded to Airflow automatically**\
 https://github.ibm.com/CIO-MAP/MAP-ETL-Framework
@@ -27,7 +27,7 @@ https://github.ibm.com/CIO-MAP/MAP-ETL-Framework
 **There is a branch for each environment. Airflow gets branch name to sync with from K8s Secrets** \
 **DEV** https://github.ibm.com/CIO-MAP/MAP-ETL-Framework/tree/dev \
 **TEST** https://github.ibm.com/CIO-MAP/MAP-ETL-Framework/tree/test \
-**PROD** https://github.ibm.com/CIO-MAP/MAP-ETL-Framework
+**PROD** https://github.ibm.com/CIO-MAP/MAP-ETL-Framework/tree/master
 
 **Direct link to K8s console**\
 **DEV** https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c0hhi59d0s2ho34b3s00/service/#/overview?namespace=default \
