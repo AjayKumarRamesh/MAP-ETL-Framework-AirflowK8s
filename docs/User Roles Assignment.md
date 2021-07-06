@@ -31,6 +31,10 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Viewer"_
 | 19 | ldavidlp@ibm.com | Viewer | Op | Op |
 | | Default role | Viewer | Viewer | Viewer |
 
-To request access to Airflow environments please write e-mail request to bwambur@us.ibm.com (copy Victor.Shcherbatyuk1@ibm.com). Please mention which environment you need to get access to and what role you need.
+To request access to Airflow environments please do the following:
+- Write e-mail request to bwambur@us.ibm.com (copy Victor.Shcherbatyuk1@ibm.com). Please mention which environment you need to get access to and what role you need.
+- Log in to the desired environment to complete self-registration and appear in users list.
 
 If you see your name in the table above and do not have access required it means you haven't logged in to environment before and haven't completed self-registration. In such case please reach out to Victor.Shcherbatyuk1@ibm.com to get the situation sorted.
+
+Everybody else can self-register and will get default "Viewer" role.
