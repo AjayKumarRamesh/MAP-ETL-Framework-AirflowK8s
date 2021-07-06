@@ -13,7 +13,7 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Viewer"_
 | 3 | fmozingo@us.ibm.com | Admin | Admin | Admin |
 | 4 | Ihar.Shurupau2@ibm.com | Admin | Admin | Admin |
 | 5 | Timothy.Figgins1@ibm.com | Admin | Admin | Admin |
-| --- | --- | --- | --- | --- |
+| | | | | |
 | 6 | Pooja.Sunkara@ibm.com | Admin | Op | Op |
 | 7 | rdamelio@us.ibm.com | Admin | Op | Op |
 | 8 | Kranthi.Mandati@ibm.com | Admin | Op | Op |
