@@ -23,12 +23,13 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Viewer"_
 | 12 | saghodas@us.ibm.com | Admin | Op | Op |
 | 13 | Sergei.Malakhovski1@ibm.com | Admin | Op | Op |
 | 14 | david.murray@us.ibm.com | Admin | Viewer | Viewer |
+| 15 | Sairaj.Alve@ibm.com | Admin | Op | Op |
 | | | | | |
-| 15 | alex.almanza@ibm.com | Viewer | Op | Op | 
-| 16 | souvik.dutta@ibm.com | Viewer | Op | Op |
-| 17 | akumarr2@in.ibm.com | Viewer | Op | Op |
-| 18 | alan.flores@ibm.com | Viewer | Op | Op |
-| 19 | ldavidlp@ibm.com | Viewer | Op | Op |
+| 16 | alex.almanza@ibm.com | Viewer | Op | Op | 
+| 17 | souvik.dutta@ibm.com | Viewer | Op | Op |
+| 18 | akumarr2@in.ibm.com | Viewer | Op | Op |
+| 19 | alan.flores@ibm.com | Viewer | Op | Op |
+| 20 | ldavidlp@ibm.com | Viewer | Op | Op |
 | | Default role | Viewer | Viewer | Viewer |
 
 To request access to Airflow environments please do the following:
