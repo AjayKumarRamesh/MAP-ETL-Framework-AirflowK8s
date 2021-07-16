@@ -1,4 +1,4 @@
-# How Airflow is integrated to ETL Framework
+# How Airflow is integrated into ETL Framework
 
 ### Environment Diagram Detailed
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/env_diagram_detailed.jpg">
