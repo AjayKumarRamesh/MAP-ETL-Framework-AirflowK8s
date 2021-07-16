@@ -7,7 +7,7 @@
 
 - **ETL logic is represented as Scala code and compiled as JAR file.**\
 _There is Docker image based on JDK image containing specifically compiled Spark libraries and ETL Framework itself (distributed as JAR file as well) provided by ETL Framework team._
-- **JAR with ETL code is included to this Docker image file along with supplementary libraries, drivers and DB connectors (developers run docker build using Dockerfile where they put path to libraries needed).**
+- **JAR with ETL code is included to this Docker image file along with supplementary libraries, drivers and DB connectors (developers run "docker build" using Dockerfile where they put path to libraries needed).**
 - **This image (new image for each ETL job) is pushed to IBM Container registry.**\
 _There is Kubernetes YAML deployment file (provided by ETL Framework team). It describes deployment of GCP Spark Operator Pod which runs Spark-submit command._\
 _Spark Operator uses Docker image containing ETL code and ETL Framework as a template to spawn Spark Driver and Executor Pods which perform actual work._
@@ -16,4 +16,4 @@ _Spark Operator uses Docker image containing ETL code and ETL Framework as a tem
 
 As we can see Airflow is integrated with ETL framework, working with it side by side.\
 Airflow role here is to schedule DAGs, automate code deployment, collect Job run statistics, logs, etc.\
-It is the single centre of managing ETL jobs allowing to control who and how can access triggering jobs, see its logs.\
+It is the single centre of managing ETL jobs allowing to control who and how can access triggering jobs, see its logs.
