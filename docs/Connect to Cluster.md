@@ -25,6 +25,8 @@ Account: 1808859 - Marketing Systems
 
 **Here and below I'm using Powershell on my Windows PC here**
 
+**Install IBM Cloud CLI**
+
 **Login to IBM**\
 ibmcloud login --sso
 
