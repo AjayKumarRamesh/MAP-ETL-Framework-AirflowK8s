@@ -15,7 +15,7 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base \
 	&& pip install pip==20.2.4 \
-    && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install --no-cache-dir "apache-airflow[crypto,postgres,jdbc]==2.0.0" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.0.0/constraints-3.7.txt" psycopg2-binary scp paramiko python-ldap email_validator apache-airflow-providers-cncf-kubernetes apache-airflow-providers-slack
+    && SLUGIFY_USES_TEXT_UNIDECODE=yes pip install --no-cache-dir "apache-airflow[crypto,postgres,jdbc]==2.1.3" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.1.3/constraints-3.7.txt" psycopg2-binary scp paramiko python-ldap email_validator apache-airflow-providers-cncf-kubernetes apache-airflow-providers-slack
 
 # Install Java
 RUN echo "deb http://archive.debian.org/debian/ jessie-backports main" >> /etc/apt/sources.list \
