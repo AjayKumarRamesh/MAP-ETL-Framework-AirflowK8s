@@ -3,7 +3,7 @@ Deployment and configuration files for Airflow running on K8s integrated with ET
 
 ### List of Services
 
- - <img src="https://miro.medium.com/max/1080/1*6jjSw8IqGbsPZp7L_43YyQ.png" height="20"> Airflow 2.0.0
+ - <img src="https://miro.medium.com/max/1080/1*6jjSw8IqGbsPZp7L_43YyQ.png" height="20"> Airflow 2.1.3
  - <img src="https://i.stack.imgur.com/hRJou.gif" height="20"> Python 3.7
  - <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg" height="20"> Spark 3.0.1
  - <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" height="20"> Postgres 10.15
