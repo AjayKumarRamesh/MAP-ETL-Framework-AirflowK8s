@@ -3,7 +3,7 @@
 **Default user self registration role is set in the following file:**\
 **MAP-ETL-Framework-AirflowK8s\airflow_conf\webserver_config.py**
 
-_AUTH_USER_REGISTRATION_ROLE_ = _"Viewer"_
+_AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 
 ### Roles assigned in Airflow
 | № | Environment |	Dev | Test | Prod |
@@ -11,31 +11,41 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Viewer"_
 | 1 | bwambur@us.ibm.com | Admin | Admin | Admin |
 | 2 | Victor.Shcherbatyuk1@ibm.com | Admin | Admin | Admin |
 | 3 | fmozingo@us.ibm.com | Admin | Admin | Admin |
-| 4 | Ihar.Shurupau2@ibm.com | Admin | Admin | Admin |
-| 5 | Timothy.Figgins1@ibm.com | Admin | Admin | Admin |
+| 4 | alex.almanza@ibm.com | Admin | Admin | Admin |
+| 5 | souvik.dutta@ibm.com | Admin | Admin | Admin |
+| 6 | bbotev@bg.ibm.com | Admin | Admin | Admin |
+| 7 | mitko.dimitrov4@ibm.com | Admin | Admin | Admin |
 | | | | | |
-| 6 | Pooja.Sunkara@ibm.com | Admin | Op | Op |
-| 7 | rdamelio@us.ibm.com | Admin | Op | Op |
-| 8 | Kranthi.Mandati@ibm.com | Admin | Op | Op |
-| 9 | VARDHAN.VULIPALA@ibm.com | Admin | Op | Op |
-| 10 | Keerthi.Kiran@ibm.com | Admin | Op | Op |
-| 11 | Mohamed.SOLIMAN@ibm.com | Admin | Op | Op |
-| 12 | saghodas@us.ibm.com | Admin | Op | Op |
-| 13 | Sergei.Malakhovski1@ibm.com | Admin | Op | Op |
-| 14 | david.murray@us.ibm.com | Admin | Viewer | Viewer |
-| 15 | Sairaj.Alve@ibm.com | Admin | Op | Op |
+| 8 | akumarr2@in.ibm.com | Op | Op | Op |
+| 9 | ldavidlp@ibm.com | Op | Op | Op |
+| 10 | nagendrac@in.ibm.com | Op | Op | Op |
 | | | | | |
-| 16 | alex.almanza@ibm.com | Viewer | Op | Op | 
-| 17 | souvik.dutta@ibm.com | Viewer | Op | Op |
-| 18 | akumarr2@in.ibm.com | Viewer | Op | Op |
-| 19 | alan.flores@ibm.com | Viewer | Op | Op |
-| 20 | ldavidlp@ibm.com | Viewer | Op | Op |
-| | Default role | Viewer | Viewer | Viewer |
+| 11 | Pooja.Sunkara@ibm.com | Op | Op | Viewer | 
+| 12 | rdamelio@us.ibm.com | Op | Op | Viewer |
+| 13 | Kranthi.Mandati@ibm.com | Op | Op | Viewer |
+| 14 | VARDHAN.VULIPALA@ibm.com | Op | Op | Viewer |
+| 15 | Keerthi.Kiran@ibm.com | Op | Op | Viewer |
+| 16 | Mohamed.SOLIMAN@ibm.com | Op | Op | Viewer |
+| 17 | saghodas@us.ibm.com | Op | Op | Viewer |
+| 18 | Sergei.Malakhovski1@ibm.com | Op | Op | Viewer |
+| 19 | david.murray@us.ibm.com | Op | Op | Viewer |
+| 20 | Sairaj.Alve@ibm.com | Op | Op | Viewer |
+| | Default role | Public | Public | Public |
 
-To request access to Airflow environments please do the following:
-- Write e-mail request to bwambur@us.ibm.com (copy Victor.Shcherbatyuk1@ibm.com). Please mention which environment you need to get access to and what role you need.
-- Log in to the desired environment to complete self-registration and appear in users list.
+### To request access to Airflow environments please do the following
+
+**Create Jira ticket. Provide the following information**
+- You name and desired environment in ticket name
+- Provide business justification in description field specifying which kind of access you need
+- Set Epic Link, Assignee and Contributor list according to the screenshot below
+
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_1.jpg">
+
+**Create sub-task with approval and assign it to Souvik Dutta**
+
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_1.jpg">
+
+**Log in to the desired environment to complete self-registration and appear in Users list**\
+You will register to Airflow with Public Role. After that Airflow Administrators will set role for your user according to Jira ticket.\
 
 If you see your name in the table above and do not have access required it means you haven't logged in to environment before and haven't completed self-registration. In such case please reach out to Victor.Shcherbatyuk1@ibm.com to get the situation sorted.
-
-Everybody else can self-register and will get default "Viewer" role.
