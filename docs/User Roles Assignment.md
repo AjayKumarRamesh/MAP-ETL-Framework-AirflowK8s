@@ -32,18 +32,18 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 20 | Sairaj.Alve@ibm.com | Op | Op | Viewer |
 | | Default role | Public | Public | Public |
 
-### To request access to Airflow environments please do the following
+### To request access to Airflow environments please do the following:
 
 **Create Jira ticket. Provide the following information**
 - You name and desired environment in ticket name
 - Provide business justification in description field specifying which kind of access you need
 - Set Epic Link, Assignee and Contributor list according to the screenshot below
 
-<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_1.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/3_1.jpg">
 
 **Create sub-task with approval and assign it to Souvik Dutta**
 
-<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/2_1.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/3_2.jpg">
 
 **Log in to the desired environment to complete self-registration and appear in Users list**\
 You will register to Airflow with Public Role. After that Airflow Administrators will set role for your user according to Jira ticket.\
