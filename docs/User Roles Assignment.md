@@ -39,7 +39,6 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 25 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
 | 26 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
 | 27 | grecialo@ibm.com | Viewer | Viewer | Viewer |
-| 28 | grecialo@ibm.com | Viewer | Viewer | Viewer |
 | | Default role | Public | Public | Public |
 
 ### To request access to Airflow environments please do the following:
