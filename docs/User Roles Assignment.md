@@ -20,16 +20,24 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 9 | ldavidlp@ibm.com | Op | Op | Op |
 | 10 | nagendrac@in.ibm.com | Op | Op | Op |
 | | | | | |
-| 11 | Pooja.Sunkara@ibm.com | Op | Op | Viewer | 
-| 12 | rdamelio@us.ibm.com | Op | Op | Viewer |
-| 13 | Kranthi.Mandati@ibm.com | Op | Op | Viewer |
-| 14 | VARDHAN.VULIPALA@ibm.com | Op | Op | Viewer |
-| 15 | Keerthi.Kiran@ibm.com | Op | Op | Viewer |
-| 16 | Mohamed.SOLIMAN@ibm.com | Op | Op | Viewer |
-| 17 | saghodas@us.ibm.com | Op | Op | Viewer |
-| 18 | Sergei.Malakhovski1@ibm.com | Op | Op | Viewer |
-| 19 | david.murray@us.ibm.com | Op | Op | Viewer |
-| 20 | Sairaj.Alve@ibm.com | Op | Op | Viewer |
+| 11 | Aliaksei.Karatkevich1@ibm.com | Op | Op | Op |
+| | | | | |
+| 12 | Pooja.Sunkara@ibm.com | Op | Op | Viewer | 
+| 13 | rdamelio@us.ibm.com | Op | Op | Viewer |
+| 14 | Kranthi.Mandati@ibm.com | Op | Op | Viewer |
+| 15 | VARDHAN.VULIPALA@ibm.com | Op | Op | Viewer |
+| 16 | Keerthi.Kiran@ibm.com | Op | Op | Viewer |
+| 17 | Mohamed.SOLIMAN@ibm.com | Op | Op | Viewer |
+| 18 | saghodas@us.ibm.com | Op | Op | Viewer |
+| 19 | Sergei.Malakhovski1@ibm.com | Op | Op | Viewer |
+| 20 | david.murray@us.ibm.com | Op | Op | Viewer |
+| 21 | Sairaj.Alve@ibm.com | Op | Op | Viewer |
+| | | | | |
+| 22 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
+| 23 | Inga.Ostroumova1@ibm.com | Viewer | Viewer | Viewer |
+| 24 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
+| 25 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
+| | | | | |
 | | Default role | Public | Public | Public |
 
 ### To request access to Airflow environments please do the following:
