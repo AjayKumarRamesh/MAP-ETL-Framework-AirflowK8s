@@ -79,7 +79,7 @@ AUTH_USER_REGISTRATION_ROLE = "Public"
 # When using LDAP Auth, setup the ldap server
 AUTH_LDAP_SERVER = 'ldaps://bluepages.ibm.com:636/'
 AUTH_LDAP_SEARCH = "ou=bluepages,o=ibm.com"
-AUTH_LDAP_BIND_USER = 'uid=Y9E7HY626,c=by,ou=bluepages,o=ibm.com'
+AUTH_LDAP_BIND_USER = 'uid=C-TKFU897,c=us,ou=bluepages,o=ibm.com'
 AUTH_LDAP_BIND_PASSWORD = 'changeme'
 AUTH_LDAP_UID_FIELD = 'preferredIdentity'
 

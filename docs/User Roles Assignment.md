@@ -36,12 +36,12 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 
 **Create Jira ticket. Provide the following information**
 - You name and desired environment in ticket name
-- Provide business justification in description field specifying which kind of access you need
+- Provide business justification in description field specifying **which kind of access** you need
 - Set Type, Epic Link, Assignee and Contributor list according to the screenshot below
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/3_1.jpg">
 
-**Create sub-task with approval**
+**If requesting access to PROD environment create sub-task with approval**
 - Set Type and Assignee according to screenshot below
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/3_2.jpg">
