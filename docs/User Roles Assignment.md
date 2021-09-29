@@ -40,6 +40,7 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 26 | grecialo@ibm.com | Viewer | Viewer | Viewer |
 | 27 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
 | 28 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
+| 29 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
 | | | | | |
 | | Default role | Public | Public | Public |
 
