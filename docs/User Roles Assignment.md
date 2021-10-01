@@ -21,8 +21,8 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 10 | nagendrac@in.ibm.com | Op | Op | Op |
 | | | | | |
 | 11 | Aliaksei.Karatkevich1@ibm.com | Op | Op | Op |
+| 12 | Pooja.Sunkara@ibm.com | Op | Op | Op | 
 | | | | | |
-| 12 | Pooja.Sunkara@ibm.com | Op | Op | Viewer | 
 | 13 | rdamelio@us.ibm.com | Op | Op | Viewer |
 | 14 | Kranthi.Mandati@ibm.com | Op | Op | Viewer |
 | 15 | VARDHAN.VULIPALA@ibm.com | Op | Op | Viewer |
@@ -32,15 +32,16 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 19 | Sergei.Malakhovski1@ibm.com | Op | Op | Viewer |
 | 20 | david.murray@us.ibm.com | Op | Op | Viewer |
 | 21 | Sairaj.Alve@ibm.com | Op | Op | Viewer |
+| 22 | timothy.figgins1@ibm.com | Op | Op | Viewer |
 | | | | | |
-| 22 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
-| 23 | Inga.Ostroumova1@ibm.com | Viewer | Viewer | Viewer |
-| 24 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
-| 25 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
-| 26 | grecialo@ibm.com | Viewer | Viewer | Viewer |
-| 27 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
-| 28 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
-| 29 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
+| 23 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
+| 24 | Inga.Ostroumova1@ibm.com | Viewer | Viewer | Viewer |
+| 25 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
+| 26 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
+| 27 | grecialo@ibm.com | Viewer | Viewer | Viewer |
+| 28 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
+| 29 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
+| 30 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
 | | | | | |
 | | Default role | Public | Public | Public |
 
