@@ -2,6 +2,7 @@
 
 **Here and below I'm using Powershell on my Windows PC here**
 
+---
 ### Information you need to get started
   
 **To start the deployment corresponding ticket has to be created by the dev team**\
@@ -17,6 +18,7 @@
 *be32474322886212a0a16b0ed1c8c8fa6bbabb59*
 	
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/4_1.jpg">
+---
 	
 **Login to IBM Cloud**\
 ibmcloud login --sso
