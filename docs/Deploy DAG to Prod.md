@@ -56,7 +56,7 @@ cd Work\UNICA\MAP-ETL-Framework\
 git checkout master
 
 **Mark commits from Test branch to be merged into master to be picked up by Prod env**
-git cherry-pick *c8c27a989c1ba5a6034c17421451a7329ec67b4f*
+git cherry-pick *c8c27a989c1ba5a6034c17421451a7329ec67b4f*\
 git cherry-pick *be32474322886212a0a16b0ed1c8c8fa6bbabb59*
 
 **Open your GitHub desktop and click "Push origin"**
