@@ -42,7 +42,7 @@ docker push us.icr.io/mip-prod-namespace/*rubytomip:1.0*
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/4_2.jpg">
 
-**If you don't have Git CLI download it here: https://git-scm.com/download/win**\
+**If you don't have Git CLI download it here:** https://git-scm.com/download/win \
 **Run Git CMD**
 
 ---
