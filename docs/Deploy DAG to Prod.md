@@ -3,17 +3,17 @@
 **Here and below I'm using Powershell on my Windows PC here**
 
 <details>
-  <summary>### Information you need to get started</summary>
+  <summary>**Information you need to get started**</summary>
   
-	**To start the deployment corresponding ticket has to be created by the dev team.**\
-	**There should be sub task with completed approval.**
+	To start the deployment corresponding ticket has to be created by the dev team.
+	There should be sub task with completed approval.
 
-	**You will need the following information to complete the deployment.**
+	You will need the following information to complete the deployment.
 
-	**Docker images:**\
+	Docker images:
 	rubytomip:1.0
 
-	**Github commits numbers:**\
+	Github commits numbers:
 	c8c27a989c1ba5a6034c17421451a7329ec67b4f\
 	be32474322886212a0a16b0ed1c8c8fa6bbabb59
 	
