@@ -60,3 +60,10 @@ git cherry-pick *c8c27a989c1ba5a6034c17421451a7329ec67b4f*\
 git cherry-pick *be32474322886212a0a16b0ed1c8c8fa6bbabb59*
 
 **Open your GitHub desktop and click "Push origin"**
+
+Stop/Disable the DAG
+Stop any currently running ETL sub-DAG stages
+
+Start/Enable the DAG
+wait to complete one full run
+Check the logs of the ETL Sub-DAG-ETL-process. Bottom line should have status 0
