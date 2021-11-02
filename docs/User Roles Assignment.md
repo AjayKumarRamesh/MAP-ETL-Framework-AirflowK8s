@@ -42,6 +42,7 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 28 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
 | 29 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
 | 30 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
+| 31 | yubari@ibm.com | Viewer | Viewer | Viewer |
 | | | | | |
 | | Default role | Public | Public | Public |
 

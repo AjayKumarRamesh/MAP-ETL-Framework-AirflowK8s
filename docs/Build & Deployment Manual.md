@@ -10,8 +10,6 @@ ibmcloud cr namespace-list
 d: \
 cd \work\unica\MAP-ETL-Framework-AirflowK8s \
 **Build locally, tag and push images of my services to IBM Cloud container registry**\
-docker build -t us.icr.io/map-dev-namespace/postgres -f DockerfilePostgres . \
-docker push us.icr.io/map-dev-namespace/postgres:latest \
 docker build -t us.icr.io/map-dev-namespace/airflow -f DockerfileAirflow . \
 docker push us.icr.io/map-dev-namespace/airflow:latest
 
@@ -77,7 +75,6 @@ kubectl apply -f pvcs.yml -n airflow
 **Check if status is BOUND**\
 NAME            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE \
 airflow-logs    Bound    pvc-0af1a188-2414-4258-a113-c4b66d0a55c1   20Gi       RWX            ibmc-file-gold   2m57s \
-postgres-data   Bound    pvc-baf25360-65cd-4238-a228-0570c757fb8a   20Gi       RWO            ibmc-file-gold   2m57s
 
 ### Deployments
 

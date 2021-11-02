@@ -2,30 +2,6 @@
 set -euo pipefail
 
 ########################################################################################################################################################
-if [ "$1" = 'postgres' ]; then
-
-	if [ ! -f ${POSTGRES_HOME}/air_instance.log ]; then
-		echo "There's no DB stored, creating a new instance!"
-		/usr/lib/postgresql/10/bin/initdb -D ${POSTGRES_HOME}/air_instance
-		#Now that instance is created copy postgres settings files before service is started
-		cp /tmp/pg_hba.conf ${POSTGRES_HOME}/air_instance/pg_hba.conf
-		cp /tmp/postgresql.conf ${POSTGRES_HOME}/air_instance/postgresql.conf
-		
-		#Start PGSQL
-		/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
-		psql -c "create database ${AIRFLOW_DB};"
-		psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
-		psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
-	else
-		echo "DB is present in persistent storage, spinning it up!"		
-		#Permissions are messed by persistent storage provider. Fix it otherwise Postgres won't start
-		chmod -R 700 ${POSTGRES_HOME}/air_instance
-		#Start PGSQL
-		/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log -t 500 start
-	fi
-		
-	tail -f /dev/null
-########################################################################################################################################################
 elif [ "$1" = 'afp-web' ]; then
 
 	echo "Copy Airflow Metastore Connection String to Airflow conf"
