@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ########################################################################################################################################################
-elif [ "$1" = 'afp-web' ]; then
+if [ "$1" = 'afp-web' ]; then
 
 	echo "Copy Airflow Metastore Connection String to Airflow conf"
 	sed -i "s|changemestring|${AIRFLOW__CORE__SQL_ALCHEMY_CONN}|" ${AIRFLOW_HOME}/airflow.cfg
