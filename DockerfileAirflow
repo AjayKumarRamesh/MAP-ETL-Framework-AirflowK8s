@@ -44,7 +44,7 @@ RUN set -ex \
 
 # Fix vulnerabilities and configuration issues
 RUN set -ex \
-    && apt-get install -y --only-upgrade libtiff-dev libtiffxx5 libtiff5
+    && apt-get -y upgrade
 RUN rm -rf /etc/mysql/
 RUN rm -rf /etc/apache2/
 
