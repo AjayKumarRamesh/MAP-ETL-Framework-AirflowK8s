@@ -91,7 +91,9 @@ kubectl describe serviceaccount default
 
 d: \
 cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML \
-kubectl apply -f deployments.yml -n airflow
+\#DEV\# kubectl apply -f deployments_dev.yml -n airflow \
+\#TEST\# kubectl apply -f deployments_test.yml -n airflow \
+\#PROD\# kubectl apply -f deployments_prod.yml -n airflow
 
 ### Additional Steps
 
