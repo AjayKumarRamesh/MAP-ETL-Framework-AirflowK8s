@@ -8,9 +8,12 @@ ibmcloud cr namespace-list
 
 **Switch to the folder containing build files**\
 d: \
-cd \work\unica\MAP-ETL-Framework-AirflowK8s \
+cd \work\unica\MAP-ETL-Framework-AirflowK8s
+
 **Build locally, tag and push images of my services to IBM Cloud container registry**\
-docker build -t us.icr.io/map-dev-namespace/airflow -f DockerfileAirflow . \
+docker build -t us.icr.io/map-dev-namespace/airflow -f DockerfileAirflow .
+
+**Push the image to DEV, Test and Prod CR namespaces following dev->test->prod order**\
 \#DEV\# \
 docker push us.icr.io/map-dev-namespace/airflow:latest \
 \#TEST\# \
