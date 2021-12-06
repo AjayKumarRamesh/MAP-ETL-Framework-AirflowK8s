@@ -8,22 +8,21 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 ### Roles assigned in Airflow
 | № | Environment |	Dev | Test | Prod |
 | --- | --- | --- | --- | --- |
-| 1 | bwambur@us.ibm.com | Admin | Admin | Admin |
-| 2 | Victor.Shcherbatyuk1@ibm.com | Admin | Admin | Admin |
-| 3 | fmozingo@us.ibm.com | Admin | Admin | Admin |
-| 4 | alex.almanza@ibm.com | Admin | Admin | Admin |
-| 5 | souvik.dutta@ibm.com | Admin | Admin | Admin |
-| 6 | bbotev@bg.ibm.com | Admin | Admin | Admin |
-| 7 | mitko.dimitrov4@ibm.com | Admin | Admin | Admin |
+| 1 | Victor.Shcherbatyuk1@ibm.com | Admin | Admin | Admin |
+| 2 | alex.almanza@ibm.com | Admin | Admin | Admin |
+| 3 | souvik.dutta@ibm.com | Admin | Admin | Admin |
+| 4 | bbotev@bg.ibm.com | Admin | Admin | Admin |
+| 5 | mitko.dimitrov4@ibm.com | Admin | Admin | Admin |
 | | | | | |
-| 8 | akumarr2@in.ibm.com | Op | Op | Op |
-| 9 | ldavidlp@ibm.com | Op | Op | Op |
+| 6 | akumarr2@in.ibm.com | Op | Op | Op |
+| 7 | ldavidlp@ibm.com | Op | Op | Op |
+| 8 | campos.c@ibm.com | Op | Op | Op |
+| 9 | Aliaksei.Karaliou@ibm.com | Op | Op | Op |
 | 10 | nagendrac@in.ibm.com | Op | Op | Op |
 | | | | | |
-| 11 | Aliaksei.Karatkevich1@ibm.com | Op | Op | Op |
-| 12 | Pooja.Sunkara@ibm.com | Op | Op | Op | 
-| | | | | |
-| 13 | rdamelio@us.ibm.com | Op | Op | Viewer |
+| 11 | Aliaksei.Karatkevich1@ibm.com | Op | Op | Viewer |
+| 12 | bwambur@us.ibm.com | Op | Op | Viewer |
+| 13 | Pooja.Sunkara@ibm.com | Op | Op | Viewer |
 | 14 | Kranthi.Mandati@ibm.com | Op | Op | Viewer |
 | 15 | VARDHAN.VULIPALA@ibm.com | Op | Op | Viewer |
 | 16 | Keerthi.Kiran@ibm.com | Op | Op | Viewer |
@@ -33,16 +32,17 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 20 | david.murray@us.ibm.com | Op | Op | Viewer |
 | 21 | Sairaj.Alve@ibm.com | Op | Op | Viewer |
 | 22 | timothy.figgins1@ibm.com | Op | Op | Viewer |
+| 23 | Syarhey.Marozau@ibm.com | Op | Op | Viewer |
 | | | | | |
-| 23 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
-| 24 | Inga.Ostroumova1@ibm.com | Viewer | Viewer | Viewer |
-| 25 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
-| 26 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
-| 27 | grecialo@ibm.com | Viewer | Viewer | Viewer |
-| 28 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
-| 29 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
-| 30 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
-| 31 | yubari@ibm.com | Viewer | Viewer | Viewer |
+| 24 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
+| 25 | Inga.Ostroumova1@ibm.com | Viewer | Viewer | Viewer |
+| 26 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
+| 27 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
+| 28 | grecialo@ibm.com | Viewer | Viewer | Viewer |
+| 29 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
+| 30 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
+| 31 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
+| 32 | yubari@ibm.com | Viewer | Viewer | Viewer |
 | | | | | |
 | | Default role | Public | Public | Public |
 
