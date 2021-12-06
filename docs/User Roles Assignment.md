@@ -61,6 +61,6 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/3_2.jpg">
 
 **Log in to the desired environment to complete self-registration and appear in Users list**\
-You will register to Airflow with Public Role. After that Airflow Administrators will set role for your user according to Jira ticket.\
+You will register to Airflow with Public Role. After that Airflow Administrators will set role for your user according to Jira ticket.
 
 If you see your name in the table above and do not have access required it means you haven't logged in to environment before and haven't completed self-registration. In such case please reach out to Victor.Shcherbatyuk1@ibm.com to get the situation sorted.
