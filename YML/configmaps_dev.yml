@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: airflow-connection-strings
+data:
+  BASE_URL: "http://airflow.map-mktsys-dev.limited-use.ibm.com/airflow"
+  BRANCH: "dev"
