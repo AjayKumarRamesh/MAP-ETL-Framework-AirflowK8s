@@ -31,6 +31,10 @@ Install IBM Cloud Secrets Manager plugin
 ```
 ibmcloud login --apikey ************
 ibmcloud plugin install secrets-manager
+```
+
+Export environment variable for IBM Cloud CLI Secrets Manager plugin to work with desired Secrets Manager instance
+```
 $SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
 ```
 
@@ -95,7 +99,7 @@ kubectl apply -f .\external_secrets_dev.yml -n airflow
 
 Check that External Secret resource has status "Success"
 
-**Check that K8s secret is created, name and value are correct
+Check that K8s secret is created, name and value are correct
 
 Add the following both to Webserver and Scheduler sections\
 Edit deployments_dev.yml
