@@ -1,10 +1,11 @@
 # User Roles assignment
 
-**Default user self registration role is set in the following file:**\
-**MAP-ETL-Framework-AirflowK8s\airflow_conf\webserver_config.py**
+Default user self registration role is set in the following file:\
+MAP-ETL-Framework-AirflowK8s\airflow_conf\webserver_config.py
 
 _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 
+---
 ### Roles assigned in Airflow
 | № | Environment |	Dev | Test | Prod |
 | --- | --- | --- | --- | --- |
@@ -46,21 +47,22 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | | | | | |
 | | Default role | Public | Public | Public |
 
+---
 ### To request access to Airflow environments please do the following:
 
-**Create Jira ticket. Provide the following information**
+Create Jira ticket. Provide the following information
 - You name and desired environment in ticket name
 - Provide business justification in description field specifying **which kind of access** you need
 - Set Type, Epic Link, Assignee and Contributor list according to the screenshot below
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/3_1.jpg">
 
-**If requesting access to PROD environment create sub-task with approval**
+If requesting access to PROD environment create sub-task with approval
 - Set Type and Assignee according to screenshot below
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/3_2.jpg">
 
-**Log in to the desired environment to complete self-registration and appear in Users list**\
+Log in to the desired environment to complete self-registration and appear in Users list\
 You will register to Airflow with Public Role. After that Airflow Administrators will set role for your user according to Jira ticket.
 
 If you see your name in the table above and do not have access required it means you haven't logged in to environment before and haven't completed self-registration. In such case please reach out to Victor.Shcherbatyuk1@ibm.com to get the situation sorted.
