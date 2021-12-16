@@ -28,7 +28,7 @@ https://jsw.ibm.com/browse/SMSMKTPLAT-1065
 ### Set up Secrets Manager CLI
 
 **Install IBM Cloud Secrets Manager plugin**\
-ibmcloud login --apikey ************\
+ibmcloud login --apikey \*\*\*\*\*\*\*\*\*\*\*\*\
 ibmcloud plugin install secrets-manager\
 $SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
 
@@ -55,30 +55,30 @@ metadata          creation_date              description           id           
 **- data: format is shown in commads below (in IU just put the value of your variable here without name)**\
 **For PowerShell, use single quotation marks to surround the JSON data structure. Additionally, you must escape each double quotation mark that is inside the JSON structure by using a backslash before each double quotation mark**
 
-ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_AIRFLOW__CORE__FERNET_KEY\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\\":\\"************\\"}]'\
-ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_AIRFLOW__CORE__SQL_ALCHEMY_CONN\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\":\\"************\\"}]'\
-ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_GIT_ACCESS_TOKEN\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\\":\\"************\\"}]'\
-ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_LDAP_BIND_PASSWORD\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\\": \\"************\\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_AIRFLOW__CORE__FERNET_KEY\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\\":\\"\*\*\*\*\*\*\*\*\*\*\*\*\\"}]'\
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_AIRFLOW__CORE__SQL_ALCHEMY_CONN\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\":\\"\*\*\*\*\*\*\*\*\*\*\*\*\\"}]'\
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_GIT_ACCESS_TOKEN\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\\":\\"\*\*\*\*\*\*\*\*\*\*\*\*\\"}]'\
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_LDAP_BIND_PASSWORD\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\\": \\"\*\*\*\*\*\*\*\*\*\*\*\*\\"}]'
 
 **Create external secret yaml .\external_secrets_dev.yml**
 
 ```
-apiVersion: 'kubernetes-client.io/v1'\
-kind: ExternalSecret\
-metadata:\
-  name: <name of the external secret resource which is created>\
-  namespace: airflow\
-spec:\
-  backendType: ibmcloudSecretsManager\
-  keyByName: true #this option allows to select secret by name not by UID#\
-  data:\
-    - key: <name of the secret in secrets manager instance>\
-      property: payload\
-      name: <name of environment variable which will be exposed to pod>\
+apiVersion: 'kubernetes-client.io/v1'
+kind: ExternalSecret
+metadata:
+  name: <name of the external secret resource which is created>
+  namespace: airflow
+spec:
+  backendType: ibmcloudSecretsManager
+  keyByName: true #this option allows to select secret by name not by UID#
+  data:
+    - key: <name of the secret in secrets manager instance>
+      property: payload
+      name: <name of environment variable which will be exposed to pod>
       secretType: arbitrary
 ```
 
-**Deploy external secret yaml**
+**Deploy external secret yaml**\
 d:\
 cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML\
 kubectl apply -f .\external_secrets_dev.yml -n airflow
@@ -91,19 +91,19 @@ kubectl apply -f .\external_secrets_dev.yml -n airflow
 **Add the following both to Webserver and Scheduler sections**\
 
 ```
-spec:\
-  template:\
-    spec:\
-      containers:\
-        envFrom:\
-        - secretRef:\
-            name: airflow-core-fernet-key\
-        - secretRef:\
-            name: airflow-core-sql-alchemy-conn\
-        - secretRef:\
-            name: git-access-token\
-        - secretRef:\
-            name: ldap-bind-password\
+spec:
+  template:
+    spec:
+      containers:
+        envFrom:
+        - secretRef:
+            name: airflow-core-fernet-key
+        - secretRef:
+            name: airflow-core-sql-alchemy-conn
+        - secretRef:
+            name: git-access-token
+        - secretRef:
+            name: ldap-bind-password
 ```
 
 ---
