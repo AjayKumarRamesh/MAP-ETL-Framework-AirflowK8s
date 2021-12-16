@@ -1,16 +1,15 @@
 ### Initial Setup
 
-Initial setup is done by platform team.\
-
-**Dev, Test and Prod kubernetes clusters are provisioned and configured:**
+Initial setup is done by platform team.
+- **IBM Cloud CR namespaces are created for Dev, Test and Prod**
+- **Postgres Cloud SAAS instances are created for Dev, Test and Prod**
+- **Secrets Manager instance is created and MIP Secrets Group is created**
+- **Dev, Test and Prod kubernetes clusters are provisioned and configured:**
   - Network configuration to enable DNS name resolving is applied (Calico, CoreDNS)
   - Private and Public Ingress Controllers are configured
   - Secrets Manager Controllers are installed
   - Spark-Kubernetes-Operator is installed to MIP namespace for Spark applications to work
   - LogDNA, Dynatrace, Crowdstrike and other agents are not vital for Airflow to work but are needed for integration with other services
-- **IBM Cloud CR namespaces are created for Dev, Test and Prod**
-- **Postgres Cloud SAAS instances are created for Dev, Test and Prod**
-- **Secrets Manager instance is created and MIP Secrets Group is created**
 
 ---
 ### Build
