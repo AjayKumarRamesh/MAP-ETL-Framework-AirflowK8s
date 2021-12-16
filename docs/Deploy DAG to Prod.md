@@ -78,6 +78,7 @@ docker tag us.icr.io/mip-test-namespace/rubytomip:1.0 us.icr.io/mip-prod-namespa
 Push it to Prod namespace
 ```
 docker push us.icr.io/mip-prod-namespace/rubytomip:1.0
+```
 
 ---
 Open your GitHub desktop and click "Push origin"
