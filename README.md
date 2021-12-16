@@ -1,6 +1,7 @@
 # MAP-ETL-Framework-AirflowK8s
 Deployment and configuration files for Airflow running on K8s integrated with ETL-Framework
 
+---
 ### List of Services
 
  - <img src="https://miro.medium.com/max/1080/1*6jjSw8IqGbsPZp7L_43YyQ.png" height="20"> Airflow 2.1.3
@@ -8,12 +9,15 @@ Deployment and configuration files for Airflow running on K8s integrated with ET
  - <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg" height="20"> Spark 3.0.1
  - <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" height="20"> Postgres 10.15
 
+---
 ### Environment Diagram Simplified
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/env_diagram_simplified.jpg">
 
+---
 ### Environment Diagram Detailed
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/env_diagram_detailed.jpg">
 
+--
 ### Overview and Links
 
 **Airflow K8s Web UI**\
@@ -47,6 +51,7 @@ PROD https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%
 **Secrets Manager instance** \
 https://cloud.ibm.com/services/secrets-manager/crn%3Av1%3Abluemix%3Apublic%3Asecrets-manager%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3A711889a9-a7fd-47a7-b66d-12c14acccd69%3A%3A
 
+---
 ### Support Requests
 
 The request should be represented as JIRA ticket in SMSMKTPLAT project: https://jsw.ibm.com/projects/SMSMKTPLAT/issues/SMSMKTPLAT-177?filter=allopenissues
@@ -56,6 +61,7 @@ When the ticket is created send brief description and link to the ticket to the 
 The actual work is done by xuyin@cn.ibm.com or MOHAMEDIH@us.ibm.com
 They can be contacted directly via Slack.
 
+---
 ### Documentation
 - [Connect to Cluster](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Connect%20to%20Cluster.md)
 - [Build & Deployment Manual](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Build%20%26%20Deployment%20Manual.md)
@@ -63,3 +69,4 @@ They can be contacted directly via Slack.
 - [User Roles Assignment](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/User%20Roles%20Assignment.md)
 - [How Airflow is integrated into ETL Framework](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/How%20Airflow%20is%20integrated%20into%20ETL%20Framework.md)
 - [Deploy DAG to Prod](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Deploy%20DAG%20to%20Prod.md)
+- [Integrate Airflow with IBM Cloud Secrets Manager](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Integrate%20Airflow%20with%20IBM%20Cloud%20Secrets%20Manager.md)
