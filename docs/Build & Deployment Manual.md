@@ -19,13 +19,13 @@ Initial setup is done by platform team.
 
 Set local client to use IBM container registry and list namespaces available in IBM Cloud account
 ```
-ibmcloud cr login\
+ibmcloud cr login
 ibmcloud cr namespace-list
 ```
 
 Switch to the folder containing build files
 ```
-d: \
+d:
 cd \work\unica\MAP-ETL-Framework-AirflowK8s
 ```
 
@@ -115,7 +115,7 @@ View your secret group ID to be used with command below
 ```
 ibmcloud secrets-manager secret-groups
 ...
-metadata        	    creation_date    	          description                 id                         			                   last_update_date          	         name   type
+metadata      	  creation_date    	         description           id                                     last_update_date           name      type
 <Nested Object>   2021-09-28T20:15:46.000Z   All secrets for MIP   e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b   2021-10-05T21:35:50.000Z   MIP       application/vnd.ibm.secrets-manager.secret.group+json
 ```
 
