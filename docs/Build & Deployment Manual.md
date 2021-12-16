@@ -1,3 +1,18 @@
+### Initial Setup
+
+Initial setup is done by platform team.\
+
+**Dev, Test and Prod kubernetes clusters are provisioned and configured:**
+  - Network configuration to enable DNS name resolving is applied (Calico, CoreDNS)
+  - Private and Public Ingress Controllers are configured
+  - Secrets Manager Controllers are installed
+  - Spark-Kubernetes-Operator is installed to MIP namespace for Spark applications to work
+  - LogDNA, Dynatrace, Crowdstrike and other agents are not vital for Airflow to work but are needed for integration with other services
+- **IBM Cloud CR namespaces are created for Dev, Test and Prod**
+- **Postgres Cloud SAAS instances are created for Dev, Test and Prod**
+- **Secrets Manager instance is created and MIP Secrets Group is created**
+
+---
 ### Build
 
 **Here and below I'm using Powershell on my Windows PC**
@@ -28,12 +43,14 @@ docker push us.icr.io/mip-prod-namespace/airflow:latest
 **List images in IBM Cloud registry**\
 ibmcloud cr image-list
 
+---
 ### Namespace
 
 **Create namespace for Airflow and set CLI to use it**\
 kubectl create namespace airflow \
 kubectl config set-context --current --namespace=airflow
 
+---
 ### Ingress Secret and Deployment
 
 **Create Domain name, Request SSL certificate and upload it to kubernetes cluster**\
@@ -58,20 +75,69 @@ cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML \
 \#TEST\# kubectl apply -f ingresses_test.yml -n airflow \
 \#PROD\# kubectl apply -f ingresses_prod.yml -n airflow
 
+---
+### Deploy Config Maps
+
+**Deploy Config Maps**\
+d:\
+cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML\
+\#DEV\# kubectl apply -f .\configmaps_dev.yml -n airflow\
+\#TEST\# kubectl apply -f .\configmaps_test.yml -n airflow\
+\#PROD\# kubectl apply -f .\configmaps_prod.yml -n airflow
+
+---
 ### Prepare and Deploy Secrets
 
-**Encrypt data with base 64 before storing it in YAML file**
+**Export environment variable for IBM Cloud CLI Secrets Manager plugin to work with desired Secrets Manager instance**\
+$SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
 
-**To encrypt use !LINUX! command line. Powerhell encoding does not work!**\
-echo -n "xxxxxx" | base64
+**View your secret group ID to be used with command below**
 
-**Deploy secrets to K8s cluster**\
-d: \
-cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML \
-\#DEV\# kubectl apply -f secrets_dev.yml -n airflow \
-\#TEST\# kubectl apply -f secrets_test.yml -n airflow \
-\#PROD\# kubectl apply -f secrets_prod.yml -n airflow
+```
+ibmcloud secrets-manager secret-groups
+...
+metadata        	    creation_date    	          description                 id                         			                   last_update_date          	         name   type
+<Nested Object>   2021-09-28T20:15:46.000Z   All secrets for MIP   e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b   2021-10-05T21:35:50.000Z   MIP       application/vnd.ibm.secrets-manager.secret.group+json
+```
 
+**Create secret in Secrets Manager instance**
+  - **group: MIP (id=e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b)**
+  - **type: arbitrary**
+  - **data: format is shown in commads below (in IU just put the value of your variable here without name)**
+  
+**For PowerShell, use single quotation marks to surround the JSON data structure. Additionally, you must escape each double quotation mark that is inside the JSON structure by using a backslash before each double quotation mark**
+
+```
+#DEV#
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"DEV_AIRFLOW__CORE__FERNET_KEY\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"DEV_AIRFLOW__CORE__SQL_ALCHEMY_CONN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"postgresql://*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"DEV_GIT_ACCESS_TOKEN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"DEV_LDAP_BIND_PASSWORD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
+
+#TEST#
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_AIRFLOW__CORE__FERNET_KEY\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_AIRFLOW__CORE__SQL_ALCHEMY_CONN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"postgresql://*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_GIT_ACCESS_TOKEN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_LDAP_BIND_PASSWORD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
+
+#PROD#
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_AIRFLOW__CORE__FERNET_KEY\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_AIRFLOW__CORE__SQL_ALCHEMY_CONN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"postgresql://*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_GIT_ACCESS_TOKEN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_LDAP_BIND_PASSWORD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
+```
+
+**Deploy External Secrets to K8s cluster**\
+d:
+cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML\
+\#DEV\# kubectl apply -f .\external_secrets_dev.yml -n airflow\
+\#TEST\# kubectl apply -f .\external_secrets_test.yml -n airflow\
+\#PROD\# kubectl apply -f .\external_secrets_prod.yml -n airflow
+
+**Check that External Secret resource has status "Success"**
+
+**Check that K8s secret is created, name and value are correct**
+---
 ### Deploy Service
 
 d: \
