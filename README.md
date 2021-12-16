@@ -34,6 +34,19 @@ DEV https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c0hhi59d0s2ho34
 TEST https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c262vded0jqq2thfho00/service/#/overview?namespace=default \
 PROD https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c2om8okd0oh5q4um8sh0/service/#/overview?namespace=default
 
+**IBM Cloud Container Registry namespaces** \
+DEV https://cloud.ibm.com/registry/namespaces/map-dev-namespace?region=us-south \
+TEST https://cloud.ibm.com/registry/namespaces/mip-test-namespace?region=us-south \
+PROD https://cloud.ibm.com/registry/namespaces/mip-prod-namespace?region=us-south
+
+**Postgres Clous SAAS instance** \
+DEV https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%3Apublic%3Adatabases-for-postgresql%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3Ac20870c3-8e4a-476e-8fec-86204e4d9703%3A%3A \
+TEST https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%3Apublic%3Adatabases-for-postgresql%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3Aae1df8f9-000d-4170-b441-4ea0bf2acb0e%3A%3A \
+PROD https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%3Apublic%3Adatabases-for-postgresql%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3A0d500df2-45d3-4357-b639-bb88fa2b1034%3A%3A
+
+**Secrets Manager instance** \
+https://cloud.ibm.com/services/secrets-manager/crn%3Av1%3Abluemix%3Apublic%3Asecrets-manager%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3A711889a9-a7fd-47a7-b66d-12c14acccd69%3A%3A
+
 ### Support Requests
 
 The request should be represented as JIRA ticket in SMSMKTPLAT project: https://jsw.ibm.com/projects/SMSMKTPLAT/issues/SMSMKTPLAT-177?filter=allopenissues
