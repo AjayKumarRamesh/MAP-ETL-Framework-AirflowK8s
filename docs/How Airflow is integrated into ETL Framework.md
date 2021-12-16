@@ -3,6 +3,7 @@
 ### Environment Diagram Detailed
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/env_diagram_detailed.jpg">
 
+---
 ### Integration Explained
 
 - **ETL logic is represented as Scala code and compiled as JAR file.**\
