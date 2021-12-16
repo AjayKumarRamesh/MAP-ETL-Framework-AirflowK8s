@@ -1,6 +1,6 @@
 ### Build
 
-**Here and below I'm using Powershell on my Windows PC here**
+**Here and below I'm using Powershell on my Windows PC**
 
 **Set local client to use IBM container registry and list namespaces available in IBM Cloud account**\
 ibmcloud cr login\

@@ -1,6 +1,6 @@
 # Deploy DAG to Prod
 
-**Here and below I'm using Powershell on my Windows PC here**
+**Here and below I'm using Powershell on my Windows PC**
 
 ---
 ### Information you need to get started
