@@ -88,7 +88,7 @@ kubectl apply -f .\external_secrets_dev.yml -n airflow
 **Check that K8s secret is created, name and value are correct**
 
 **Edit deployments_dev.yml**\
-**Add the following both to Webserver and Scheduler sections**\
+**Add the following both to Webserver and Scheduler sections**
 
 ```
 spec:
