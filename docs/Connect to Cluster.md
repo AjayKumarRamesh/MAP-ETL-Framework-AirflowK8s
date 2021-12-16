@@ -16,7 +16,7 @@ Here and below I'm using Powershell on my Windows PC
 
 - Log in to IBM Public Cloud with your W3ID
 ```
-https://cloud.ibm.com/ \
+https://cloud.ibm.com/
 Account: 1808859 - Marketing Systems
 ```
 
