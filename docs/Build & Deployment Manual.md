@@ -137,6 +137,7 @@ cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML\
 **Check that External Secret resource has status "Success"**
 
 **Check that K8s secret is created, name and value are correct**
+
 ---
 ### Deploy Service
 
@@ -144,6 +145,7 @@ d: \
 cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML \
 kubectl apply -f services.yml -n airflow
 
+---
 ### Deploy PVCs
 
 d: \
@@ -154,6 +156,7 @@ kubectl apply -f pvcs.yml -n airflow
 NAME            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE \
 airflow-logs    Bound    pvc-0af1a188-2414-4258-a113-c4b66d0a55c1   20Gi       RWX            ibmc-file-gold   2m57s \
 
+---
 ### Deployments
 
 **Copy IBM Cloud CR ImagePullSecret to "airflow" namespace**\
@@ -173,6 +176,7 @@ cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML \
 \#TEST\# kubectl apply -f deployments_test.yml -n airflow \
 \#PROD\# kubectl apply -f deployments_prod.yml -n airflow
 
+---
 ### Additional Steps
 
 **Request to open firewall rules and enable cluster to resolve DNS names**\
