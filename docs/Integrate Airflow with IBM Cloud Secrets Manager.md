@@ -50,9 +50,9 @@ metadata          creation_date              description           id           
 **Use original Secret "airflow-connection-strings" that we have to retrieve environment variable values and names**
 
 **Create secret in Secrets Manager instance**\
-** - group: MIP (id=e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b)**\
-** - type: arbitrary**\
-** - data: format is shown in commads below (in IU just put the value of your variable here without name)**\
+**- group: MIP (id=e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b)**\
+**- type: arbitrary**\
+**- data: format is shown in commads below (in IU just put the value of your variable here without name)**\
 **For PowerShell, use single quotation marks to surround the JSON data structure. Additionally, you must escape each double quotation mark that is inside the JSON structure by using a backslash before each double quotation mark**
 
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\\"name\\":\\"DEV_AIRFLOW__CORE__FERNET_KEY\\",\\"secret_group_id\\":\\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\\",\\"payload\\":\\"\*\*\*\*\*\*\*\*\*\*\*\*\\"}]'\
