@@ -118,6 +118,8 @@ spec:
         - secretRef:
             name: ldap-bind-password
 ```
+
+Apply deployments yaml
 ```
 d:\
 cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML
