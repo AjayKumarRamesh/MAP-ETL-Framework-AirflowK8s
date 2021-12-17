@@ -110,7 +110,7 @@ cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML
 
 Export environment variable for IBM Cloud CLI Secrets Manager plugin to work with desired Secrets Manager instance
 ```
-$SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
+$env:SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
 ```
 
 View your secret group ID to be used with command below

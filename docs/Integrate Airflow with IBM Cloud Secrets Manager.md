@@ -35,7 +35,7 @@ ibmcloud plugin install secrets-manager
 
 Export environment variable for IBM Cloud CLI Secrets Manager plugin to work with desired Secrets Manager instance
 ```
-$SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
+$env:SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
 ```
 
 If you copy your service endpoint URL from the Secrets Manager UI, be sure to trim /api from the URL.\
@@ -117,6 +117,9 @@ spec:
             name: git-access-token
         - secretRef:
             name: ldap-bind-password
+```
+```
+kubectl apply -f .\deployments_dev.yml -n airflow
 ```
 
 ---
