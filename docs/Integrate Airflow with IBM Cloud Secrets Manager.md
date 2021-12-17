@@ -119,6 +119,8 @@ spec:
             name: ldap-bind-password
 ```
 ```
+d:\
+cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML
 kubectl apply -f .\deployments_dev.yml -n airflow
 ```
 
