@@ -131,7 +131,9 @@ kubectl apply -f .\deployments_dev.yml -n airflow
 
 Restart Airflow
 
-To change secret value you have to delete it from secrets manager and create a new one with the same name
+To change secret value you have to Rotate it via Secrets Manager UI (preferred method)
+
+Alternatively you can delete it from secrets manager and create a new one with the same name
 ```
 ibmcloud secrets-manager secret-delete --secret-type SECRET-TYPE --id ID [--force]
 ```
