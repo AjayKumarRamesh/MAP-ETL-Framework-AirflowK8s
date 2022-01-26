@@ -47,10 +47,10 @@ IBM_CLOUD_SECRETS_MANAGER_API_ENDPOINT: https://711889a9-a7fd-47a7-b66d-12c14acc
 
 View your secret group ID to be used with command below
 ```
-ibmcloud secrets-manager secret-groups\
-PS D:\Work\UNICA\MAP-ETL-Framework-AirflowK8s\YML> ibmcloud secrets-manager secret-groups\
-...\
-metadata          creation_date              description           id                                     last_update_date           name   type\
+ibmcloud secrets-manager secret-groups
+PS D:\Work\UNICA\MAP-ETL-Framework-AirflowK8s\YML> ibmcloud secrets-manager secret-groups
+...
+metadata          creation_date              description           id                                     last_update_date           name   type
 <Nested Object>   2021-09-28T20:15:46.000Z   All secrets for MIP   e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b   2021-10-05T21:35:50.000Z   MIP    application/vnd.ibm.secrets-manager.secret.group+json
 ```
 
