@@ -29,7 +29,7 @@ pipeline {
                 sh('cp -p airflow_conf/airflow.cfg airflow_conf/airflow.cfg.bak')
                 //Changes to enable StatsD metrics
                 sh('sed "s/statsd_on = False/statsd_on = True/g" airflow_conf/airflow.cfg.bak > airflow_conf/airflow.cfg.new')
-                sh('sed "s/statsd_host = localhost/statsd_host = dynatrace-activegate-msgrouter.dynatrace.svc.cluster.local/g" airflow_conf/airflow.cfg.new > airflow_conf/airflow.cfg)
+                sh('sed "s/statsd_host = localhost/statsd_host = dynatrace-activegate-msgrouter.dynatrace.svc.cluster.local/g" airflow_conf/airflow.cfg.new > airflow_conf/airflow.cfg')
                 sh('docker build -t us.icr.io/map-dev-namespace/airflow:${BUILD_NUMBER} -f DockerfileAirflow .')
                 sh('docker images')
                 sh('docker push us.icr.io/map-dev-namespace/airflow:${BUILD_NUMBER}')
