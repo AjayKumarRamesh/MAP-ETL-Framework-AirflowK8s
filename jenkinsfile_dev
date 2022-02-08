@@ -29,7 +29,7 @@ pipeline {
                 //Changes to enable StatsD metrics
                 sh('cp -p airflow_conf/airflow.cfg airflow_conf/airflow.cfg.bak')
                 sh('sed "s/statsd_on = False/statsd_on = True/g" airflow_conf/airflow.cfg.bak > airflow_conf/airflow.cfg.1')
-                sh('sed "s/statsd_host = localhost/statsd_host = statsd-exporter-prometheus-statsd-exporter/g" airflow_conf/airflow.cfg.1 > airflow_conf/airflow.cfg.2')
+                sh('sed "s/statsd_host = localhost/statsd_host = statsd-exporter-prometheus-statsd-exporter.monitoring.svc.cluster.local/g" airflow_conf/airflow.cfg.1 > airflow_conf/airflow.cfg.2')
                 sh('sed "s/statsd_port = 8125/statsd_port = 9125/g" airflow_conf/airflow.cfg.2 > airflow_conf/airflow.cfg')
                 sh('grep statsd airflow_conf/airflow.cfg')
                 sh('cp -p DockerfileAirflow DockerfileAirflow.bak')
