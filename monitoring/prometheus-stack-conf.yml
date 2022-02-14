@@ -2420,7 +2420,7 @@ prometheus:
     additionalScrapeConfigs:
       - job_name: 'airflow_dev'
         static_configs:
-          - targets: ['statsd-exporter:9102']
+          - targets: ['statsd-exporter-prometheus-statsd-exporter:9102']
     # - job_name: kube-etcd
     #   kubernetes_sd_configs:
     #     - role: node
