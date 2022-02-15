@@ -1,14 +1,6 @@
 databases:
   db1:
-    dsn:
-      dialect: db2
-      user: mip_dyna_mond
-      password: BT4Cw><zp6$#ejs
-      host: dc400977-47fc-4300-a596-e57eccef27d3.bv7c3o6d0vfhru3npds0.databases.appdomain.cloud
-      port: 30140
-      database: bludb
-      options:
-        Security: SSL
+    dsn: env:DEV_DB2_DSN
     labels:
       region: US
       app: MIP
