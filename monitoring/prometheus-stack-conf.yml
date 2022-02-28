@@ -789,6 +789,90 @@ grafana:
     #   replacement: $1
     #   action: replace
 
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+  ##
+  persistence:
+    type: pvc
+    enabled: true
+    # annotations: {}
+    finalizers:
+      - kubernetes.io/pvc-protection
+    existingClaim: grafana
+  
+  ## The name of a secret in the same kubernetes namespace which contain values to be added to the environment
+  ## This can be useful for auth tokens, etc. Value is templated.
+  envFromSecret: ldap-bind-password
+  
+  ## Grafana's primary configuration
+  ## NOTE: values in map will be converted to ini format
+  ## ref: http://docs.grafana.org/installation/configuration/
+  ##  
+  grafana.ini:
+    paths:
+      data: /var/lib/grafana/
+      logs: /var/log/grafana
+      plugins: /var/lib/grafana/plugins
+      provisioning: /etc/grafana/provisioning
+    analytics:
+      check_for_updates: true
+    log:
+      mode: console
+      filters: ldap:debug
+    grafana_net:
+      url: https://grafana.net
+    server:
+      domain: airflow.map-mktsys-dev.limited-use.ibm.com
+      root_url: "%(protocol)s://%(domain)s:%(http_port)s/grafana/"
+      serve_from_sub_path: true
+    security:
+      disable_initial_admin_creation: true
+    auth.basic:
+      enabled: false
+    auth.ldap:
+      enabled: true
+      allow_sign_up: true
+      config_file: /etc/grafana/ldap.toml
+
+  ## Grafana's LDAP configuration
+  ## Templated by the template in _helpers.tpl
+  ## NOTE: To enable the grafana.ini must be configured with auth.ldap.enabled
+  ## ref: http://docs.grafana.org/installation/configuration/#auth-ldap
+  ## ref: http://docs.grafana.org/installation/ldap/#configuration
+  ldap:
+    enabled: true
+    # `existingSecret` is a reference to an existing secret containing the ldap configuration
+    # for Grafana in a key `ldap-toml`.
+    existingSecret: ""
+    # `config` is the content of `ldap.toml` that will be stored in the created secret
+    config: |-
+      [[servers]]
+      host = "bluepages.ibm.com"
+      port = 636
+      use_ssl = true
+      start_tls = false
+      ssl_skip_verify = true
+      bind_dn = "uid=C-TKFU897,c=us,ou=bluepages,o=ibm.com"
+      bind_password = "${LDAP_BIND_PASSWORD}"
+      search_filter = "(preferredIdentity=%s)"
+      search_base_dns = ["ou=bluepages,o=ibm.com"]
+      group_search_filter = "(&(objectClass=ibm-nestedGroup)(uniquemember=%s))"
+      group_search_filter_user_attribute = "dn"
+      group_search_base_dns = ["ou=ibmgroups,o=ibm.com"]
+      [servers.attributes]
+      name = "cn"
+      # surname = "sn"
+      # member_of = "memberOf"
+      email =  "mail"
+      username = "mail"
+      [[servers.group_mappings]]
+      group_dn = "cn=CIO_Dyna_BAI-000009_PROD,ou=memberlist,ou=ibmgroups,o=ibm.com"
+      org_role = "Admin"
+      grafana_admin = true
+      [[servers.group_mappings]]
+      group_dn = "*"
+      org_role = "Viewer"
+
 ## Component scraping the kube api server
 ##
 kubeApiServer:
@@ -2383,17 +2467,16 @@ prometheus:
     ## Prometheus StorageSpec for persistent data
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
     ##
-    storageSpec: {}
+    storageSpec:
     ## Using PersistentVolumeClaim
     ##
-    #  volumeClaimTemplate:
-    #    spec:
-    #      storageClassName: gluster
-    #      accessModes: ["ReadWriteOnce"]
-    #      resources:
-    #        requests:
-    #          storage: 50Gi
-    #    selector: {}
+      volumeClaimTemplate:
+        spec:
+          storageClassName: ibmc-file-gold
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 20Gi
 
     ## Using tmpfs volume
     ##
@@ -2532,8 +2615,23 @@ prometheus:
 
     ## InitContainers allows injecting additional initContainers. This is meant to allow doing some changes
     ## (permissions, dir tree) on mounted volumes before starting prometheus
-    initContainers: []
-
+    initContainers:
+    - name: init-chown-data
+      image: 'busybox:1.31.1'
+      command:
+        - chown
+        - '-R'
+        - '1000:2000'
+        - /mnt
+      resources: {}
+      volumeMounts:
+        - name: prometheus-prometheus-stack-kube-prom-prometheus-db
+          mountPath: /mnt
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsUser: 0
+        runAsNonRoot: false
+    
     ## PortName to use for Prometheus.
     ##
     portName: "http-web"
