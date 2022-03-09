@@ -43,16 +43,17 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 30 | niveditha.s@ibm.com | Op | Op | Viewer |
 | 31 | vheranje@in.ibm.com | Op | Op | Viewer |
 | 32 | Roberto.Navarro@ibm.com | Op | Op | Viewer |
+| 33 | inyoges1@in.ibm.com | Op | Op | Viewer |
 | | | | | |
-| 33 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
-| 34 | Inga.Ostroumova1@ibm.com | Viewer | Viewer | Viewer |
-| 35 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
-| 36 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
-| 37 | grecialo@ibm.com | Viewer | Viewer | Viewer |
-| 38 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
-| 39 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
-| 40 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
-| 41 | yubari@ibm.com | Viewer | Viewer | Viewer |
+| 34 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
+| 35 | Inga.Ostroumova1@ibm.com | Viewer | Viewer | Viewer |
+| 36 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
+| 37 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
+| 38 | grecialo@ibm.com | Viewer | Viewer | Viewer |
+| 39 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
+| 40 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
+| 41 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
+| 42 | yubari@ibm.com | Viewer | Viewer | Viewer |
 | | | | | |
 | | Default role | Public | Public | Public |
 
