@@ -2504,6 +2504,9 @@ prometheus:
       - job_name: 'airflow_dev'
         static_configs:
           - targets: ['statsd-exporter-prometheus-statsd-exporter:9102']
+      - job_name: 'airflow_test'
+        static_configs:
+          - targets: ['10.221.175.106:9102']	    
       - job_name: 'query_exporter'
         static_configs:
           - targets: ['query-exporter:9560']
