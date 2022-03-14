@@ -10,6 +10,8 @@ if [ "$1" = 'afp-web' ]; then
 	sed -i "s/changemekey/${AIRFLOW__CORE__FERNET_KEY}/" ${AIRFLOW_HOME}/airflow.cfg
 	echo "Copy Base URL to Airflow conf"
 	sed -i "s|changemeurl|${BASE_URL}|" ${AIRFLOW_HOME}/airflow.cfg
+	echo "Copy StatsD prefix to Airflow conf"
+	sed -i "s/changemeprefix/${STATSD_PREFIX}/" ${AIRFLOW_HOME}/airflow.cfg
 	echo "Copy LDAP Bind Password to webserver_config.py"
 	sed -i "s/changeme/${LDAP_BIND_PASSWORD}/" ${AIRFLOW_HOME}/webserver_config.py
 	
@@ -40,6 +42,8 @@ elif [ "$1" = 'afp-sched' ]; then
 	sed -i "s/changemekey/${AIRFLOW__CORE__FERNET_KEY}/" ${AIRFLOW_HOME}/airflow.cfg
 	echo "Copy Base URL to Airflow conf"
 	sed -i "s|changemeurl|${BASE_URL}|" ${AIRFLOW_HOME}/airflow.cfg
+	echo "Copy StatsD prefix to Airflow conf"
+	sed -i "s/changemeprefix/${STATSD_PREFIX}/" ${AIRFLOW_HOME}/airflow.cfg
 	
 	echo "Copy DAGs from GIT"
 	git clone --single-branch --branch ${BRANCH} https://${GIT_ACCESS_TOKEN}@github.ibm.com/CIO-MAP/MAP-ETL-Framework ${AIRFLOW_GIT}

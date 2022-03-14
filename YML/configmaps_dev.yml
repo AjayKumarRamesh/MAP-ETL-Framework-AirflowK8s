@@ -5,3 +5,4 @@ metadata:
 data:
   BASE_URL: "http://airflow.map-mktsys-dev.limited-use.ibm.com/airflow"
   BRANCH: "dev"
+  STATSD_PREFIX: "dev"
