@@ -1,67 +1,48 @@
-databases:
-  db1:
-    dsn: env:DEV_DB2_DSN
-    labels:
-      region: US
-      app: MIP
-      environment: DEV 
-  db2:
-    dsn: env:TEST_DB2_DSN
-    labels:
-      region: US
-      app: MIP
-      environment: TEST 
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: query-exporter
+  namespace: monitoring
+data:
+  config.yaml: |
+    databases:
+      db1:
+        dsn: env:DEV_DB2_DSN
+        labels:
+          region: US
+          app: MIP
+          environment: DEV 
+      db2:
+        dsn: env:TEST_DB2_DSN
+        labels:
+          region: US
+          app: MIP
+          environment: TEST
 
-metrics:
-  metric1:
-    type: enum
-    description: Log utilization
-    states: [dbname, logutil, logused, logavail, logtop]
-  metric2:
-    type: enum
-    description: Tablesapce
-    states: [tablespace, type, pagesize, state]
-  metric3:
-    type: enum
-    description: Bufferpool
-    states: [bp_name, total_hit_ratio, idx_hit_ratio, bp_size_mb]
+    metrics:
+      log_utilization_percent:
+        type: gauge
+        description: LOG_UTILIZATION_PERCENT
+      total_log_used_kb:
+        type: gauge
+        description: TOTAL_LOG_USED_KB
+      total_log_available_kb:
+        type: gauge
+        description: TOTAL_LOG_AVAILABLE_KB
+      total_log_used_top_kb:
+        type: gauge
+        description: TOTAL_LOG_USED_TOP_KB
 
-queries:
-  query1:
-    schedule: ""
-    databases: [db1]
-    metrics: [metric1]
-    sql: |
-      SELECT CHAR(DB_NAME,16) 
-        DB_NAME, 
-        LOG_UTILIZATION_PERCENT, 
-        TOTAL_LOG_USED_KB, 
-        TOTAL_LOG_AVAILABLE_KB, 
-        TOTAL_LOG_USED_TOP_KB 
-      FROM SYSIBMADM.LOG_UTILIZATION
-  query2:
-    schedule: ""
-    databases: [db1]
-    metrics: [metric2]
-    sql: |
-      SELECT substr(tbsp_name,1,20) as TABLESPACE, 
-         substr(tbsp_content_type,1,10) as TYPE, 
-         sum(tbsp_total_size_kb)/1024 as TOTAL_MB, 
-         sum(tbsp_used_size_kb)/1024 as USED_MB, 
-         sum(tbsp_free_size_kb)/1024 as FREE_MB,
-         substr(TBSP_STATE,1,10) as state,
-         tbsp_page_size AS PAGE_SIZE
-      FROM SYSIBMADM.TBSP_UTILIZATION 
-      GROUP BY tbsp_name, tbsp_content_type,tbsp_page_size,TBSP_STATE
-  query3:
-    schedule: "*/1 * * * *"
-    databases: [db1]
-    metrics: [metric3]
-    sql: |
-      SELECT SUBSTR(A.BP_NAME,1,20) AS bp_name,
-             A.TOTAL_HIT_RATIO_PERCENT AS total_hit_ratio,
-             A.INDEX_HIT_RATIO_PERCENT AS idx_hit_ratio,
-             (B.BP_CUR_BUFFSZ * c.PAGESIZE )/1048576 as BP_SIZE_MB
-      FROM SYSIBMADM.BP_HITRATIO A, SYSIBMADM.SNAPBP_PART B, syscat.bufferpools C 
-      WHERE a.bp_name = b.bp_name and b.bp_name = c.bpname
+    queries:
+      query1:
+        schedule: "*/1 * * * *"
+        databases: [db1,db2]
+        metrics: [log_utilization_percent,total_log_used_kb,total_log_available_kb,total_log_used_top_kb]
+        sql: |
+          SELECT 
+            LOG_UTILIZATION_PERCENT,
+            TOTAL_LOG_USED_KB,
+            TOTAL_LOG_AVAILABLE_KB,
+            TOTAL_LOG_USED_TOP_KB
+          FROM MAP_AUDT.TS_USAGE;
 
