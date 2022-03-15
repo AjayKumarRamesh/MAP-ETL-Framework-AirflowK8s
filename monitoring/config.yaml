@@ -5,6 +5,12 @@ databases:
       region: US
       app: MIP
       environment: DEV 
+  db2:
+    dsn: env:TEST_DB2_DSN
+    labels:
+      region: US
+      app: MIP
+      environment: TEST 
 
 metrics:
   metric1:
