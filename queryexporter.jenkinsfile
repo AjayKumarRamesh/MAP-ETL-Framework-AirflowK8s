@@ -25,6 +25,7 @@ pipeline {
             steps {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud cr login')
+                sh('ls -al')
                 sh('cd query-exporter/')
                 sh('docker build -t us.icr.io/map-dev-namespace/query-exporter:latest -f Dockerfile .')
                 sh('docker images')
