@@ -4,22 +4,22 @@ Best practices for security in IBM Db2 Data Management Console\
 https://community.ibm.com/community/user/hybriddatamanagement/blogs/yuan-feng/2021/08/23/best-practices-for-security-in-ibm-db2-data-manage
 
 ---
-### Login to Data Management Console
+**Login to Data Management Console**
 
 https://airflow.map-mktsys-dev.limited-use.ibm.com/dmc/console/ \
 Administrator privileges are required
 
 ---
-### Open “Administration” configuration
+**Open “Administration” configuration**
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/5_1.jpg">
 
 ---
-### Open “Settings”
+**Open “Settings”**
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/5_2.jpg">
 
-### Go to “Authentication” tab
+**Go to “Authentication” tab**
 
 Set authentication type to “LDAP”
 
@@ -36,7 +36,7 @@ Click Next
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/5_3.jpg">
 
 ---
-### Authentication method setting
+**Authentication method setting**
 
 ```
 Authentication method: Simple
@@ -49,7 +49,7 @@ Note: Bind DN is mapfunc@us.ibm.com serial number, password is located in 1Passw
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/5_4.jpg">
 
 ---
-### User and Group setting
+**ser and Group setting**
 
 ```
 User base DN: ou=bluepages,o=ibm.com
@@ -63,7 +63,7 @@ In this case all members of  CIO_Dyna_BAI-000009_PROD BlueGroup will be Console 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/5_5.jpg">
 
 ---
-### Test user login
+**Test user login**
 ```
 Test user ID: type your w3id
 Test user password: type your w3id password
