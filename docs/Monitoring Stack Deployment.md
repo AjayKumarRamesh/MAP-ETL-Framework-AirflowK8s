@@ -292,14 +292,14 @@ kubectl rollout restart deployment/airflow-scheduler -n airflow
 ---
 ### Query Exporter
 
-Copy IBM Cloud CR ImagePullSecret to "monitoring" namespace
+Copy IBM Cloud CR ImagePullSecret to "monitoring" namespace\
 **Powershell**
 ```
 $var1 = kubectl get secret all-icr-io -n default -o yaml
 (echo $var1) -replace "default","monitoring" | kubectl create -n monitoring -f -
 ```
 
-Modify default ServiceAccount for airflow namespace to use ImagePullSecret from above
+Modify default ServiceAccount for airflow namespace to use ImagePullSecret from above\
 **Powershell**
 ```
 $var2 = kubectl get serviceaccount default -o yaml -n monitoring
@@ -307,7 +307,7 @@ $var2 = $var2 + "imagePullSecrets:" + "- name: all-icr-io"
 $var2 | Where-Object {$_ -notlike "*resourceVersion*"} | kubectl replace serviceaccount -n monitoring default -f -
 ```
 
-Create Secret in SecretsManager
+Create Secret in SecretsManager\
 **Powershell**
 ```
 $env:SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
@@ -342,7 +342,7 @@ NAME      STATUS   VOLUME                                     CAPACITY   ACCESS 
 db2-dmc   Bound    pvc-d6913ef5-701c-4703-ba6b-81f50a065502   20Gi       RWO            ibmc-file-gold   3m6s
 ```
 
-Create Secret in SecretsManager with built-in admin password
+Create Secret in SecretsManager with built-in admin password\
 **Powershell**
 ```
 $env:SECRETS_MANAGER_URL="https://711889a9-a7fd-47a7-b66d-12c14acccd69.us-south.secrets-manager.appdomain.cloud"
@@ -367,3 +367,5 @@ DB2 Data Management Console Email configuration (Victor Shcherbatyuk)
 Apply configuration for DB2 keystore and restart the app
 
 DB2 Data Management Console Repository configuration (Victor Shcherbatyuk)
+
+link to test and prod deployment
