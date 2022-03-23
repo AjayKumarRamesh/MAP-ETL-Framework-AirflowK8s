@@ -2,12 +2,14 @@ pipeline {
     agent any
 
     stages {
+        /*
         stage('GitHub Checkout query-exporter') {
             steps {
                git 'https://github.com/albertodonato/query-exporter.git'
             } //steps
         } //stage
-
+        */
+        
         stage('Prepare IBM Cloud CLI') {
             steps {
                 sh('ibmcloud update -f -q')
