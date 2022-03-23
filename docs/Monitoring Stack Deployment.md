@@ -368,4 +368,7 @@ Apply configuration for DB2 keystore and restart the app
 
 DB2 Data Management Console Repository configuration (Victor Shcherbatyuk)
 
-link to test and prod deployment
+---
+Next step - [Add Airflow Test and Prod environments to monitorung stack](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Add%20Airflow%20Test%20and%20Prod%20to%20Grafana%26Prometheus.md)
+
+
