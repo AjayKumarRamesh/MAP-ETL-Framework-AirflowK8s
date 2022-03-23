@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: statsd-exporter-proxied
+  namespace: monitoring
+spec:
+  ports:
+    - name: proxied-tcp-9102
+      port: 9102
+      targetPort: 9102
+      protocol: TCP
+  clusterIP: None
+  selector:
+    app.kubernetes.io/instance: statsd-exporter
+    app.kubernetes.io/name: prometheus-statsd-exporter
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxied-tcp-services
+  namespace: kube-system
+data:
+  9102: "monitoring/statsd-exporter-proxied:9102"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ibm-ingress-deploy-config
+  namespace: kube-system
+data:
+  private-crc2om8okd0oh5q4um8sh0-alb1: '{"tcpServicesConfig":"kube-system/proxied-tcp-services"}'
