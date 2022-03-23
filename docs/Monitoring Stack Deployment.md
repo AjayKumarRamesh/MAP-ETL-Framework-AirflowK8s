@@ -290,7 +290,7 @@ kubectl rollout restart deployment/airflow-scheduler -n airflow
 ```
 
 ---
-### Query Exporter
+### Query Exporter Deployment
 
 Copy IBM Cloud CR ImagePullSecret to "monitoring" namespace\
 **Powershell**
@@ -325,7 +325,7 @@ kubectl apply -f monitoring/queryexporter.yml
 ```
 
 ---
-### DB2 DMC
+### DB2 DMC Deployment
 
 DB2 Data Management Console\
 https://hub.docker.com/r/ibmcom/db2console
