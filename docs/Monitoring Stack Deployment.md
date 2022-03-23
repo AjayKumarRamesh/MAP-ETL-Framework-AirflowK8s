@@ -28,7 +28,7 @@ rm get_helm.sh
 ---
 ### Prometheus Stack Deployment
 
-Installing Prometheus stack
+Installing Prometheus stack\
 https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 
 Add prometheus repo
@@ -219,7 +219,7 @@ monitoring/dag-dashboard.json
 ---
 ### StatsD Exporter Deployment
 
-Installing statsd-exporter with Helm
+Installing statsd-exporter with Helm\
 https://github.com/hahow/prometheus-statsd-exporter
 
 Add helm repo
@@ -232,7 +232,7 @@ Create file with metrics mappings
 nano monitoring/statsd_mapping.yml
 ```
 
-Take data from here
+Take data from here\
 https://github.com/databand-ai/airflow-dashboards/blob/main/statsd/statsd.conf
 
 Install statsd-exporter\
@@ -327,7 +327,7 @@ kubectl apply -f monitoring/queryexporter.yml
 ---
 ### DB2 DMC
 
-DB2 Data Management Console
+DB2 Data Management Console\
 https://hub.docker.com/r/ibmcom/db2console
 
 Create PVC
