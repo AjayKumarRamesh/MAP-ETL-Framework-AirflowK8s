@@ -27,12 +27,11 @@ pipeline {
             steps {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud cr login')
-
-                sh('ls -al')
-                sh('cd query-exporter')
-                sh('docker build -t localhost/query-exporter:debug -f Dockerfile .')
+                dir('query-exporter'){
+                   sh('docker build -t localhost/query-exporter:debug -f Dockerfile .')
+                }
                 sh('docker images')
-                sh('docker push us.icr.io/map-dev-namespace/query-exporter:debug')
+                //sh('docker push us.icr.io/map-dev-namespace/query-exporter:debug')
             } //steps
         } //stage
 
@@ -44,8 +43,8 @@ pipeline {
             steps {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
-                sh('kubectl config current-context')
-                sh('kubectl rollout restart deployment query-exporter -n monitoring')
+                //sh('kubectl config current-context')
+                //sh('kubectl rollout restart deployment query-exporter -n monitoring')
             } //steps
          } //stage
 
