@@ -29,7 +29,7 @@ pipeline {
                 sh('ibmcloud cr login')
                 dir('query-exporter'){
                    // delete /etc/mysql
-                   sh('sed \'/COPY --from=build-image \/opt \/opt/ a RUN rm -rf \/etc\/mysql\//\' Dockerfile)
+                   sh('sed \\'/COPY --from=build-image \\/opt \\/opt/ a RUN rm -rf \\/etc\\/mysql\\//\\' Dockerfile)
                    // enable debug
                    sh('sed -i \'s/"-H", "0.0.0.0"/"-L", "DEBUG", "-H", "0.0.0.0"/g\' Dockerfile')
                    sh('cat Dockerfile')
