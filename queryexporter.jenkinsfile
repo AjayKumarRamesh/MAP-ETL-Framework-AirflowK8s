@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout query-exporter') {
             steps {
                 dir('query-exporter') {
-                   git https://github.com/albertodonato/query-exporter.git
+                   git 'https://github.com/albertodonato/query-exporter.git'
                 }
             } //steps
         } //stage
