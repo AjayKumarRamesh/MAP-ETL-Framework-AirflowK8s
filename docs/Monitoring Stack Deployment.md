@@ -362,8 +362,6 @@ kubectl apply -f monitoring/dmc.yml
 Apply in UI configuration for LDAP and E-mail relay
 
 [DB2 Data Management Console LDAP configuration](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/DB2%20Data%20Management%20Console%20LDAP%20configuration.md)
-
-DB2 Data Management Console LDAP configuration (Victor Shcherbatyuk)
 DB2 Data Management Console Email configuration (Victor Shcherbatyuk)
 
 Apply configuration for DB2 keystore and restart the app
