@@ -33,7 +33,7 @@ pipeline {
                    // delete /etc/mysql
                    sh('echo "RUN rm -rf /etc/mysql/" >>Dockerfile')
                    sh('cat Dockerfile')
-                   sh('docker build -t localhost/query-exporter:debug -f Dockerfile .')
+                   sh('docker build -t us.icr.io/map-dev-namespace/query-exporter:debug -f Dockerfile .')
                 }
                 sh('docker push us.icr.io/map-dev-namespace/query-exporter:debug')
             } //steps
