@@ -16,13 +16,13 @@ Save DigiCertGlobalRootCA.crt locally
 ---
 ### Copy DigiCertGlobalRootCA.crt to the container
 
-Using IBM Cloud CLI login to the cloud and configure the cluster \
+Using IBM Cloud CLI login to the cloud and configure the cluster
 ```
 ibmcloud login --sso
 ibmcloud ks cluster config --cluster map-dal10-16x64-01
 ```
 
-List the PODs in monitoring namespace \
+List the PODs in monitoring namespace
 ```
 kubectl get pods -n monitoring
 ```
@@ -37,7 +37,7 @@ kubectl cp DigiCertGlobalRootCA.crt  monitoring/db2-dmc-xxxx-xxxx:/mnt/realconfi
 ---
 ### Create a Trust store
 
-Connect to the db2-dmc container \
+Connect to the db2-dmc container
 ```
 kubectl exec --stdin --tty -n monitoring db2-dmc--xxxx-xxxx -- /bin/bash
 ```
