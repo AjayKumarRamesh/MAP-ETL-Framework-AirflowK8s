@@ -366,7 +366,7 @@ Apply in UI configuration for LDAP and E-mail relay
 
 Apply configuration for DB2 keystore and restart the app
 
-DB2 Data Management Console Repository configuration (Victor Shcherbatyuk) 
+[DB2 Data Management Console Repository configuration](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/DB2%20Data%20Management%20Console%20Repository%20configuration.md)
 
 ---
 Next step - [Add Airflow Test and Prod environments to monitorung stack](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Add%20Airflow%20Test%20and%20Prod%20to%20Grafana%26Prometheus.md)
