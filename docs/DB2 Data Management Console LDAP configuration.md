@@ -19,6 +19,7 @@ Administrator privileges are required
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/pics/5_2.jpg">
 
+---
 ### Go to “Authentication” tab
 
 Set authentication type to “LDAP”
