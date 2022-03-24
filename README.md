@@ -1,4 +1,4 @@
-# MAP-ETL-Framework-AirflowK8s
+# MAP-ETL-Framework-Airflow
 
 Deployment and configuration files for Airflow running on K8s integrated with ETL-Framework
 
@@ -16,7 +16,7 @@ Deployment and configuration files for Airflow running on K8s integrated with ET
 
 ---
 ### Environment Diagram Detailed
-<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/env_diagram_detailed.jpg">
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/MIP_Environment_Diagram_Detailed.drawio.png">
 
 ---
 ### Overview and Links
@@ -53,17 +53,7 @@ PROD https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%
 https://cloud.ibm.com/services/secrets-manager/crn%3Av1%3Abluemix%3Apublic%3Asecrets-manager%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3A711889a9-a7fd-47a7-b66d-12c14acccd69%3A%3A
 
 ---
-### Support Requests
-
-The request should be represented as JIRA ticket in SMSMKTPLAT project: https://jsw.ibm.com/projects/SMSMKTPLAT/issues/SMSMKTPLAT-177?filter=allopenissues
-jackieroehl@ibm.com can assist with JIRA questions and how ticket should be formatted.
-When the ticket is created send brief description and link to the ticket to the following Slack channel: https://ibm-cio.slack.com/archives/C01HD9TGMB6
-
-The actual work is done by xuyin@cn.ibm.com or MOHAMEDIH@us.ibm.com
-They can be contacted directly via Slack.
-
----
-### Documentation
+### MAP-ETL-Framework-Airflow Documentation
 - [Connect to Cluster](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Connect%20to%20Cluster.md)
 - [Build & Deployment Manual](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Build%20%26%20Deployment%20Manual.md)
 - [Create Domain name, Request SSL certificate and upload it to kubernetes cluster](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Ingress%20SSL%20Certificates.md)
@@ -71,3 +61,35 @@ They can be contacted directly via Slack.
 - [How Airflow is integrated into ETL Framework](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/How%20Airflow%20is%20integrated%20into%20ETL%20Framework.md)
 - [Integrate Airflow with IBM Cloud Secrets Manager](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Integrate%20Airflow%20with%20IBM%20Cloud%20Secrets%20Manager.md)
 - [Monitoring stack deployment](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Monitoring%20Stack%20Deployment.md)
+
+---
+### Monitoring with Grafana/Prometheus stack
+
+Grafana is single point where all metrics for K8s clusters, Airflow and Custom DB parameters can be viewed.
+
+https://airflow.map-mktsys-dev.limited-use.ibm.com/grafana/?orgId=1
+
+---
+### In-depth monitoring and control of MIP DB2 instances
+
+DB2 Data Management Console offers in-depth monitoring and control of MIP DB2 instances for DBA team.
+
+https://airflow.map-mktsys-dev.limited-use.ibm.com/dmc/console/
+
+---
+### Monitoring system architecture diagram
+
+<img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/MIP-Monitoring-Grafana.drawio.png">
+
+---
+### Monitoring documentation
+
+- [Monitoring stack deployment](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Monitoring%20Stack%20Deployment.md)
+
+---
+### Support Requests
+
+Support requests should be addressed to Platform Team.
+
+The request should be represented as JIRA ticket in SMSMKTPLAT project: https://jsw.ibm.com/projects/SMSMKTPLAT/issues/SMSMKTPLAT-177?filter=allopenissues
+When the ticket is created send brief description and link to the ticket to the following Slack channel: https://ibm-cio.slack.com/archives/C01HD9TGMB6
