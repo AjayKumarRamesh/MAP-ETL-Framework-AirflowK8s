@@ -70,3 +70,4 @@ They can be contacted directly via Slack.
 - [User Roles Assignment](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/User%20Roles%20Assignment.md)
 - [How Airflow is integrated into ETL Framework](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/How%20Airflow%20is%20integrated%20into%20ETL%20Framework.md)
 - [Integrate Airflow with IBM Cloud Secrets Manager](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Integrate%20Airflow%20with%20IBM%20Cloud%20Secrets%20Manager.md)
+- [Monitoring stack deployment](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Monitoring%20Stack%20Deployment.md)
