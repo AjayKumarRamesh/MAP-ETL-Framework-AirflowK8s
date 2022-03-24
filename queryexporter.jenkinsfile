@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout query-exporter') {
+            steps {
+                dir('query-exporter') {
+                   git https://github.com/albertodonato/query-exporter.git
+                }
+            } //steps
+        } //stage
+
+        stage('Prepare IBM Cloud CLI') {
+            steps {
+                sh('ibmcloud update -f -q')
+                sh('ibmcloud plugin install container-registry -f -q')
+                sh('ibmcloud plugin install container-service -f -q')
+                sh('ibmcloud plugin list')
+            }
+        }
+
+        stage('Build query-exporter image') {
+            environment {
+                IBMCLOUD_CREDS = credentials('ibm-cloud-cr')
+            }
+
+            steps {
+                sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
+                sh('ibmcloud cr login')
+
+                sh('ls -al')
+                sh('cd query-exporter')
+                sh('docker build -t localhost/query-exporter:debug -f Dockerfile .')
+                sh('docker images')
+                sh('docker push us.icr.io/map-dev-namespace/query-exporter:debug')
+            } //steps
+        } //stage
+
+         stage('Deploy query-exporter image to dev cluster') {
+            environment {
+                IBMCLOUD_CREDS = credentials('ibm-cloud-cr')
+            }
+
+            steps {
+                sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
+                sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
+                sh('kubectl config current-context')
+                sh('kubectl rollout restart deployment query-exporter -n monitoring')
+            } //steps
+         } //stage
+
+    } //stages
+    post {
+        always {
+            emailext to: 'bbotev@bg.ibm.com', 
+                    subject: '${PROJECT_NAME} - Build # ${BUILD_NUMBER} - ${BUILD_STATUS}!',
+                    body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.'
+
+        } //always
+    } //post
+} //pipeline
