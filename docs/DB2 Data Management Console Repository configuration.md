@@ -1,6 +1,5 @@
 # DB2 Data Management Console Repository configuration
 
----
 ### Login to IBM Cloud and open DB2 console
 
 https://cloud.ibm.com/resources
