@@ -28,17 +28,14 @@ pipeline {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud cr login')
                 dir('query-exporter'){
-                   // delete /etc/mysql
-                   sh """
-                      sed -i \\'/COPY --from=build-image \\\/opt \\\/opt/ a RUN rm -rf \\\/etc\\\/mysql\\\//\\' Dockerfile
-                   """
                    // enable debug
                    sh('sed -i \'s/"-H", "0.0.0.0"/"-L", "DEBUG", "-H", "0.0.0.0"/g\' Dockerfile')
+                   // delete /etc/mysql
+                   sh('echo "RUN rm -rf /etc/mysql/" >>Dockerfile')
                    sh('cat Dockerfile')
-                   //sh('docker build -t localhost/query-exporter:debug -f Dockerfile .')
+                   sh('docker build -t us.icr.io/map-dev-namespace/query-exporter:debug -f Dockerfile .')
                 }
-                sh('docker images')
-                //sh('docker push us.icr.io/map-dev-namespace/query-exporter:debug')
+                sh('docker push us.icr.io/map-dev-namespace/query-exporter:debug')
             } //steps
         } //stage
 
@@ -50,7 +47,7 @@ pipeline {
             steps {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
-                //sh('kubectl config current-context')
+                sh('kubectl config current-context')
                 //sh('kubectl rollout restart deployment query-exporter -n monitoring')
             } //steps
          } //stage
