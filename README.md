@@ -1,14 +1,6 @@
-# MAP-ETL-Framework-Airflow
+# MAP ETL Framework Airflow
 
 Deployment and configuration files for Airflow running on K8s integrated with ETL-Framework
-
----
-### List of Services
-
- - <img src="https://miro.medium.com/max/1080/1*6jjSw8IqGbsPZp7L_43YyQ.png" height="20"> Airflow 2.1.3
- - <img src="https://i.stack.imgur.com/hRJou.gif" height="20"> Python 3.7
- - <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg" height="20"> Spark 3.0.1
- - <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" height="20"> Postgres 10.15
 
 ---
 ### Environment Diagram Simplified
@@ -62,18 +54,9 @@ https://cloud.ibm.com/services/secrets-manager/crn%3Av1%3Abluemix%3Apublic%3Asec
 - [Integrate Airflow with IBM Cloud Secrets Manager](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Integrate%20Airflow%20with%20IBM%20Cloud%20Secrets%20Manager.md)
 
 ---
-### Monitoring with Grafana/Prometheus stack
+# Monitoring with Grafana/Prometheus stack
 
 Grafana is single point where all metrics for K8s clusters, Airflow and Custom DB parameters can be viewed.
-
-https://airflow.map-mktsys-dev.limited-use.ibm.com/grafana/?orgId=1
-
----
-### In-depth monitoring and control of MIP DB2 instances
-
-DB2 Data Management Console offers in-depth monitoring and control of MIP DB2 instances for DBA team.
-
-https://airflow.map-mktsys-dev.limited-use.ibm.com/dmc/console/
 
 ---
 ### Monitoring system architecture diagram
@@ -81,9 +64,22 @@ https://airflow.map-mktsys-dev.limited-use.ibm.com/dmc/console/
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/MIP-Monitoring-Grafana.drawio.png">
 
 ---
+### Overview and Links
+
+**Grafana Web UI** \
+https://airflow.map-mktsys-dev.limited-use.ibm.com/grafana/?orgId=1
+
+**DB2 Data Management Console offers in-depth monitoring and control of MIP DB2 instances for DBA team** \
+https://airflow.map-mktsys-dev.limited-use.ibm.com/dmc/console/
+
+---
 ### Monitoring documentation
 
 - [Monitoring stack deployment](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Monitoring%20Stack%20Deployment.md)
+- [DB2 Data Management Console LDAP configuration](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/DB2%20Data%20Management%20Console%20LDAP%20configuration.md)
+- [DB2 Data Management Console Email configuration](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/DB2%20Data%20Management%20Console%20Email%20configuration.md)
+- [DB2 Data Management Console Repository configuration](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/DB2%20Data%20Management%20Console%20Repository%20configuration.md)
+- [Add Airflow Test and Prod environments to monitorung stack](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Add%20Airflow%20Test%20and%20Prod%20to%20Grafana%26Prometheus.md)
 
 ---
 ### Support Requests
