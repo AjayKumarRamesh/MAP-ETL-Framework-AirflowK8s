@@ -2,15 +2,12 @@
 
 Deployment and configuration files for Airflow running on K8s integrated with ETL-Framework
 
----
 ### Environment Diagram Simplified
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/env_diagram_simplified.jpg">
 
----
 ### Environment Diagram Detailed
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/MIP_Environment_Diagram_Detailed.drawio.png">
 
----
 ### Overview and Links
 
 **Airflow K8s Web UI**\
@@ -36,7 +33,7 @@ DEV https://cloud.ibm.com/registry/namespaces/map-dev-namespace?region=us-south 
 TEST https://cloud.ibm.com/registry/namespaces/mip-test-namespace?region=us-south \
 PROD https://cloud.ibm.com/registry/namespaces/mip-prod-namespace?region=us-south
 
-**Postgres Clous SAAS instance** \
+**Postgres Cloud SAAS instance** \
 DEV https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%3Apublic%3Adatabases-for-postgresql%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3Ac20870c3-8e4a-476e-8fec-86204e4d9703%3A%3A \
 TEST https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%3Apublic%3Adatabases-for-postgresql%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3Aae1df8f9-000d-4170-b441-4ea0bf2acb0e%3A%3A \
 PROD https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%3Apublic%3Adatabases-for-postgresql%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3A0d500df2-45d3-4357-b639-bb88fa2b1034%3A%3A
@@ -44,7 +41,6 @@ PROD https://cloud.ibm.com/services/databases-for-postgresql/crn%3Av1%3Abluemix%
 **Secrets Manager instance** \
 https://cloud.ibm.com/services/secrets-manager/crn%3Av1%3Abluemix%3Apublic%3Asecrets-manager%3Aus-south%3Aa%2Fa2edaeffb1cb4cd3a6aefe5282468938%3A711889a9-a7fd-47a7-b66d-12c14acccd69%3A%3A
 
----
 ### MAP-ETL-Framework-Airflow Documentation
 - [Connect to Cluster](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Connect%20to%20Cluster.md)
 - [Build & Deployment Manual](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Build%20%26%20Deployment%20Manual.md)
@@ -58,12 +54,10 @@ https://cloud.ibm.com/services/secrets-manager/crn%3Av1%3Abluemix%3Apublic%3Asec
 
 Grafana is single point where all metrics for K8s clusters, Airflow and Custom DB parameters can be viewed.
 
----
 ### Monitoring system architecture diagram
 
 <img src="https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/diagrams/MIP-Monitoring-Grafana.drawio.png">
 
----
 ### Overview and Links
 
 **Grafana Web UI** \
@@ -72,7 +66,6 @@ https://airflow.map-mktsys-dev.limited-use.ibm.com/grafana/?orgId=1
 **DB2 Data Management Console offers in-depth monitoring and control of MIP DB2 instances for DBA team** \
 https://airflow.map-mktsys-dev.limited-use.ibm.com/dmc/console/
 
----
 ### Monitoring documentation
 
 - [Monitoring stack deployment](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/Monitoring%20Stack%20Deployment.md)
