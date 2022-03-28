@@ -49,11 +49,13 @@ pipeline {
                 sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
                 sh('kubectl config current-context')
                 script {
-                   CONFIG_DIFF = sh( script: 'kubectl diff -f monitoring/queryexporter.yml', returnStatus: true)
+                   def CONFIG_DIFF = sh( script: 'kubectl diff -f monitoring/queryexporter.yml', returnStatus: true)
                    echo 'CONFIG_DIFF: ${CONFIG_DIFF}'
-                   if (${CONFIG_DIFF} == '0') {
+                   if (CONFIG_DIFF == 0) {
+                      echo 'Restarting query-exporter deployment'
                       sh('kubectl rollout restart deployment query-exporter -n monitoring')
                    } else {
+                      echo 'Applying query-exporter deployment changes'
                       sh('kubectl apply -f monitoring/queryexporter.yml')
                    }
                 } //script
