@@ -48,9 +48,12 @@ pipeline {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
                 sh('kubectl config current-context')
-                //sh('kubectl patch deployment query-exporter -n monitoring -p \'{"spec":{"template":{"spec":{"containers":[{"name":"query-exporter","image":"us.icr.io/map-dev-namespace/query-exporter:latest"}]}}}}\'')
-                //sh('kubectl rollout restart deployment query-exporter -n monitoring')
-                sh('kubectl apply -f monitoring/queryexporter.yml')
+                CONFIG_DIFF = sh( script: 'kubectl diff -f monitoring/queryexporter.yml', returnStatus: true)
+                if (CONFIG_DIFF == '0') {
+                   sh('kubectl rollout restart deployment query-exporter -n monitoring')
+                } else {
+                   sh('kubectl apply -f monitoring/queryexporter.yml')
+                }
             } //steps
          } //stage
 
