@@ -50,7 +50,6 @@ pipeline {
                 sh('kubectl config current-context')
                 script {
                    def CONFIG_DIFF = sh( script: 'kubectl diff -f monitoring/queryexporter.yml', returnStatus: true)
-                   echo 'CONFIG_DIFF: ${CONFIG_DIFF}'
                    if (CONFIG_DIFF == 0) {
                       echo 'Restarting query-exporter deployment'
                       sh('kubectl rollout restart deployment query-exporter -n monitoring')
