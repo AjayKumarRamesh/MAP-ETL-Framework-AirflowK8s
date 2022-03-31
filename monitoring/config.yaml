@@ -18,6 +18,12 @@ data:
           region: US
           app: MIP
           environment: TEST
+      db3:
+        dsn: env:PROD_DB2_DSN
+        labels:
+          region: US
+          app: MIP
+          environment: PROD
 
     metrics:
       log_utilization_percent:
@@ -32,6 +38,11 @@ data:
       total_log_used_top_kb:
         type: gauge
         description: TOTAL_LOG_USED_TOP_KB
+      uow_log_space:
+        type: gauge
+        description: IN_FLIGHT_QUERIES
+        labels: [elapsed_time,application_handle]
+        expiration: 5m
 
     queries:
       query1:
@@ -39,10 +50,19 @@ data:
         databases: [db1,db2]
         metrics: [log_utilization_percent,total_log_used_kb,total_log_available_kb,total_log_used_top_kb]
         sql: |
-          SELECT 
+          SELECT
             LOG_UTILIZATION_PERCENT,
             TOTAL_LOG_USED_KB,
             TOTAL_LOG_AVAILABLE_KB,
             TOTAL_LOG_USED_TOP_KB
           FROM MAP_AUDT.TS_USAGE;
-
+      query2:
+        schedule: "*/5 * * * *"
+        databases: [db1,db2]
+        metrics: [uow_log_space]
+        sql: |
+          SELECT
+            ELAPSED_TIME_SEC AS ELAPSED_TIME,
+            APPLICATION_HANDLE AS APPLICATION_HANDLE,
+            UOW_LOG_SPACE_USED AS UOW_LOG_SPACE
+          FROM MAP_AUDT.IN_FLIGHT_QUERIES;
