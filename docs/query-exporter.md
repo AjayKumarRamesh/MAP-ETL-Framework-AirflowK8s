@@ -19,7 +19,7 @@ Jenkins job is available here: [Monitoring-query-exporter](https://txo-sms-mkt-v
 
 You need to login to Jenkins and run the job which will build and push the image to IBM Container registry and then will update its configuration if there are any changes.
 
-Current configuration file can be found here: [config.yaml](monitoring/config.yaml)
+Current configuration file can be found here: [config.yaml](/monitoring/config.yaml)
 
 **Rest of the descriptions below are just for information**
 
@@ -35,7 +35,7 @@ docker pull adonato/query-exporter
 ```
 
 Create configuration file
-You can use the [config.yaml](monitoring/config.yaml) or create one based on the query-exporter documentation.
+You can use the [config.yaml](/monitoring/config.yaml) or create one based on the query-exporter documentation.
 
 Run the image
 ```
