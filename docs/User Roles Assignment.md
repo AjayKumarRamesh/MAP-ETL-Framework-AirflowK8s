@@ -48,7 +48,7 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 35 | Abhinav.Raj1@ibm.com | Op | Op | Viewer |
 | | | | | |
 | 36 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
-| 37 | Inga.Ostroumova1@ibm.com | Viewer | Viewer | Viewer |
+| 37 | Inga.Ostroumova@ibm.com | Viewer | Viewer | Viewer |
 | 38 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
 | 39 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
 | 40 | grecialo@ibm.com | Viewer | Viewer | Viewer |
