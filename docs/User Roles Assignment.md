@@ -49,13 +49,12 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | | | | | |
 | 36 | Nastassia.Sichkar@ibm.com | Viewer | Viewer | Viewer |
 | 37 | Inga.Ostroumova@ibm.com | Viewer | Viewer | Viewer |
-| 38 | Siamion.Kurakou@ibm.com | Viewer | Viewer | Viewer |
-| 39 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
-| 40 | grecialo@ibm.com | Viewer | Viewer | Viewer |
-| 41 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
-| 42 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
-| 43 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
-| 44 | yubari@ibm.com | Viewer | Viewer | Viewer |
+| 38 | krishna.k.kumarakalva@ibm.com | Viewer | Viewer | Viewer |
+| 39 | grecialo@ibm.com | Viewer | Viewer | Viewer |
+| 40 | silvia.yadira.vargas@ibm.com | Viewer | Viewer | Viewer |
+| 41 | sbeeramm@in.ibm.com | Viewer | Viewer | Viewer |
+| 42 | sbabayan@ibm.com | Viewer | Viewer | Viewer |
+| 43 | yubari@ibm.com | Viewer | Viewer | Viewer |
 | | | | | |
 | | Default role | Public | Public | Public |
 
