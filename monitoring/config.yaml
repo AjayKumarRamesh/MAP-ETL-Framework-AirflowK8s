@@ -20,6 +20,7 @@ data:
           environment: TEST
       db3:
         dsn: env:PROD_DB2_DSN
+        keep-connected: false
         labels:
           region: US
           app: MIP
@@ -43,6 +44,16 @@ data:
         description: IN_FLIGHT_QUERIES
         labels: [elapsed_time,application_handle]
         expiration: 5m
+      total_idm_requests:
+        type: gauge
+        description: TOTAL_IDM_REQUESTS
+      idm_pending_count:
+        type: gauge
+        description: IDM_PENDING_COUNT
+      avg_idm_processing_time:
+        type: gauge
+        description: AVG_IDM_PROCESSING_TIME
+
 
     queries:
       query1:
@@ -66,3 +77,19 @@ data:
             APPLICATION_HANDLE AS APPLICATION_HANDLE,
             UOW_LOG_SPACE_USED AS UOW_LOG_SPACE
           FROM MAP_AUDT.IN_FLIGHT_QUERIES;
+      query3:
+        schedule: "*/30 * * * *"
+        databases: [db3]
+        metrics: [total_idm_requests,idm_pending_count,avg_idm_processing_time]
+        sql: |
+          SELECT
+              COUNT(1) AS TOTAL_IDM_REQUESTS,
+              COUNT (CASE WHEN IDM_PROCESS_STEP IS NULL THEN 1 ELSE NULL END ) AS IDM_PENDING_COUNT,
+              AVG (
+                CASE WHEN IDM_PROCESS_STEP IN ('Y', 'R')
+                    THEN TIMESTAMPDIFF(4, IDM_PROCESS_STEP_UPDATE_TS - CREATE_TS )
+                ELSE 0 END
+              ) AS AVG_IDM_PROCESSING_TIME
+          FROM MAP_IDM.IDM_MAINTAIN_PERSON IMP
+          WHERE CREATE_TS >= CURRENT_TIMESTAMP - 30 MINUTES AND SOURCE_PROCESS = 'MAT';
+
