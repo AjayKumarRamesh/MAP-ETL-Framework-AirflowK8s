@@ -75,3 +75,52 @@ After clicking Test you should receive “Succeed” if everything is configured
 
 ---
 **Save the configuration by clicking “Save”**
+
+---
+### Update LDAP bind password
+
+If mapfunc password expire you won't be able to login to DMC because the authentication against BluePages will not work.
+To update LDAP bind password you have to do the following:
+
+Login to IBM Cloud using CLI
+```
+ibmcloud login --sso
+ibmcloud ks cluster config --cluster map-dal10-16x64-01
+```
+
+Find the DMC POD in monitoring namespace
+```
+kubectl get pods -n monitoring | grep db2-dmc
+db2-dmc-xxx-xxxx                                      1/1     Running   0          52m
+```
+
+Connect to the DMC POD
+```
+kubectl exec --stdin --tty -n monitoring db2-dmc-xxx-xxxx -- /bin/bash
+```
+
+Encrypt the new password (copy the output)
+```
+/opt/ibm-datasrvrmgr/dsutil/bin/crypt.sh <new_password>
+```
+
+You can decrypt the string (if needed)
+```
+/opt/ibm-datasrvrmgr/dsutil/bin/crypt.sh -d <wtiv2_xxxxxxxx>
+```
+
+Edit the DMC LDAP configuration file:
+```
+vi /mnt/realconfigs/ent/ext_ldap_config_v2.json
+```
+
+Replace bind password with the new string:
+```
+"bind_password" : "wtiv2_xxxxx"
+```
+
+Restart the deployment
+```
+kubectl rollout restart -n monitoring deployment db2-dmc
+```
+
