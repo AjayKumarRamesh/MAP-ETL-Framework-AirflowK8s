@@ -28,6 +28,8 @@ pipeline {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud cr login')
                 dir('blackbox-exporter'){
+                   sh('printf "run: \n  timeout: 5m\n" >> .golangci.yml')
+                   sh('cat .golangci.yml')
                    sh('make')
                    sh('docker build -t us.icr.io/map-dev-namespace/blackbox-exporter:${BUILD_NUMBER} -f Dockerfile .')
                 }
