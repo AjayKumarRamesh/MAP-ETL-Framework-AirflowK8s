@@ -53,7 +53,18 @@ data:
       avg_idm_processing_time:
         type: gauge
         description: AVG_IDM_PROCESSING_TIME
-
+      leads_reg_cnt:
+        type: gauge
+        description: LEADS_REG_CNT
+      leads_imi_cnt:
+        type: gauge
+        description: LEADS_IMI_CNT
+      leads_pers_cnt:
+        type: gauge
+        description: LEADS_PERS_CNT
+      leads_actv_cnt:
+        type: gauge
+        description: LEADS_ACTV_CNT
 
     queries:
       query1:
@@ -92,4 +103,25 @@ data:
               ) AS AVG_IDM_PROCESSING_TIME
           FROM MAP_IDM.IDM_MAINTAIN_PERSON IMP
           WHERE CREATE_TS >= CURRENT_TIMESTAMP - 30 MINUTES AND SOURCE_PROCESS = 'MAT';
+      query4:
+        schedule: "*/30 * * * *"
+        databases: [db3]
+        metrics: [leads_reg_cnt,leads_imi_cnt,leads_pers_cnt,leads_actv_cnt]
+        sql: |
+          SELECT
+              COUNT(RRG.TRANSACTIONID) AS LEADS_REG_CNT,
+              COUNT(IMI.REGISTRATION_ID) AS LEADS_IMI_CNT,
+              COUNT(P.MIP_SEQ_ID) AS LEADS_PERS_CNT,
+              COUNT(A.MIP_ACTIVITY_SEQ_ID) AS LEADS_ACTV_CNT
+          FROM
+              MAP_CORE.MCT_INBOUND_MARKETING_INTERACTION_MIP IMI
+          LEFT JOIN MAP_STG.STG_RAW_REGISTRATION RRG ON
+              RRG.TRANSACTIONID = IMI.REGISTRATION_ID
+          LEFT JOIN MAP_MKTO.MCT_MKTO_PERSON P ON
+              P.MIP_SEQ_ID = IMI.MIP_SEQ_ID AND P.MIP_TRANS_ID = IMI.REGISTRATION_ID
+          LEFT JOIN MAP_MKTO.MCV_MKTO_CUSTOM_ACTIVITY A ON
+              A.MIP_SEQ_ID = P.MIP_SEQ_ID AND A.MIP_TRANS_ID = P.MIP_TRANS_ID
+          WHERE
+              IMI.CREATE_TS > CURRENT TIMESTAMP - 30 MINUTES
+              AND (IMI.MARKETING_INTERACTION_TYPE_CD = 'MAIL' OR IMI.CLIENT_INTEREST_FLG = 'Y');
 
