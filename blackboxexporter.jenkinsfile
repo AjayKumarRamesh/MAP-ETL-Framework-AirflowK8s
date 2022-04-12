@@ -28,6 +28,7 @@ pipeline {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud cr login')
                 dir('blackbox-exporter'){
+                   sh('make')
                    sh('docker build -t us.icr.io/map-dev-namespace/blackbox-exporter:${BUILD_NUMBER} -f Dockerfile .')
                 }
                 sh('docker push us.icr.io/map-dev-namespace/blackbox-exporter:${BUILD_NUMBER}')
