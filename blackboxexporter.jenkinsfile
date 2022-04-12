@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout blackbox-exporter') {
             steps {
                 dir('blackbox-exporter') {
-                   git branch: 'main', url: 'https://github.com/prometheus/blackbox_exporter.git'
+                   git branch: 'master', url: 'https://github.com/prometheus/blackbox_exporter.git'
                 }
             } //steps
         } //stage
