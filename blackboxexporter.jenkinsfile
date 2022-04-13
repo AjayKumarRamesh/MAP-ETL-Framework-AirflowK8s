@@ -43,7 +43,6 @@ pipeline {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
                 sh('kubectl config current-context')
-                /*
                 script {
                    def CONFIG_DIFF = sh( script: 'kubectl diff -f monitoring/blackboxexporter.yml', returnStatus: true)
                    if (CONFIG_DIFF == 0) {
@@ -56,7 +55,6 @@ pipeline {
                       sh('kubectl apply -f monitoring/blackboxexporter.yml')
                    }
                 } //script
-                */
             } //steps
          } //stage
 
