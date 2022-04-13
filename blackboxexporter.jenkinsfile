@@ -2,11 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout blackbox-exporter') {
+        stage('Checkout MAP-ETL-Framework-AirflowK8s') {
             steps {
-                dir('blackbox-exporter') {
-                   git branch: 'master', url: 'https://github.com/prometheus/blackbox_exporter.git'
-                }
+                git credentialsId: 'sangita_id_rsa' ,
+                url: 'ssh://git@github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s.git', branch: 'master'
             } //steps
         } //stage
 
@@ -27,12 +26,9 @@ pipeline {
             steps {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud cr login')
-                dir('blackbox-exporter'){
-                   sh('printf "run: \n  timeout: 5m\n" >> .golangci.yml')
-                   sh('cat .golangci.yml')
-                   sh('make')
-                   sh('docker build -t us.icr.io/map-dev-namespace/blackbox-exporter:${BUILD_NUMBER} -f Dockerfile .')
-                }
+
+                sh('docker build -t us.icr.io/map-dev-namespace/blackbox-exporter:${BUILD_NUMBER} -f DockerfileBlackbox .')
+
                 sh('docker push us.icr.io/map-dev-namespace/blackbox-exporter:${BUILD_NUMBER}')
                 sh('ibmcloud cr image-tag us.icr.io/map-dev-namespace/blackbox-exporter:${BUILD_NUMBER} us.icr.io/map-dev-namespace/blackbox-exporter:latest')
             } //steps
@@ -52,9 +48,11 @@ pipeline {
                    def CONFIG_DIFF = sh( script: 'kubectl diff -f monitoring/blackboxexporter.yml', returnStatus: true)
                    if (CONFIG_DIFF == 0) {
                       echo 'Restarting blackbox-exporter deployment'
+                      sh('kubectl apply -f monitoring/blackboxexporter-config.yml')
                       sh('kubectl rollout restart deployment blackbox-exporter -n monitoring')
                    } else {
                       echo 'Applying blackbox-exporter deployment changes'
+                      sh('kubectl apply -f monitoring/blackboxexporter-config.yml')
                       sh('kubectl apply -f monitoring/blackboxexporter.yml')
                    }
                 } //script
