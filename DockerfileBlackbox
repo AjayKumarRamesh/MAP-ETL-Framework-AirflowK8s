@@ -7,10 +7,10 @@ ENV BLACKBOX_URL=https://github.com/prometheus/blackbox_exporter/releases/downlo
     BLACKBOX_SHA256SUM=d0235f16dc45c3b1fd5712b613474358f5a0342447553726c9239307dc39c844
 
 RUN wget -q $BLACKBOX_URL -O $BLACKBOX_FILE \
-	&& echo "${BLACKBOX_SHA256SUM}  ${BLACKBOX_FILE}" | sha256sum -c - \
+        && echo "${BLACKBOX_SHA256SUM}  ${BLACKBOX_FILE}" | sha256sum -c - \
         && mkdir blackbox_exporter \
-	&& tar -xzvf ${BLACKBOX_FILE} -C blackbox_exporter/ --strip-components=1 \
-	&& cp blackbox_exporter/blackbox_exporter /bin/blackbox_exporter
+        && tar -xzvf ${BLACKBOX_FILE} -C blackbox_exporter/ --strip-components=1 \
+        && cp blackbox_exporter/blackbox_exporter /bin/blackbox_exporter
 
 EXPOSE      9115
 ENTRYPOINT  [ "/bin/blackbox_exporter" ]
