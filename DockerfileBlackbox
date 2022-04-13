@@ -14,4 +14,4 @@ RUN wget -q $BLACKBOX_URL -O $BLACKBOX_FILE \
 
 EXPOSE      9115
 ENTRYPOINT  [ "/bin/blackbox_exporter" ]
-CMD         [ "--config.file=/etc/blackbox_exporter/config.yml --log.level=debug" ]
+CMD         [ "--config.file=/config.yml --log.level=debug" ]
