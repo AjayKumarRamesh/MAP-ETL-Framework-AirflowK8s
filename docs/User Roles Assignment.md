@@ -9,7 +9,7 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 ### Roles assigned in Airflow
 | № | Environment |	Dev | Test | Prod |
 | --- | --- | --- | --- | --- |
-| 1 | Victor.Shcherbatyuk1@ibm.com | Admin | Admin | Admin |
+| 1 | Victor.Shcherbatyuk3@ibm.com | Admin | Admin | Admin |
 | 2 | alex.almanza@ibm.com | Admin | Admin | Admin |
 | 3 | souvik.dutta@ibm.com | Admin | Admin | Admin |
 | 4 | bbotev@bg.ibm.com | Admin | Admin | Admin |
