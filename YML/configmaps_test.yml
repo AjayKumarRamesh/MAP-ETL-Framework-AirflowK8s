@@ -6,3 +6,4 @@ data:
   BASE_URL: "http://airflow.map-mktsys-test.limited-use.ibm.com/airflow"
   BRANCH: "test"
   STATSD_PREFIX: "test"
+  LDAP_BIND_USER: "uid=C-TKFU897,c=us,ou=bluepages,o=ibm.com"
