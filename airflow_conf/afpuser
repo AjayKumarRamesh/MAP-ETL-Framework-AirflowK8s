@@ -1,1 +1,1 @@
-0 8 * * * find /opt/airflow/logs -mtime +14 -exec rm -rf {} \;
+0 8 * * * find /opt/airflow/logs -type f -mtime +14 -exec rm -rf {} \; && find /opt/airflow/logs -type d -empty -delete
