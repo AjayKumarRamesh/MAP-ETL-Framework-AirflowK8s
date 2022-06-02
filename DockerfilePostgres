@@ -1,0 +1,44 @@
+FROM ubuntu:18.04
+
+# Create default user and group
+ARG postgres_user=postgres
+ARG postgres_group=postgres
+RUN groupadd -g 9999 "${postgres_group}"
+RUN useradd -m -u 9999 -g "${postgres_group}" "${postgres_user}" -s /bin/bash
+
+# Install postgres
+RUN apt-get update && apt-get install -y postgresql postgresql-contrib
+
+# Update packages
+RUN set -ex \
+    && apt-get -y upgrade
+
+# Initialize variables
+ARG postgres_home=/home/postgres
+ARG postgres_lock_dir=/var/run/postgresql
+
+# Copy Postgres Configuration to /tmp folder. It will be moved to instance folder by entrypoint script after initializing instance
+COPY postgres_conf/pg_hba.conf /tmp/pg_hba.conf
+COPY postgres_conf/postgresql.conf /tmp/postgresql.conf
+RUN chown ${postgres_user}:${postgres_group} /tmp/pg_hba.conf
+RUN chown ${postgres_user}:${postgres_group} /tmp/postgresql.conf
+RUN chmod 774 /tmp/pg_hba.conf
+RUN chmod 774 /tmp/postgresql.conf
+
+COPY entrypoint.sh /entrypoint.sh
+
+# Set permissions to allow entrypoint to work as POSTGRES user
+RUN chown -R ${postgres_user}:${postgres_group} ${postgres_home}
+RUN chown -R ${postgres_user}:${postgres_group} ${postgres_lock_dir}
+RUN chown ${postgres_user}:${postgres_group} /entrypoint.sh
+RUN chmod -R 774 ${postgres_home}
+RUN chmod -R 774 ${postgres_lock_dir}
+RUN chmod 774 /entrypoint.sh
+
+USER ${postgres_user}
+
+ENV POSTGRES_USER=${postgres_user}
+ENV POSTGRES_GROUP=${postgres_group}
+ENV POSTGRES_HOME=${postgres_home}
+
+ENTRYPOINT ["/entrypoint.sh"]
