@@ -21,7 +21,7 @@ if [ "$1" = 'postgres' ]; then
 		#Permissions are messed by persistent storage provider. Fix it otherwise Postgres won't start
 		chmod -R 700 ${POSTGRES_HOME}/air_instance
 		#Start PGSQL
-		/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
+		/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log -t 1000 start
 	fi
 		
 	tail -f /dev/null
