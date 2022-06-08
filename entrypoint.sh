@@ -4,26 +4,31 @@ set -euo pipefail
 ########################################################################################################################################################
 if [ "$1" = 'postgres' ]; then
 
-	if [ ! -f ${POSTGRES_HOME}/air_instance.log ]; then
-		echo "There's no DB stored, creating a new instance!"
-		/usr/lib/postgresql/10/bin/initdb -D ${POSTGRES_HOME}/air_instance
-		#Now that instance is created copy postgres settings files before service is started
-		cp /tmp/pg_hba.conf ${POSTGRES_HOME}/air_instance/pg_hba.conf
-		cp /tmp/postgresql.conf ${POSTGRES_HOME}/air_instance/postgresql.conf
+	echo "Creating a new DB instance!"
+	/usr/lib/postgresql/10/bin/initdb -D ${POSTGRES_HOME}/air_instance
+	#Now that instance is created copy postgres settings files before service is started
+	cp /tmp/pg_hba.conf ${POSTGRES_HOME}/air_instance/pg_hba.conf
+	cp /tmp/postgresql.conf ${POSTGRES_HOME}/air_instance/postgresql.conf
 	
-		#Start PGSQL
-		/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
-		psql -c "create database ${AIRFLOW_DB} ENCODING = 'UTF8';"
-		psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
-		psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
-	else
-		echo "DB is present in persistent storage, spinning it up!"		
-		#Permissions are messed by persistent storage provider. Fix it otherwise Postgres won't start
-		chmod -R 700 ${POSTGRES_HOME}/air_instance
-		#Start PGSQL
-		/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
-	fi
-		
+	echo "Starting newly created PSQL instance"
+	/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
+	
+	echo "Work with templates to create DB with UTF-8 characted set"
+	psql -c "UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';"
+	psql -c "DROP DATABASE template1;"
+	psql -c "CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8';"
+	psql -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template1';"
+	psql -c "\c template1;"
+	psql -c "VACUUM FREEZE;"
+	
+	echo "Preparing ${AIRFLOW_DB} database"
+	psql -c "create database ${AIRFLOW_DB} ENCODING = 'UTF8';"
+	psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
+	psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
+
+	echo "Restoring the latest ${AIRFLOW_DB} database backup from persistent storage"
+	psql ${AIRFLOW_DB} < /db_backup/airflow_bkp
+			
 	tail -f /dev/null
 ########################################################################################################################################################
 elif [ "$1" = 'afp-web' ]; then
