@@ -13,7 +13,7 @@ if [ "$1" = 'postgres' ]; then
 	
 		#Start PGSQL
 		/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
-		psql -c "create database ${AIRFLOW_DB};"
+		psql -c "create database ${AIRFLOW_DB} ENCODING = 'UTF8';"
 		psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
 		psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
 	else
