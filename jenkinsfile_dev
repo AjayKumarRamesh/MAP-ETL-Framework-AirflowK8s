@@ -1,5 +1,9 @@
 pipeline {
     agent { label 'kube_pod_slave' }
+    options {
+        ansiColor('xterm')
+        timestamps ()
+    }
 
     stages {
         stage('GitHub Checkout MAP-ETL-Framework-AirflowK8s Repo') {
@@ -90,8 +94,8 @@ pipeline {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
                 sh('kubectl config current-context')
-                // sh('kubectl rollout restart deployment airflow-webserver -n airflow')
-                // sh('kubectl rollout restart deployment airflow-scheduler -n airflow')
+                sh('kubectl rollout restart deployment airflow-webserver -n airflow')
+                sh('kubectl rollout restart deployment airflow-scheduler -n airflow')
             } //steps
          } //stage
          
