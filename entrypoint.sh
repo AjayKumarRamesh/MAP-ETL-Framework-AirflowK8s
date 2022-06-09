@@ -13,7 +13,7 @@ if [ "$1" = 'postgres' ]; then
 	echo "Starting newly created PSQL instance"
 	/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
 	
-	echo "Work with templates to create DB with UTF-8 characted set"
+	echo -e "\nWork with templates to create DB with UTF-8 character set"
 	psql -c "UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';"
 	psql -c "DROP DATABASE template1;"
 	psql -c "CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8';"
@@ -21,14 +21,19 @@ if [ "$1" = 'postgres' ]; then
 	psql -c "\c template1;"
 	psql -c "VACUUM FREEZE;"
 	
-	echo "Preparing ${AIRFLOW_DB} database"
+	echo -e "\nPreparing ${AIRFLOW_DB} database"
 	psql -c "create database ${AIRFLOW_DB} ENCODING = 'UTF8';"
 	psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
 	psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
 
-	echo "Restoring the latest ${AIRFLOW_DB} database backup from persistent storage"
-	psql ${AIRFLOW_DB} < /db_backup/airflow_bkp
-			
+	echo -e "\nRestoring the latest ${AIRFLOW_DB} database backup $(ls -t /db_backup/airflow_bkp* | head -1) from persistent storage"
+	psql ${AIRFLOW_DB} < $(ls -t /db_backup/airflow_bkp* | head -1)
+	
+	echo -e '\nStarting supercronic'
+	supercronic ${POSTGRES_HOME}/postgres &
+	
+	echo -e "\nReady to rock!"
+	
 	tail -f /dev/null
 ########################################################################################################################################################
 elif [ "$1" = 'afp-web' ]; then

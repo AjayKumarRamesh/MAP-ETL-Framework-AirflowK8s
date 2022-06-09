@@ -1,0 +1,1 @@
+10 * * * * /home/postgres/backup.sh
