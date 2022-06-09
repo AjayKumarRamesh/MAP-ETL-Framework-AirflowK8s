@@ -55,7 +55,7 @@ pipeline {
                 }   //script
             } //steps
         } // stage
-/*
+
         stage('Prepare IBM Cloud CLI') {
             steps {
                 sh('ibmcloud update -f -q')
@@ -90,8 +90,8 @@ pipeline {
                 sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
                 sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
                 sh('kubectl config current-context')
-                sh('kubectl rollout restart deployment airflow-webserver -n airflow')
-                sh('kubectl rollout restart deployment airflow-scheduler -n airflow')
+                // sh('kubectl rollout restart deployment airflow-webserver -n airflow')
+                // sh('kubectl rollout restart deployment airflow-scheduler -n airflow')
             } //steps
          } //stage
          
@@ -112,11 +112,18 @@ pipeline {
                 } //script
             } //steps
         } //stage
-*/
+
     } //stages
+
     post {
         always {
-            emailext to: "bbotev@bg.ibm.com; ${BUILD_USER_EMAIL}",
+            script{
+                wrap([$class: 'BuildUser']) {
+                    user_email = env.BUILD_USER_EMAIL
+                    echo "${user_email}"
+                }
+            }
+            emailext to: "bbotev@bg.ibm.com; ${user_email}",
                     subject: '${PROJECT_NAME} - Build # ${BUILD_NUMBER} - ${BUILD_STATUS}!',
                     body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.'
     
