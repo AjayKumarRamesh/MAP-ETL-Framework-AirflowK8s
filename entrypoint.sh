@@ -10,7 +10,7 @@ if [ "$1" = 'postgres' ]; then
 	cp /tmp/pg_hba.conf ${POSTGRES_HOME}/air_instance/pg_hba.conf
 	cp /tmp/postgresql.conf ${POSTGRES_HOME}/air_instance/postgresql.conf
 	
-	echo "Starting newly created PSQL instance"
+	echo -e "/nStarting newly created PSQL instance"
 	/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
 	
 	echo -e "\nWork with templates to create DB with UTF-8 character set"
@@ -31,9 +31,7 @@ if [ "$1" = 'postgres' ]; then
 	
 	echo -e '\nStarting supercronic'
 	supercronic ${POSTGRES_HOME}/postgres &
-	
-	echo -e "\nReady to rock!"
-	
+		
 	tail -f /dev/null
 ########################################################################################################################################################
 elif [ "$1" = 'afp-web' ]; then
