@@ -80,7 +80,6 @@ pipeline {
         } //stage
 
         stage('Deploy blackbox-exporter image to dev cluster') {
-            when { equals expected: true, actual: Deploy }
             environment {
                 IBMCLOUD_CREDS = credentials('ibm-cloud-cr')
             }
