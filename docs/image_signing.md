@@ -3,7 +3,7 @@
 
 Code Signing with Jenkins Overview: https://taas.cloud.ibm.com/getting-started/codesigning/codesigning-jenkins-artifactory.md
 
-1. Register MIP team on the CISO Code Signing Service: https://ibm.biz/codesigningservice
+**1. Register MIP team on the CISO Code Signing Service:** https://ibm.biz/codesigningservice
  - login with your w3id
  - click on "Register for IBM Code Signing"
  - follow the instructions
@@ -11,9 +11,10 @@ Code Signing with Jenkins Overview: https://taas.cloud.ibm.com/getting-started/c
  - once this is done you will receive an e-mail with subject *"[Code Signing Support Request] Approval"*
 
 **SOS Code signing team**: 716-IBMImageSign1221
+
 **Certificate alias**: IBMCodeSignCert1221
 
-2. Use the CISO Code Signing Service to Generate your PFX File
+**2. Use the CISO Code Signing Service to Generate your PFX File**
  - Load the CISO Code Signing Service: https://ibm.biz/codesigningservice
  - If you are not already logged in, click Login with your w3id
  - Hover over Sign Code from the menu and select Sign Code from the dropdown
@@ -24,12 +25,12 @@ Code Signing with Jenkins Overview: https://taas.cloud.ibm.com/getting-started/c
  - Click Generate Install Package
  - Download and keep safe your .pfx file, which gives you access to your HSM (Hardware Security Module) Partition. This is your key to accessing your private key from the HSM, and if it is leaked bad actors could sign code as IBM. Later in the process we will upload the .pfx file to Jenkins as a secret file.
 
-3. Jenkins on Kubernetes (JonK) - Configure Code Signing Pod Template for Kubernetes Namespace
+**3. Jenkins on Kubernetes (JonK) - Configure Code Signing Pod Template for Kubernetes Namespace**
  - Follow the instructions on https://taas.cloud.ibm.com/getting-started/codesigning/codesigning-jenkins-artifactory.md
  - or ask platform team to configure Jenkis
  - Template can be updated in Jenkins -> Manage Jenkins -> Manage nodes and clouds -> Configure Clouds -> POD Templates -> **pod-code-signing-agent**
 
-4. Import the PFX File as a Jenkins 'Secret File' Credential
+**4. Import the PFX File as a Jenkins 'Secret File' Credential**
  - Login to your Jenkins server and click Credentials from the left-hand menu
  - A sub-menu should now have opened beneath Credentials on the left-hand menu. Select System to open Jenkins-wide credentials.
  - Click Global credentials (unrestricted)
@@ -41,11 +42,11 @@ Code Signing with Jenkins Overview: https://taas.cloud.ibm.com/getting-started/c
   - Description: (leave empty)
  -Secret File can be updated in Jenkins -> Manage Jenkins -> Manage Credentials -> signing-pfx-file
 
-5. Configuring Your Jenkins Pipeline for Signing
+**5. Configuring Your Jenkins Pipeline for Signing**
  - POC Jenkins pipeline to sign images: https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Image-Signing-POC/
  - Based on https://github.ibm.com/TAAS/image-signing-demo
 
-6. Verify images with podman locally
+**6. Verify images with podman locally**
  - get the public key IBMCodeSignCert1221-key.pub 
  - create /etc/pki/containers
  - copy (or move) IBMCodeSignCert1221-key.pub to /etc/pki/containers
