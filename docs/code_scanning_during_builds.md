@@ -1,8 +1,8 @@
 
 # Code scanning during builds
 
-1. Introduction
-SonarQube is a tool for measuring code quality, using static analysis to find code smells, bugs, vulnerabilities, and poor test coverage. In SonarQube a quality gate is a set of conditions that must be met in order for a project to be marked as passed. By adding SonarQube analysis into a Jenkins pipeline, we can ensure that if the SonarQube Quality Gate fails then the pipeline won’t continue to further stages such as publish or release. To do this, we can use the SonarQube Scanner plugin for Jenkins.
+**1. Introduction**
+ SonarQube is a tool for measuring code quality, using static analysis to find code smells, bugs, vulnerabilities, and poor test coverage. In SonarQube a quality gate is a set of conditions that must be met in order for a project to be marked as passed. By adding SonarQube analysis into a Jenkins pipeline, we can ensure that if the SonarQube Quality Gate fails then the pipeline won’t continue to further stages such as publish or release. To do this, we can use the SonarQube Scanner plugin for Jenkins.
 The interaction between Jenkins and SonarQube:
 - A Jenkins pipeline is started
 - The SonarQube scanner is run against a code project, and the analysis report is sent to SonarQube server
@@ -10,17 +10,17 @@ The interaction between Jenkins and SonarQube:
 - Jenkins periodically checks for the analysis result (pass or failure)
 - the Jenkins pipeline will continue if the analysis result is a pass or optionally otherwise fail
 
-2. Access to SonarQube Enterprise
+**2. Access to SonarQube Enterprise**
  - URL: https://sms-sonarqube-intranet.dal1a.cirrus.ibm.com/
  - Contacts: aalfaruk@ibm.com
  - admin access is required to add Quality Gates and projects
 
-3. Create API key to access SonarQube
+**3. Create API key to access SonarQube**
  - login to SonarQube https://sms-sonarqube-intranet.dal1a.cirrus.ibm.com/
  - Go to My account -> Security -> Generate Tokens -> type a name (eg. MIP Jenkins) -> click Generate
  - copy and securely store the API token
 
-4. Create projects in SonarQube
+**4. Create projects in SonarQube**
  - login to SonarQube
  - click on "Create a project"
  - follow the instructions
@@ -30,7 +30,7 @@ The interaction between Jenkins and SonarQube:
    - MIP-Dashboard
    - MIP-ETL-Jenkins-Pipeline
 
-5. Import the SonarQube API token in Jenkins
+**5. Import the SonarQube API token in Jenkins**
  - login to Jenkins https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/
  - click Manage Jenkins (from the left-hand menu) -> Manage Credentials 
  - find (global) domain and click on it
@@ -42,12 +42,12 @@ The interaction between Jenkins and SonarQube:
    - Description: Sonarqube Enterprise token
  - click OK
 
-6. Install SonarQube Scanner plugin for Jenkins
+**6. Install SonarQube Scanner plugin for Jenkins**
  - click Manage Jenkins (from the left-hand menu) -> Manage plugins
  - click on Available and search for "SonarQube Scanner for Jenkins"
  - install the plugin and restart Jenkins
 
-7. Configure SonarQube Scanner for Jenkins
+**7. Configure SonarQube Scanner for Jenkins**
  - click Manage Jenkins (from the left-hand menu) -> Configure system
  - find "SonarQube servers"
  - check "Environment variables"
@@ -57,7 +57,7 @@ The interaction between Jenkins and SonarQube:
    - Server authentication token: choose "Sonarqube Enterprise token" from dropdown
  - click Save
 
-8. Configure SonarQube Scanner installations
+**8. Configure SonarQube Scanner installations**
  - click Manage Jenkins (from the left-hand menu) -> Global Tool Configuration
  - find "SonarQube Scanner" in settings
  - click "SonarQube Scanner Installations..."
@@ -68,7 +68,7 @@ The interaction between Jenkins and SonarQube:
  - this will inject sonar-scanner during builds
  - click Save
 
-9. Configuring Jenkins Pipeline for code scanning
+**9. Configuring Jenkins Pipeline for code scanning**
  - Before implementing this in a pipeline choose which SonarQube project is suitable for the code
  - Only four projects in SonarQube are currently available with configured QualityGate see 4.
 
