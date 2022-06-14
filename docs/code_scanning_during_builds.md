@@ -7,11 +7,11 @@ SonarQube is a tool for measuring code quality, using static analysis to find co
 
 The interaction between Jenkins and SonarQube:
 
-1. A Jenkins pipeline is started
-2. The SonarQube scanner is run against a code project, and the analysis report is sent to SonarQube server
-3. SonarQube finishes analysis and checking the project meets the configured Quality Gate
-4. Jenkins periodically checks for the analysis result (pass or failure)
-5. the Jenkins pipeline will continue if the analysis result is a pass or optionally otherwise fail
+- A Jenkins pipeline is started
+- The SonarQube scanner is run against a code project, and the analysis report is sent to SonarQube server
+- SonarQube finishes analysis and checking the project meets the configured Quality Gate
+- Jenkins periodically checks for the analysis result (pass or failure)
+- the Jenkins pipeline will continue if the analysis result is a pass or optionally otherwise fail
 
 
 2. Access to SonarQube Enterprise
