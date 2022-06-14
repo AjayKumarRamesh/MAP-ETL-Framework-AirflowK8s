@@ -33,13 +33,9 @@ pipeline {
                         sh ("keytool -list -keystore ${HOME}/cacerts -storepass changeit")
                         sh ("${scannerHome}/bin/sonar-scanner -Dsonar.projectName=MAP-ETL-Framework-AirflowK8s -Dsonar.projectKey=MAP-ETL-Framework-AirflowK8s -Dsonar.exclusions='**/*.java, **/docs/**' -Dsonar.issuesReport.html.enable=true")
                     }
-                } //script
-            } //steps
-        } //satge
 
-        stage("Quality Gate Check") {
-            steps {
-                script {
+                    // Quality Gate Check
+                    sh ("checking the quality Gate")
                     def tries = 0
                     sonarResultStatus = "PENDING"
                     while ((sonarResultStatus == "PENDING" || sonarResultStatus == "IN_PROGRESS") && tries++ < 5) {
@@ -56,9 +52,10 @@ pipeline {
                     if (sonarResultStatus != 'OK') {
                         error "Quality gate failure for SonarQube: ${sonarResultStatus}"
                     }
-                }   //script
+                } //script
             } //steps
-        } // stage
+        } //satge
+
 
         stage('Prepare IBM Cloud CLI') {
             steps {
