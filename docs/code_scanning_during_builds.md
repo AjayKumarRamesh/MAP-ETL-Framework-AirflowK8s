@@ -2,17 +2,13 @@
 # Code scanning during builds
 
 1. Introduction
-
 SonarQube is a tool for measuring code quality, using static analysis to find code smells, bugs, vulnerabilities, and poor test coverage. In SonarQube a quality gate is a set of conditions that must be met in order for a project to be marked as passed. By adding SonarQube analysis into a Jenkins pipeline, we can ensure that if the SonarQube Quality Gate fails then the pipeline won’t continue to further stages such as publish or release. To do this, we can use the SonarQube Scanner plugin for Jenkins.
-
 The interaction between Jenkins and SonarQube:
-
 - A Jenkins pipeline is started
 - The SonarQube scanner is run against a code project, and the analysis report is sent to SonarQube server
 - SonarQube finishes analysis and checking the project meets the configured Quality Gate
 - Jenkins periodically checks for the analysis result (pass or failure)
 - the Jenkins pipeline will continue if the analysis result is a pass or optionally otherwise fail
-
 
 2. Access to SonarQube Enterprise
  - URL: https://sms-sonarqube-intranet.dal1a.cirrus.ibm.com/
