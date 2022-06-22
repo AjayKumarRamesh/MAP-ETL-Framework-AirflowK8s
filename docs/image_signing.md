@@ -3,6 +3,10 @@
 
 Code Signing with Jenkins Overview: https://taas.cloud.ibm.com/getting-started/codesigning/codesigning-jenkins-artifactory.md
 
+Process overview
+
+![Jenkins code signing](/docs/pics/Jenkins_code_signing.png)
+
 **1. Register MIP team on the CISO Code Signing Service:** https://ibm.biz/codesigningservice
  - login with your w3id
  - click on "Register for IBM Code Signing"
