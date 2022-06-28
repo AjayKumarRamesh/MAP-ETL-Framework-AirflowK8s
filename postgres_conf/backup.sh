@@ -8,5 +8,5 @@ ls -la /db_backup/airflow_bkp.${timestamp}
 
 echo "Rotating backup files"
 echo "Files to be deleted:"
-ls -t | awk 'NR>15' 
-ls -t | awk 'NR>15' | xargs rm -f
+ls -t | awk 'NR>10' 
+ls -t | awk 'NR>10' | xargs rm -f
