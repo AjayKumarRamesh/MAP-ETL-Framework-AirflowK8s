@@ -21,7 +21,7 @@ _AUTH_USER_REGISTRATION_ROLE_ = _"Public"_
 | 9 | campos.c@ibm.com | Op | Op | Op |
 | 10 | nagendrac@in.ibm.com | Op | Op | Op |
 | | | | | |
-| 11 | Aliaksei.Karatkevich1@ibm.com | Op | Op | Viewer |
+| 11 | Aliaksei.Karatkevich@ibm.com | Op | Op | Viewer |
 | 12 | bwambur@us.ibm.com | Op | Op | Viewer |
 | 13 | Pooja.Sunkara@ibm.com | Op | Op | Viewer |
 | 14 | Kranthi.Mandati@ibm.com | Op | Op | Viewer |
