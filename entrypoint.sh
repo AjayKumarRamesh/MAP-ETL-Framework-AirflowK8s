@@ -3,7 +3,7 @@ set -euo pipefail
 
 ########################################################################################################################################################
 if [ "$1" = 'postgres' ]; then
-
+	
 	echo "Creating a new DB instance!"
 	/usr/lib/postgresql/10/bin/initdb -D ${POSTGRES_HOME}/air_instance
 	#Now that instance is created copy postgres settings files before service is started
@@ -25,9 +25,11 @@ if [ "$1" = 'postgres' ]; then
 	psql -c "create database ${AIRFLOW_DB} ENCODING = 'UTF8';"
 	psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
 	psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
-
-	echo -e "\nRestoring the latest ${AIRFLOW_DB} database backup $(ls -t /db_backup/airflow_bkp* | head -1) from persistent storage"
-	psql ${AIRFLOW_DB} < $(ls -t /db_backup/airflow_bkp* | head -1)
+	
+	if [ -f /db_backup/airflow_bkp* ]; then
+		echo -e "\nRestoring the latest ${AIRFLOW_DB} database backup $(ls -t /db_backup/airflow_bkp* | head -1) from persistent storage"
+		psql ${AIRFLOW_DB} < $(ls -t /db_backup/airflow_bkp* | head -1)	
+	fi
 	
 	echo -e '\nStarting supercronic'
 	supercronic ${POSTGRES_HOME}/postgres &
