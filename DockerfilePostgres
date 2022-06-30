@@ -7,6 +7,7 @@ RUN groupadd -g 9999 "${postgres_group}"
 RUN useradd -m -u 9999 -g "${postgres_group}" "${postgres_user}" -s /bin/bash
 
 # Install postgres
+RUN apt-get install -y curl gnupg
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
 RUN apt-get update && apt-get install -y postgresql postgresql-contrib
@@ -16,7 +17,6 @@ RUN set -ex \
     && apt-get -y upgrade
 
 # Install Supercronic
-RUN apt-get install -y curl
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.12/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \
     SUPERCRONIC_SHA1SUM=048b95b48b708983effb2e5c935a1ef8483d9e3e
