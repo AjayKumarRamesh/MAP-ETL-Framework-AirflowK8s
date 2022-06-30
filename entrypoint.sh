@@ -5,13 +5,13 @@ set -euo pipefail
 if [ "$1" = 'postgres' ]; then
 	
 	echo "Creating a new DB instance!"
-	/usr/lib/postgresql/10/bin/initdb -D ${POSTGRES_HOME}/air_instance
+	/usr/lib/postgresql/14/bin/initdb -D ${POSTGRES_HOME}/air_instance
 	#Now that instance is created copy postgres settings files before service is started
 	cp /tmp/pg_hba.conf ${POSTGRES_HOME}/air_instance/pg_hba.conf
 	cp /tmp/postgresql.conf ${POSTGRES_HOME}/air_instance/postgresql.conf
 	
 	echo -e "/nStarting newly created PSQL instance"
-	/usr/lib/postgresql/10/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
+	/usr/lib/postgresql/14/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
 	
 	echo -e "\nWork with templates to create DB with UTF-8 character set"
 	psql -c "UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';"
