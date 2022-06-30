@@ -26,7 +26,7 @@ if [ "$1" = 'postgres' ]; then
 	psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
 	psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
 	
-	if [ -f /db_backup/airflow_bkp* ]; then
+	if compgen -G "/db_backup/airflow_bkp*" > /dev/null; then
 		echo -e "\nRestoring the latest ${AIRFLOW_DB} database backup $(ls -t /db_backup/airflow_bkp* | head -1) from persistent storage"
 		psql ${AIRFLOW_DB} < $(ls -t /db_backup/airflow_bkp* | head -1)	
 	fi
