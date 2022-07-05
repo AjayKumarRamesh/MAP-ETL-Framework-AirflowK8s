@@ -7,3 +7,11 @@ data:
   BRANCH: "master"
   STATSD_PREFIX: "prod"
   LDAP_BIND_USER: "uid=C-TKFU897,c=us,ou=bluepages,o=ibm.com"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgsql-airflow-metadata-db
+data:
+  AIRFLOW_DB: "airflow"
+  AIRFLOW_DB_USER: "airmeta"
