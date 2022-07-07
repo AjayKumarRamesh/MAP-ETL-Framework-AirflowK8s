@@ -42,6 +42,10 @@ RUN set -ex \
 RUN rm -rf /etc/mysql/
 RUN rm -rf /etc/apache2/
 
+# Install boxsdk MAPDATAOPS-9432
+RUN pip install boxsdk
+RUN mkdir /tmp/dags/temp
+
 # Install Supercronic
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.12/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \

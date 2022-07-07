@@ -160,6 +160,8 @@ alertmanager:
   config:
     global:
       resolve_timeout: 5m
+      slack_api_url: 'https://hooks.slack.com/services/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'
+      channel: '#e2e-c2-map_test'
     route:
       group_by: ['job']
       group_wait: 30s
