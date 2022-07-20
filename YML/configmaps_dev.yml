@@ -15,4 +15,4 @@ metadata:
 data:
   AIRFLOW_DB: "airflow"
   AIRFLOW_DB_USER: "airmeta"
-  NUM_BACKUPS: 192
+  NUM_BACKUPS: "192"
