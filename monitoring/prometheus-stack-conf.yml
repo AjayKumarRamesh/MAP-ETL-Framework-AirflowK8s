@@ -2550,9 +2550,9 @@ prometheus:
           module: [http_2xx]
         static_configs:
          - targets:
-            - https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login/   # Airflow DEV WebUI
+                 #- https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login/   # Airflow DEV WebUI
             - https://airflow.map-mktsys-test.limited-use.ibm.com/airflow/login/  # Airflow TEST WebUI
-            - https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login/  # Airflow PROD WebUI
+              #- https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login/  # Airflow PROD WebUI
         relabel_configs:
          - source_labels: [__address__]
            target_label: __param_target
