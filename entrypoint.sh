@@ -28,7 +28,7 @@ if [ "$1" = 'postgres' ]; then
 	
 	if compgen -G "/db_backup/airflow_bkp*" > /dev/null; then
 		echo -e "\nRestoring the latest ${AIRFLOW_DB} database backup $(ls -t /db_backup/airflow_bkp* | head -1) from persistent storage"
-		if ! [pg_restore --exit-on-error -d ${AIRFLOW_DB} $(ls -t /db_backup/airflow_bkp* | head -1)]; then
+		if ! pg_restore --exit-on-error -d ${AIRFLOW_DB} $(ls -t /db_backup/airflow_bkp* | head -1); then
 			echo -e "\nError restoring backup, proceed manually"
 		fi
 	else
