@@ -4,35 +4,45 @@ set -euo pipefail
 ########################################################################################################################################################
 if [ "$1" = 'postgres' ]; then
 	
-	echo "Creating a new DB instance!"
-	/usr/lib/postgresql/14/bin/initdb -D ${POSTGRES_HOME}/air_instance
-	#Now that instance is created copy postgres settings files before service is started
-	cp /tmp/pg_hba.conf ${POSTGRES_HOME}/air_instance/pg_hba.conf
-	cp /tmp/postgresql.conf ${POSTGRES_HOME}/air_instance/postgresql.conf
-	
-	echo -e "\nStarting newly created PSQL instance"
-	/usr/lib/postgresql/14/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
-	
-	echo -e "\nWork with templates to create DB with UTF-8 character set"
-	psql -c "UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';"
-	psql -c "DROP DATABASE template1;"
-	psql -c "CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8';"
-	psql -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template1';"
-	psql -c "\c template1;"
-	psql -c "VACUUM FREEZE;"
-	
-	echo -e "\nPreparing ${AIRFLOW_DB} database"
-	psql -c "create database ${AIRFLOW_DB} ENCODING = 'UTF8';"
-	psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
-	psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
-	
-	if compgen -G "/db_backup/airflow_bkp*" > /dev/null; then
-		echo -e "\nRestoring the latest ${AIRFLOW_DB} database backup $(ls -t /db_backup/airflow_bkp* | head -1) from persistent storage"
-		if ! pg_restore --exit-on-error -d ${AIRFLOW_DB} $(ls -t /db_backup/airflow_bkp* | head -1); then
-			echo -e "\nError restoring backup, proceed manually"
+	if [ ! -f ${POSTGRES_HOME}/air_instance.log ]; then
+		echo "There's no DB stored, creating a new instance!"
+		/usr/lib/postgresql/14/bin/initdb -D ${POSTGRES_HOME}/air_instance
+		
+		#Now that instance is created copy postgres settings files before service is started
+		cp /tmp/pg_hba.conf ${POSTGRES_HOME}/air_instance/pg_hba.conf
+		cp /tmp/postgresql.conf ${POSTGRES_HOME}/air_instance/postgresql.conf
+				
+		#Start PGSQL
+		echo -e "\nStarting newly created PSQL instance"
+		/usr/lib/postgresql/14/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log start
+		
+		echo -e "\nWork with templates to create DB with UTF-8 character set"
+		psql -c "UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';"
+		psql -c "DROP DATABASE template1;"
+		psql -c "CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8';"
+		psql -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template1';"
+		psql -c "\c template1;"
+		psql -c "VACUUM FREEZE;"
+		
+		echo -e "\nPreparing ${AIRFLOW_DB} database"
+		psql -c "create database ${AIRFLOW_DB} ENCODING = 'UTF8';"
+		psql -c "create user ${AIRFLOW_DB_USER} with encrypted password '${AIRFLOW_DB_PASSWORD}';"
+		psql -c "grant all privileges on database ${AIRFLOW_DB} to ${AIRFLOW_DB_USER};"
+		
+		if compgen -G "/db_backup/airflow_bkp*" > /dev/null; then
+			echo -e "\nRestoring the latest ${AIRFLOW_DB} database backup $(ls -t /db_backup/airflow_bkp* | head -1) from persistent storage"
+			if ! pg_restore --exit-on-error -d ${AIRFLOW_DB} $(ls -t /db_backup/airflow_bkp* | head -1); then
+				echo -e "\nError restoring backup, proceed manually"
+			fi
+		else
+			echo -e "\nThere's no backup file found, proceed manually"
 		fi
 	else
-		echo -e "\nThere's no backup file found, proceed manually"
+		echo "DB is present in persistent storage, spinning it up!"		
+		#Permissions are messed by persistent storage provider. Fix it otherwise Postgres won't start
+		chmod -R 700 ${POSTGRES_HOME}/air_instance
+		#Start PGSQL
+		/usr/lib/postgresql/14/bin/pg_ctl -D ${POSTGRES_HOME}/air_instance -l ${POSTGRES_HOME}/air_instance.log -t 500 start
 	fi
 	
 	echo -e '\nStarting supercronic'
