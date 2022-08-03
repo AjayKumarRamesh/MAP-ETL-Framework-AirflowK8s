@@ -34,9 +34,13 @@ RUN curl -fsSLO "$SUPERCRONIC_URL" \
 ARG postgres_home=/home/postgres
 ARG postgres_lock_dir=/var/run/postgresql
 
-# Copy cron job and script for doing backups to home folder
-COPY postgres_conf/postgres ${postgres_home}/postgres
-COPY postgres_conf/backup.sh ${postgres_home}/backup.sh
+# Copy cron job and script for doing backups to /tmp folder. It will be moved to instance folder by entrypoint script after initializing instance
+COPY postgres_conf/postgres /tmp/postgres
+COPY postgres_conf/backup.sh /tmp/backup.sh
+RUN chown ${postgres_user}:${postgres_group} /tmp/postgres
+RUN chown ${postgres_user}:${postgres_group} /tmp/backup.sh
+RUN chmod 774 /tmp/postgres
+RUN chmod 774 /tmp/backup.sh
 
 # Copy Postgres Configuration to /tmp folder. It will be moved to instance folder by entrypoint script after initializing instance
 COPY postgres_conf/pg_hba.conf /tmp/pg_hba.conf

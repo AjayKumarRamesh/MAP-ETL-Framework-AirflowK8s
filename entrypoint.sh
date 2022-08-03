@@ -11,6 +11,8 @@ if [ "$1" = 'postgres' ]; then
 		#Now that instance is created copy postgres settings files before service is started
 		cp /tmp/pg_hba.conf ${POSTGRES_HOME}/air_instance/pg_hba.conf
 		cp /tmp/postgresql.conf ${POSTGRES_HOME}/air_instance/postgresql.conf
+		cp /tmp/postgres ${POSTGRES_HOME}/postgres
+		cp /tmp/backup.sh ${POSTGRES_HOME}/backup.sh
 				
 		#Start PGSQL
 		echo -e "\nStarting newly created PSQL instance"
