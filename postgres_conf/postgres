@@ -1,1 +1,1 @@
-10 00 * * * /home/postgres/backup.sh
+10 00 * * * /scripts/backup.sh
