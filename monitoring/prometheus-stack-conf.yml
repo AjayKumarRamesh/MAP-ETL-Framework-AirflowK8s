@@ -832,8 +832,11 @@ grafana:
   
   ## The name of a secret in the same kubernetes namespace which contain values to be added to the environment
   ## This can be useful for auth tokens, etc. Value is templated.
-  envFromSecret: ldap-bind-password
-  envFromSecret: grafana-sso-secret
+  # envFromSecret: ldap-bind-password
+  # envFromSecret: grafana-sso-secret
+  envFromSecrets:
+    - name: ldap-bind-password
+    - name: grafana-sso-secret
   
   ## Grafana's primary configuration
   ## NOTE: values in map will be converted to ini format
@@ -851,7 +854,7 @@ grafana:
       mode: console
       #      filters: ldap:debug
       #filters: saml.auth:debug
-      filters: oauth.generic_oauth:debug
+      filters: oauth.generic_oauth:debug ldap:debug
     grafana_net:
       url: https://grafana.net
     server:
