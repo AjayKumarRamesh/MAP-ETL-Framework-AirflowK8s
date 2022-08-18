@@ -754,11 +754,12 @@ grafana:
       createPrometheusReplicasDatasources: false
       label: grafana_datasource
 
-  extraConfigmapMounts: []
-  # - name: certs-configmap
-  #   mountPath: /etc/grafana/ssl/
-  #   configMap: certs-configmap
-  #   readOnly: true
+   #  extraConfigmapMounts:
+   #- name: saml-configmap
+   #  mountPath: /etc/grafana/saml
+   #  configMap: saml-configmap
+   #  readOnly: true
+   #  subPath: ''
 
   deleteDatasources: []
   # - name: example-datasource
@@ -832,6 +833,7 @@ grafana:
   ## The name of a secret in the same kubernetes namespace which contain values to be added to the environment
   ## This can be useful for auth tokens, etc. Value is templated.
   envFromSecret: ldap-bind-password
+  envFromSecret: grafana-sso-secret
   
   ## Grafana's primary configuration
   ## NOTE: values in map will be converted to ini format
@@ -847,12 +849,15 @@ grafana:
       check_for_updates: true
     log:
       mode: console
-      filters: ldap:debug
+      #      filters: ldap:debug
+      #filters: saml.auth:debug
+      filters: oauth.generic_oauth:debug
     grafana_net:
       url: https://grafana.net
     server:
       domain: airflow.map-mktsys-dev.limited-use.ibm.com
-      root_url: "%(protocol)s://%(domain)s:%(http_port)s/grafana/"
+      # root_url: "%(protocol)s://%(domain)s:%(http_port)s/grafana/"
+      root_url: "https://airflow.map-mktsys-dev.limited-use.ibm.com/grafana/"
       serve_from_sub_path: true
     security:
       disable_initial_admin_creation: true
@@ -862,6 +867,26 @@ grafana:
       enabled: true
       allow_sign_up: true
       config_file: /etc/grafana/ldap.toml
+    auth.generic_oauth:
+      enabled: true
+      name: IBMw3id
+      icon: signin
+      enabled: true
+      client_id: "${GRAFANA_SSO_CLIENTID}"
+      client_secret: "${GRAFANA_SSO_SECRET}"
+      email_attribute_path: emailAddress
+      role_attribute_path: contains(blueGroups[*], 'CIO_Dyna_BAI-000009_PROD_Admin') && 'Admin' || 'Viewer'
+      scopes: 
+      empty_scopes: true
+      auth_url: "https://preprod.login.w3.ibm.com/oidc/endpoint/default/authorize"
+      token_url: "https://preprod.login.w3.ibm.com/oidc/endpoint/default/token"
+      api_url: "https://preprod.login.w3.ibm.com/oidc/endpoint/default/userinfo"
+      allow_sign_up: true
+      # tls_skip_verify_insecure: true
+      # tls_client_cert:
+      # tls_client_key:
+      # tls_client_ca:
+      use_pkce: true
 
   ## Grafana's LDAP configuration
   ## Templated by the template in _helpers.tpl
@@ -869,7 +894,7 @@ grafana:
   ## ref: http://docs.grafana.org/installation/configuration/#auth-ldap
   ## ref: http://docs.grafana.org/installation/ldap/#configuration
   ldap:
-    enabled: true
+    enabled: false
     # `existingSecret` is a reference to an existing secret containing the ldap configuration
     # for Grafana in a key `ldap-toml`.
     existingSecret: ""
@@ -901,6 +926,7 @@ grafana:
       [[servers.group_mappings]]
       group_dn = "*"
       org_role = "Viewer"
+
 
 ## Component scraping the kube api server
 ##

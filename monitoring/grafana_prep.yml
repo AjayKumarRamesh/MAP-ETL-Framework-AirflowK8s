@@ -42,4 +42,22 @@ spec:
       property: payload
       name: LDAP_BIND_PASSWORD
       secretType: arbitrary
-      
+---
+apiVersion: 'kubernetes-client.io/v1'
+kind: ExternalSecret
+metadata:
+  name: grafana-sso-secret
+  namespace: monitoring
+spec:
+  backendType: ibmcloudSecretsManager
+  keyByName: true 
+  data:
+    - key: GRAFANA_SSO_CLIENTID
+      property: payload
+      name: GRAFANA_SSO_CLIENTID
+      secretType: arbitrary
+    - key: GRAFANA_SSO_SECRET
+      property: payload
+      name: GRAFANA_SSO_SECRET
+      secretType: arbitrary
+
