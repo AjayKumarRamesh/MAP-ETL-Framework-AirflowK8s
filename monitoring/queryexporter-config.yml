@@ -25,6 +25,13 @@ data:
           region: US
           app: MIP
           environment: PROD
+      db4:
+        dsn: env:DEV_POSTGRESQL_DSN
+        keep-connected: false
+        labels:
+          region: US
+          app: AIRFLOW
+          environment: DEV
 
     metrics:
       log_utilization_percent:
@@ -65,6 +72,14 @@ data:
       leads_actv_cnt:
         type: gauge
         description: LEADS_ACTV_CNT
+      qe_running_time:
+        type: counter
+        description: DAG Running time
+        labels: [qe_start_date,qe_dag_id]
+      dev_date:
+        type: counter
+        description: DEV_DB2_DATE
+
 
     queries:
       query1:
@@ -124,4 +139,9 @@ data:
           WHERE
               IMI.CREATE_TS > CURRENT TIMESTAMP - 30 MINUTES
               AND (IMI.MARKETING_INTERACTION_TYPE_CD = 'MAIL' OR IMI.CLIENT_INTEREST_FLG = 'Y');
-
+      query5:
+        schedule: "*/1 * * * *"
+        databases: [db1]
+        metrics: [dev_date]
+        sql: |
+          select extract(epoch FROM now()) dev_date from sysibm.sysdummy1;
