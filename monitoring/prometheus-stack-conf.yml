@@ -2581,7 +2581,25 @@ prometheus:
          - targets:
             - https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login/   # Airflow DEV WebUI
             - https://airflow.map-mktsys-test.limited-use.ibm.com/airflow/login/  # Airflow TEST WebUI
-              #- https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login/  # Airflow PROD WebUI
+            #- https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login/  # Airflow PROD WebUI
+            - https://298-rse-650.mktoapi.com/soap/mktows/4_3 # MarketoEngage
+            - https://354-VQY-865.mktoapi.com/soap/mktows/4_3 # MarketoSandbox
+            - https://830-DTS-057.mktoapi.com/soap/mktows/4_3 # MarketoSandboxSTG
+            - https://662-WWF-815.mktoapi.com/soap/mktows/4_3 # MarketoInstance
+            - https://568-RLS-185.mktoapi.com/soap/mktows/4_3 # MarketoBP 
+            - https://623-AXX-558.mktoapi.com/soap/mktows/4_3 # MarketoPartners
+            - https://189-KTG-057.mktoapi.com/soap/mktows/4_3 # MarketoInternal
+            - https://108-YKS-847.mktoapi.com/soap/mktows/4_3 # MarketoEsp
+            - https://090-MZZ-877.mktoapi.com/soap/mktows/4_3 #MarketoEspSandBox
+            - https://298-rse-650.mktoapi.com/rest # MarketoEngage
+            - https://354-VQY-865.mktoapi.com/rest # MarketoSandbox
+            - https://830-DTS-057.mktoapi.com/rest # MarketoSandboxST
+            - https://662-WWF-815.mktoapi.com/rest # MarketoInstance
+            - https://568-RLS-185.mktoapi.com/rest # MarketoBP 
+            - https://623-AXX-558.mktoapi.com/rest # MarketoPartners
+            - https://189-KTG-057.mktoapi.com/rest # MarketoInternal
+            - https://108-YKS-847.mktoapi.com/rest # MarketoEsp
+            - https://090-MZZ-877.mktoapi.com/rest #MarketoEspSandBox
         relabel_configs:
          - source_labels: [__address__]
            target_label: __param_target
