@@ -864,6 +864,7 @@ grafana:
       serve_from_sub_path: true
     security:
       disable_initial_admin_creation: true
+      allow_embedding: true
     auth.basic:
       enabled: false
     auth.ldap:
