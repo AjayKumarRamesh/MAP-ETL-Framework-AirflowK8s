@@ -15,7 +15,9 @@ echo "iamapikey:************" | base64
 # without the last 4 symbols "Cg=="
 # In our case 
 "auth": ************
+```
 
-# The whole line with result
+The whole line with result
+```
 {"auths":{"us.icr.io":{"username":"iamapikey","password":"************","email":"iamapikey","auth":"************"}}}
 ```
