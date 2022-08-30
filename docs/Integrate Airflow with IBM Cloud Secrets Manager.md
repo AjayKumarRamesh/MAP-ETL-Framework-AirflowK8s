@@ -1,6 +1,7 @@
 # Integrate Airflow with IBM Cloud Secrets Manager
 
-**Here and below I'm using Powershell on my Windows PC**
+**I'm using Powershell on my Windows PC here** \
+**Docker Desktop is forbidden now, so in case you need to use "docker" commands (there are no such in this manual) install docker or podman binaries (LINUX or WSL ONLY!)**
 
 As an example I'm providing ticket numbers, ID names, variable names from our Dev environment. Please change accordingly when working with Secrets Manager for your own purposes
 
@@ -129,8 +130,6 @@ kubectl apply -f .\deployments_dev.yml -n airflow
 ---
 ### Finalizing steps
 
-Restart Airflow
-
 To change secret value you have to Rotate it via Secrets Manager UI (preferred method)
 
 Alternatively you can delete it from secrets manager and create a new one with the same name
@@ -138,6 +137,4 @@ Alternatively you can delete it from secrets manager and create a new one with t
 ibmcloud secrets-manager secret-delete --secret-type SECRET-TYPE --id ID [--force]
 ```
 Since External Secret resource searches for secrets by name, the new one will be picked up and the value of K8s secret will be replaced\
-You'll only have to restart Airflow
-
-Delete "airflow-connection-strings" k8s secret
+You'll only have to restart the deployment to pick up the new value

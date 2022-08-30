@@ -4,55 +4,48 @@
 
 Initial setup is done by platform team.
 
-- IBM Cloud CR namespaces are created for Dev, Test and Prod
-- Postgres Cloud SAAS instances are created for Dev, Test and Prod
-- Secrets Manager instance is created and MIP Secrets Group is created
 - Dev, Test and Prod kubernetes clusters are provisioned and configured:
-  - Network configuration to enable DNS name resolving is applied (Calico, CoreDNS)
+  - Network configuration, DNS name resolving rules are applied (Calico, CoreDNS)
   - Private and Public Ingress Controllers are configured
   - Secrets Manager Controllers are installed
-  - Spark-Kubernetes-Operator is installed to MIP namespace for Spark applications to work
-  - LogDNA, Dynatrace, Crowdstrike and other agents are not vital for Airflow to work but are needed for integration with other services
+  - IBM Cloud Block-storage plugin is installed
+  - Spark-Kubernetes-Operator is installed to MIP namespace for Spark applications to work 
+  - LogDNA, Crowdstrike and other agents are not vital for Airflow to work but are needed for integration with other services
+- Functional W3ID is provisioned and Cloud/Github API Keys are generated to be used by services
+- IBM Cloud CR namespaces are created for Dev, Test and Prod
+- Secrets Manager instance is created and MIP Secrets Group is created
+- [Image pull secret for Spark applications is created in MIP namespace](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/K8s%20Image%20pull%20secret%20which%20is%20used%20by%20DAGs%20to%20connect%20to%20IBM%20CR.md)
 
 ---
 ### Build
 
-**Here and below I'm using Powershell on my Windows PC**
+**I'm using Powershell on my Windows PC here** \
+**Docker Desktop is forbidden now, so in case you need to use "docker" commands (there are no such in this manual) install docker or podman binaries (LINUX or WSL ONLY!)**
 
-Set local client to use IBM container registry and list namespaces available in IBM Cloud account
-```
-ibmcloud cr login
-ibmcloud cr namespace-list
-```
+Build images for Airflow and Postgres via Jenkins \
+https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-POC/ \
+https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-PostgreSQL/
 
-Switch to the folder containing build files
-```
-d:
-cd \work\unica\MAP-ETL-Framework-AirflowK8s
-```
-
-Build locally, tag and push images of my services to IBM Cloud container registry
-```
-docker build -t us.icr.io/map-dev-namespace/airflow -f DockerfileAirflow .
-```
-
-Push the image to DEV, Test and Prod CR namespaces following dev->test->prod order
+Push the image to DEV, Test and Prod CR namespaces
 ```
 #DEV#
-docker push us.icr.io/map-dev-namespace/airflow:latest
-#TEST#
-docker pull us.icr.io/map-dev-namespace/airflow:latest
-docker tag us.icr.io/map-dev-namespace/airflow:latest us.icr.io/mip-test-namespace/airflow:latest
-docker push us.icr.io/mip-test-namespace/airflow:latest
-#PROD#
-docker pull us.icr.io/mip-test-namespace/airflow:latest
-docker tag us.icr.io/mip-test-namespace/airflow:latest us.icr.io/mip-prod-namespace/airflow:latest
-docker push us.icr.io/mip-prod-namespace/airflow:latest
-```
+The images are pushed to DEV CR by the pipeline automatically
 
-List images in IBM Cloud registry
-```
-ibmcloud cr image-list
+#TEST#
+# Airflow
+ibmcloud cr image-tag us.icr.io/map-dev-namespace/airflow:<tag> us.icr.io/mip-test-namespace/airflow:<tag>
+ibmcloud cr image-tag us.icr.io/mip-test-namespace/airflow:<tag> us.icr.io/mip-test-namespace/airflow:latest
+# Postgres
+ibmcloud cr image-tag us.icr.io/map-dev-namespace/postgres:<tag> us.icr.io/mip-test-namespace/postgres:<tag>
+ibmcloud cr image-tag us.icr.io/mip-test-namespace/postgres:<tag> us.icr.io/mip-test-namespace/postgres:latest
+
+#PROD#
+# Airflow
+ibmcloud cr image-tag us.icr.io/mip-test-namespace/airflow:<tag> us.icr.io/mip-prod-namespace/airflow:<tag>
+ibmcloud cr image-tag us.icr.io/mip-prod-namespace/airflow:<tag> us.icr.io/mip-prod-namespace/airflow:latest
+# Postgres
+ibmcloud cr image-tag us.icr.io/mip-test-namespace/postgres:<tag> us.icr.io/mip-prod-namespace/postgres:<tag>
+ibmcloud cr image-tag us.icr.io/mip-prod-namespace/postgres:<tag> us.icr.io/mip-prod-namespace/postgres:latest
 ```
 
 ---
@@ -134,18 +127,21 @@ ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"DEV_AIRFLOW__CORE__SQL_ALCHEMY_CONN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"postgresql://*********************\"}]'
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"DEV_GIT_ACCESS_TOKEN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"DEV_LDAP_BIND_PASSWORD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"DEV_POSTGRES_PWD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
 
 #TEST#
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_AIRFLOW__CORE__FERNET_KEY\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_AIRFLOW__CORE__SQL_ALCHEMY_CONN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"postgresql://*********************\"}]'
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_GIT_ACCESS_TOKEN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_LDAP_BIND_PASSWORD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"TEST_POSTGRES_PWD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
 
 #PROD#
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_AIRFLOW__CORE__FERNET_KEY\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_AIRFLOW__CORE__SQL_ALCHEMY_CONN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"postgresql://*********************\"}]'
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_GIT_ACCESS_TOKEN\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\":\"*********************\"}]'
 ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_LDAP_BIND_PASSWORD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
+ibmcloud secrets-manager secret-create --secret-type arbitrary --resources '[{\"name\":\"PROD_POSTGRES_PWD\",\"secret_group_id\":\"e5d844cd-fc4f-6b2c-3dd0-5f393e5ae76b\",\"payload\": \"*********************\"}]'
 ```
 
 Deploy External Secrets to K8s cluster
@@ -159,7 +155,7 @@ cd \work\unica\MAP-ETL-Framework-AirflowK8s\YML
 
 Check that External Secret resource has status "Success"
 
-Check that K8s secret is created, name and value are correct
+Check that K8s secrets are created, names and values are correct
 
 ---
 ### Deploy Service

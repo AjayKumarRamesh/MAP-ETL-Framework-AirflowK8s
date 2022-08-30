@@ -18,7 +18,7 @@ PROD https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login
 **The following GitHub repo is linked to Airflow containers via webhook<->listener pipeline. When a new DAG is committed to GitHub it is loaded to Airflow automatically**\
 https://github.ibm.com/CIO-MAP/MAP-ETL-Framework
 
-**There is a branch for each environment. Airflow gets branch name to sync with from K8s Secrets** \
+**There is a branch for each environment to sync with** \
 DEV https://github.ibm.com/CIO-MAP/MAP-ETL-Framework/tree/dev \
 TEST https://github.ibm.com/CIO-MAP/MAP-ETL-Framework/tree/test \
 PROD https://github.ibm.com/CIO-MAP/MAP-ETL-Framework/tree/master
@@ -27,6 +27,10 @@ PROD https://github.ibm.com/CIO-MAP/MAP-ETL-Framework/tree/master
 DEV https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c0hhi59d0s2ho34b3s00/service/#/overview?namespace=default \
 TEST https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c262vded0jqq2thfho00/service/#/overview?namespace=default \
 PROD https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c2om8okd0oh5q4um8sh0/service/#/overview?namespace=default
+
+**Docker Images are built via Jenkins TAAS pipelines** \
+https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-POC/ \
+https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-PostgreSQL/
 
 **IBM Cloud Container Registry namespaces** \
 DEV https://cloud.ibm.com/registry/namespaces/map-dev-namespace?region=us-south \
@@ -79,5 +83,5 @@ https://airflow.map-mktsys-dev.limited-use.ibm.com/dmc/console/
 
 Support requests should be addressed to Platform Team.
 
-The request should be represented as JIRA ticket in SMSMKTPLAT project: https://jsw.ibm.com/projects/SMSMKTPLAT/issues/SMSMKTPLAT-177?filter=allopenissues
+The request should be represented as JIRA ticket in MITAPLAT project: https://jsw.ibm.com/browse/MITAPLAT \
 When the ticket is created send brief description and link to the ticket to the following Slack channel: https://ibm-cio.slack.com/archives/C01HD9TGMB6

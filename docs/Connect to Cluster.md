@@ -2,17 +2,10 @@
 
 ### Request Access to IBM Public Cloud Account
 
-Instruction: https://w3.ibm.com/w3publisher/cio-marketing-systems/marketing-platform/reference-documents/481a8660-7ad6-11eb-ab1a-bbcf8f30fb44 \
-AccessHub link: https://ibm.idaccesshub.com/ECMv6/request/requestHome
-
-Application: Marketing Systems Cloud account \
-Groups: MAP Admin, MAP Non Prod и MAP Prod \
-Justification: I'm a MAP team member responsible for Kubernetes cluster administration and development
+Instruction: https://cio-map-ibm-com.gitbook.io/mip/access/connections/ibm-cloud
 
 ---
 ### How to get to K8s web console
-
-Here and below I'm using Powershell on my Windows PC
 
 - Log in to IBM Public Cloud with your W3ID
 ```
@@ -29,7 +22,8 @@ Account: 1808859 - Marketing Systems
 ---
 ### How to connect to K8s Cluster via ibmcloud and kubectl CLI
 
-**Here and below I'm using Powershell on my Windows PC here**
+**I'm using Powershell on my Windows PC here** \
+**Docker Desktop is forbidden now, so in case you need to use "docker" commands (there are no such in this manual) install docker or podman binaries (LINUX or WSL ONLY!)**
 
 Install IBM Cloud CLI
 
@@ -46,8 +40,6 @@ ibmcloud plugin install observe-service
 ibmcloud plugin install secrets-manager
 ibmcloud plugin list
 ```
-
-Install Docker Desktop
 
 Connect to the cluster
 ```
