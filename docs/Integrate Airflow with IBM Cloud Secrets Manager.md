@@ -129,8 +129,6 @@ kubectl apply -f .\deployments_dev.yml -n airflow
 ---
 ### Finalizing steps
 
-Restart Airflow
-
 To change secret value you have to Rotate it via Secrets Manager UI (preferred method)
 
 Alternatively you can delete it from secrets manager and create a new one with the same name
@@ -138,6 +136,4 @@ Alternatively you can delete it from secrets manager and create a new one with t
 ibmcloud secrets-manager secret-delete --secret-type SECRET-TYPE --id ID [--force]
 ```
 Since External Secret resource searches for secrets by name, the new one will be picked up and the value of K8s secret will be replaced\
-You'll only have to restart Airflow
-
-Delete "airflow-connection-strings" k8s secret
+You'll only have to restart the deployment to pick up the new value
