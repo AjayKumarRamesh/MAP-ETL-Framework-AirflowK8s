@@ -2582,7 +2582,7 @@ prometheus:
          - targets:
             - https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login/   # Airflow DEV WebUI
             - https://airflow.map-mktsys-test.limited-use.ibm.com/airflow/login/  # Airflow TEST WebUI
-            #- https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login/  # Airflow PROD WebUI
+            - https://airflow.map-mktsys-prod.limited-use.ibm.com/airflow/login/  # Airflow PROD WebUI
             - https://298-rse-650.mktoapi.com/soap/mktows/4_3 # MarketoEngage
             - https://354-VQY-865.mktoapi.com/soap/mktows/4_3 # MarketoSandbox
             - https://830-DTS-057.mktoapi.com/soap/mktows/4_3 # MarketoSandboxSTG
@@ -2618,17 +2618,17 @@ prometheus:
          - targets:
             - g42-a-cmdpprod1.az2.ash.cpc.ibm.com:51000   # CMDP
             - 7bfa012c-7762-498f-8ea8-0dab00a26aaf.bv7c3o6d0vfhru3npds0.databases.appdomain.cloud:32706 # CEDP
-            - 10075853-30ea-4ce7-91e1-39d2d830642e.bu6tc4nd0urletsa6ufg.databases.appdomain.cloud:31669 #GRP
-            - B03ACIRDB034.AHE.BOULDER.IBM.COM:60012 # MCLMDB  
+            - 10075853-30ea-4ce7-91e1-39d2d830642e.bu6tc4nd0urletsa6ufg.databases.appdomain.cloud:31669 # GRP
+            - B03ACIRDB034.AHE.BOULDER.IBM.COM:60012 # MCLMDB
             - 47f3bb77-5ea0-4c6d-a1b7-c1750d6ae024.c1ogj3sd0tgtu0lqde00.private.databases.appdomain.cloud:32179 # MRS
             - db2whoc-flex-sdkffna.services.dal.bluemix.net:50001 # RUBY
             - dc400977-47fc-4300-a596-e57eccef27d3.bv7c3o6d0vfhru3npds0.databases.appdomain.cloud:30140  # MIP DEV DB2
             - 40206ae9-55dd-4d70-850f-b96cfbeeaf20.bv7c3o6d0vfhru3npds0.databases.appdomain.cloud:30279  # MIP TEST DB2
             - 4316bf6c-322c-4be5-937f-2559d00a6d72.c8l9ggsd0kmvoig3l8kg.databases.appdomain.cloud:30906  # MIP PRE-PROD DB2
             - d6e3381f-c6e9-4f30-80d1-282f9038dd11.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud:30278  # MIP PROD DB2
-            - c20870c3-8e4a-476e-8fec-86204e4d9703.c13paqsd05a0ept695ng.databases.appdomain.cloud:31139  # PostgreSQL DEV
-            - ae1df8f9-000d-4170-b441-4ea0bf2acb0e.c13paqsd05a0ept695ng.databases.appdomain.cloud:31150  # PostgreSQL TEST
-            - 0d500df2-45d3-4357-b639-bb88fa2b1034.c13paqsd05a0ept695ng.databases.appdomain.cloud:30131  # PostgreSQL PROD
+            #- c20870c3-8e4a-476e-8fec-86204e4d9703.c13paqsd05a0ept695ng.databases.appdomain.cloud:31139  # PostgreSQL DEV
+            #- ae1df8f9-000d-4170-b441-4ea0bf2acb0e.c13paqsd05a0ept695ng.databases.appdomain.cloud:31150  # PostgreSQL TEST
+            #- 0d500df2-45d3-4357-b639-bb88fa2b1034.c13paqsd05a0ept695ng.databases.appdomain.cloud:30131  # PostgreSQL PROD
         relabel_configs:
          - source_labels: [__address__]
            target_label: __param_target
