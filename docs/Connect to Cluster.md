@@ -22,8 +22,8 @@ Account: 1808859 - Marketing Systems
 ---
 ### How to connect to K8s Cluster via ibmcloud and kubectl CLI
 
-** I'm using Powershell on my Windows PC here **
-** Docker Desktop is forbidden now, so in case you need to use "docker" commands (there are no such in this manual) install docker or podman binaries (LINUX or WSL ONLY!) **
+**I'm using Powershell on my Windows PC here** \
+**Docker Desktop is forbidden now, so in case you need to use "docker" commands (there are no such in this manual) install docker or podman binaries (LINUX or WSL ONLY!)**
 
 Install IBM Cloud CLI
 

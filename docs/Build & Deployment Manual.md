@@ -19,11 +19,11 @@ Initial setup is done by platform team.
 ---
 ### Build
 
-** I'm using Powershell on my Windows PC here **
-** Docker Desktop is forbidden now, so in case you need to use "docker" commands (there are no such in this manual) install docker or podman binaries (LINUX or WSL ONLY!) **
+**I'm using Powershell on my Windows PC here** \
+**Docker Desktop is forbidden now, so in case you need to use "docker" commands (there are no such in this manual) install docker or podman binaries (LINUX or WSL ONLY!)**
 
-Build images for Airflow and Postgres via Jenkins
-https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-POC/
+Build images for Airflow and Postgres via Jenkins \
+https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-POC/ \
 https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-PostgreSQL/
 
 Push the image to DEV, Test and Prod CR namespaces

@@ -28,8 +28,8 @@ DEV https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c0hhi59d0s2ho34
 TEST https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c262vded0jqq2thfho00/service/#/overview?namespace=default \
 PROD https://us-south.containers.cloud.ibm.com/kubeproxy/clusters/c2om8okd0oh5q4um8sh0/service/#/overview?namespace=default
 
-**Docker Images are built via Jenkins TAAS pipelines**\
-https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-POC/
+**Docker Images are built via Jenkins TAAS pipelines** \
+https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-POC/ \
 https://txo-sms-mkt-voc-team-fxo-map-isc-jnks-jenkins.swg-devops.com/job/MIP-Airflow-PostgreSQL/
 
 **IBM Cloud Container Registry namespaces** \
@@ -83,5 +83,5 @@ https://airflow.map-mktsys-dev.limited-use.ibm.com/dmc/console/
 
 Support requests should be addressed to Platform Team.
 
-The request should be represented as JIRA ticket in MITAPLAT project: https://jsw.ibm.com/browse/MITAPLAT
+The request should be represented as JIRA ticket in MITAPLAT project: https://jsw.ibm.com/browse/MITAPLAT \
 When the ticket is created send brief description and link to the ticket to the following Slack channel: https://ibm-cio.slack.com/archives/C01HD9TGMB6
