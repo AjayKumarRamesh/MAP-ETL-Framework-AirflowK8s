@@ -14,7 +14,7 @@ Initial setup is done by platform team.
 - Functional W3ID is provisioned and Cloud/Github API Keys are generated to be used by services
 - IBM Cloud CR namespaces are created for Dev, Test and Prod
 - Secrets Manager instance is created and MIP Secrets Group is created
-- Image pull secret for Spark applications is created in MIP namespace
+- [Image pull secret for Spark applications is created in MIP namespace](https://github.ibm.com/CIO-MAP/MAP-ETL-Framework-AirflowK8s/blob/master/docs/K8s%20Image%20pull%20secret%20which%20is%20used%20by%20DAGs%20to%20connect%20to%20IBM%20CR.md)
 
 ---
 ### Build
