@@ -1,6 +1,7 @@
 # Integrate Airflow with IBM Cloud Secrets Manager
 
-**Here and below I'm using Powershell on my Windows PC**
+**I'm using Powershell on my Windows PC here** \
+**Docker Desktop is forbidden now, so in case you need to use "docker" commands (there are no such in this manual) install docker or podman binaries (LINUX or WSL ONLY!)**
 
 As an example I'm providing ticket numbers, ID names, variable names from our Dev environment. Please change accordingly when working with Secrets Manager for your own purposes
 
