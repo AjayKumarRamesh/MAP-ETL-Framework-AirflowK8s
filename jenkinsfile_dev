@@ -82,37 +82,37 @@ pipeline {
             } //steps
         } //stage
 
-         stage('Deploy Airflow image to dev cluster') {
-            environment {
-                IBMCLOUD_CREDS = credentials('ibm-cloud-cr')
-            }
+#         stage('Deploy Airflow image to dev cluster') {
+#            environment {
+#                IBMCLOUD_CREDS = credentials('ibm-cloud-cr')
+#            }
 
-            steps {
-                sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
-                sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
-                sh('kubectl config current-context')
-                sh('kubectl rollout restart deployment airflow-webserver -n airflow')
-                sh('kubectl rollout restart deployment airflow-scheduler -n airflow')
-            } //steps
-         } //stage
+#            steps {
+#                sh('ibmcloud login --apikey ${IBMCLOUD_CREDS_PSW} -r us-south')
+#                sh('ibmcloud ks cluster config --cluster map-dal10-16x64-01')
+#                sh('kubectl config current-context')
+#                sh('kubectl rollout restart deployment airflow-webserver -n airflow')
+#                sh('kubectl rollout restart deployment airflow-scheduler -n airflow')
+#            } //steps
+#         } //stage
 
-        stage('Validate Airflow on DEV') {
-            steps {
-                script {
-                    timeout(5) {
-                        waitUntil {
-                            try {
-                                sh('wget -q https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login -O /dev/null')
-                                return true
-                            } 
-                            catch (exception) {
-                                return false
-                            }
-                        } //waitUntil
-                    } //timeout
-                } //script
-            } //steps
-        } //stage
+#        stage('Validate Airflow on DEV') {
+#            steps {
+#                script {
+#                    timeout(5) {
+#                        waitUntil {
+#                            try {
+#                                sh('wget -q https://airflow.map-mktsys-dev.limited-use.ibm.com/airflow/login -O /dev/null')
+#                                return true
+#                            } 
+#                            catch (exception) {
+#                                return false
+#                            }
+#                        } //waitUntil
+#                    } //timeout
+#                } //script
+#            } //steps
+#        } //stage
 
     } //stages
 
