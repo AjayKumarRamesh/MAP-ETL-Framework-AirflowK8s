@@ -8,19 +8,21 @@ data:
     databases:
       db1:
         dsn: env:DEV_DB2_DSN
+        autocommit: false
         labels:
           region: US
           app: MIP
           environment: DEV 
       db2:
         dsn: env:TEST_DB2_DSN
+        autocommit: false
         labels:
           region: US
           app: MIP
           environment: TEST
       db3:
         dsn: env:PROD_DB2_DSN
-        keep-connected: false
+        autocommit: false
         labels:
           region: US
           app: MIP
@@ -79,12 +81,38 @@ data:
       dev_date:
         type: counter
         description: DEV_DB2_DATE
-
+      app_count:
+        type: counter
+        description: CHECK_NUMBER_OF_QUERIES_ON_EXECUTION
+      tables_reorg_pnding:
+        type: counter
+        description: TABLES_IN_REORG_PENDING_STATE
+      total_mem:
+        type: gauge
+        description: TOTAL_MEMORY
+      free_mem:
+        type: gauge
+        description: FREE_MEMORY
+      total_swp_mem:
+        type: gauge
+        description: TOTAL_SAWP_MEMORY
+      free_swp_mem:
+        type: gauge
+        description: FREE_SWAP_MEMORY
+      total_virt_mem:
+        type: gauge
+        description: TOTAL_VIRTUAL_MEMORY
+      free_virt_mem:
+        type: gauge
+        description: FREE_VIRTUAL_MEMORY
+      long_queries:
+        type: gauge
+        description: LONG_QUERIES
 
     queries:
       query1:
         schedule: "*/1 * * * *"
-        databases: [db1,db2]
+        databases: [db1,db2,db3]
         metrics: [log_utilization_percent,total_log_used_kb,total_log_available_kb,total_log_used_top_kb]
         sql: |
           SELECT
@@ -141,7 +169,49 @@ data:
               AND (IMI.MARKETING_INTERACTION_TYPE_CD = 'MAIL' OR IMI.CLIENT_INTEREST_FLG = 'Y');
       query5:
         schedule: "*/1 * * * *"
-        databases: [db1]
+        databases: [db1,db2,db3]
         metrics: [dev_date]
         sql: |
           select extract(epoch FROM now()) dev_date from sysibm.sysdummy1;
+      query6:
+        schedule: "*/5 * * * *"
+        databases: [db1,db2,db3]
+        metrics: [app_count]
+        sql: |
+          SELECT COUNT(application_handle) AS APP_COUNT
+          FROM TABLE(MON_GET_ACTIVITY(NULL, -1));
+      query7:
+        schedule: "*/5 * * * *"
+        databases: [db1,db2,db3]
+        metrics: [tables_reorg_pnding]
+        sql: |
+          SELECT 
+              COUNT(REORG_PENDING) AS TABLES_REORG_PNDING 
+          FROM
+              SYSIBMADM.ADMINTABINFO
+          WHERE
+              REORG_PENDING != 'N';
+      query8:
+        schedule: "*/5 * * * *"
+        databases: [db1,db2,db3]
+        metrics: [total_mem,free_mem,total_swp_mem,free_swp_mem,total_virt_mem,free_virt_mem]
+        sql: |
+         SELECT
+              MEMORY_TOTAL AS TOTAL_MEM,
+              MEMORY_FREE AS FREE_MEM,
+              MEMORY_SWAP_TOTAL AS TOTAL_SWP_MEM,
+              MEMORY_SWAP_FREE AS FREE_SWP_MEM,
+              VIRTUAL_MEM_TOTAL AS TOTAL_VIRT_MEM,
+              VIRTUAL_MEM_FREE AS FREE_VIRT_MEM
+          FROM TABLE(SYSPROC.ENV_GET_SYSTEM_RESOURCES());
+      query9:
+         schedule: "*/5 * * * *"
+         databases: [db1,db2,db3]
+         metrics: [long_queries]
+         sql: |
+           SELECT 
+              COUNT(APPLICATION_NAME) AS LONG_QUERIES
+           FROM
+              SYSIBMADM.MON_CURRENT_SQL
+           WHERE 
+              ELAPSED_TIME_SEC >= 300;
