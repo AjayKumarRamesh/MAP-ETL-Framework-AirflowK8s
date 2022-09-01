@@ -29,7 +29,7 @@ data:
           environment: PROD
       db4:
         dsn: env:DEV_POSTGRESQL_DSN
-        keep-connected: false
+        keep-connected: true
         labels:
           region: US
           app: AIRFLOW
@@ -116,6 +116,9 @@ data:
       long_queries:
         type: gauge
         description: LONG_QUERIES
+      postgres_alive:
+        type: gauge
+        description: POSTGRES_ALIVE
 
     queries:
       query1:
@@ -223,3 +226,9 @@ data:
               SYSIBMADM.MON_CURRENT_SQL
            WHERE 
               ELAPSED_TIME_SEC >= 300;
+      query10:
+         schedule: ""
+         databases: [db4]
+         metrics: [postgres_alive]
+         sql: |
+           SELECT 1 AS postgres_alive;
