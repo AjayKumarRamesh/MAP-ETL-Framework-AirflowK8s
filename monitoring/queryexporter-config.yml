@@ -37,7 +37,6 @@ data:
       events:
         dsn: env:EVENTS_DB2_DSN
         autocommit: false
-        keep-connected: false
         labels:
           region: US
           app: EVENTS
@@ -123,7 +122,7 @@ data:
     queries:
       query1:
         schedule: "*/1 * * * *"
-        databases: [db1,db2,db3]
+        databases: [db1,db2,db3,events]
         metrics: [log_utilization_percent,total_log_used_kb,total_log_available_kb,total_log_used_top_kb]
         sql: |
           SELECT
