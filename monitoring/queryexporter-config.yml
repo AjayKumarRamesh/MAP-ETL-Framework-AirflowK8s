@@ -34,6 +34,14 @@ data:
           region: US
           app: AIRFLOW
           environment: DEV
+      events:
+        dsn: env:EVENTS_DB2_DSN
+        autocommit: false
+        keep-connected: false
+        labels:
+          region: US
+          app: EVENTS
+          environment: DEV
 
     metrics:
       log_utilization_percent:
@@ -123,7 +131,7 @@ data:
           FROM MAP_AUDT.TS_USAGE;
       query2:
         schedule: "*/5 * * * *"
-        databases: [db1,db2]
+        databases: [db1,db2,db3]
         metrics: [uow_log_space]
         sql: |
           SELECT
