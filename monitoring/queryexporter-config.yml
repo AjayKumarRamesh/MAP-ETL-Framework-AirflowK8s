@@ -122,7 +122,7 @@ data:
     queries:
       query1:
         schedule: "*/1 * * * *"
-        databases: [db1,db2,db3,events]
+        databases: [db1,db2,db3]
         metrics: [log_utilization_percent,total_log_used_kb,total_log_available_kb,total_log_used_top_kb]
         sql: |
           SELECT
@@ -231,3 +231,14 @@ data:
          metrics: [postgres_alive]
          sql: |
            SELECT 1 AS postgres_alive;
+      events1:
+        schedule: "*/1 * * * *"
+        databases: [events]
+        metrics: [log_utilization_percent,total_log_used_kb,total_log_available_kb,total_log_used_top_kb]
+        sql: |
+          SELECT
+            LOG_UTILIZATION_PERCENT,
+            TOTAL_LOG_USED_KB,
+            TOTAL_LOG_AVAILABLE_KB,
+            TOTAL_LOG_USED_TOP_KB
+          FROM EVTODS.TS_USAGE;
